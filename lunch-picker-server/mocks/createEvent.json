@@ -1,6 +1,6 @@
 {
   "body":
-    "{\"name\": \"Grill'd\",\"profileImage\": \"Grill'd.png\",\"rating\": 4}",
+    "{\"restaurantName\": \"Grill'd\",\"profileImage\": \"Grill'd.png\",\"rating\": 4}",
   "requestContext": {
     "identity": {
       "cognitoIdentityId": "USER-SUB-1234"

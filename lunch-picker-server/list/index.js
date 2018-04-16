@@ -5,23 +5,17 @@ import { TABLE_NAME } from '../consts';
 import { getUserIdentity } from '../libs/requestLib';
 
 export const handler = async (event, context, callback) => {
-  const data = JSON.parse(event.body);
-  const { restaurantName, rating, profileImage } = data;
   const params = {
     TableName: TABLE_NAME.RESTAURANTS,
-    Item: {
-      userId: getUserIdentity(event),
-      restaurantId: uuid.v1(),
-      restaurantName,
-      rating,
-      profileImage,
-      createdAt: new Date().getTime()
+    KeyConditionExpression: 'userId = :userId',
+    ExpressionAttributeValues: {
+      ':userId': getUserIdentity(event)
     }
   };
 
   try {
-    await dynamoDbLib.call('put', params);
-    callback(null, success(params.Item));
+    const result = await dynamoDbLib.call('query', params);
+    callback(null, success(result.Items));
   } catch (error) {
     callback(null, failure({ status: false, error }, error.statusCode || 500));
   }

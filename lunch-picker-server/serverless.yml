@@ -54,3 +54,34 @@ functions:
           method: get
           cors: true
           authorizer: aws_iam
+
+  update:
+    handler: update/index.handler
+    events:
+      - http:
+          path: restaurants/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+  
+  delete:
+    handler: delete/index.handler
+    events:
+      - http:
+          path: restaurants/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
+
+  list:
+    handler: list/index.handler
+    events:
+      - http:
+          path: restaurants
+          method: get
+          cors: true
+          authorizer: aws_iam
+
+
+  
+
