@@ -10,7 +10,6 @@ export const handler = async (event, context, callback) => {
   const restaurantId = event.pathParameters.id;
 
   const { restaurantName, rating, profileImage } = data;
-  console.log(data);
   const params = {
     TableName: TABLE_NAME.RESTAURANTS,
     Key: { userId, restaurantId },
