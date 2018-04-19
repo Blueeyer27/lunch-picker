@@ -1,28 +1,28 @@
 import uuid from 'uuid';
-import * as dynamoDbLib from '../libs/dynamoLib';
 import { success, failure } from '../libs/responseLib';
-import { TABLE_NAME } from '../consts';
 import { getUserIdentity } from '../libs/requestLib';
+import { Restaurants } from '../models/Restaurants';
 
 export const handler = async (event, context, callback) => {
   const data = JSON.parse(event.body);
+  console.log('data: ', data);
+
   const { restaurantName, rating, profileImage } = data;
-  const params = {
-    TableName: TABLE_NAME.RESTAURANTS,
-    Item: {
-      userId: getUserIdentity(event),
-      restaurantId: uuid.v1(),
-      restaurantName,
-      rating,
-      profileImage,
-      createdAt: new Date().getTime()
-    }
+
+  const restaurant = {
+    userId: getUserIdentity(event),
+    restaurantId: uuid.v1(),
+    restaurantName,
+    rating,
+    profileImage
   };
 
   try {
-    await dynamoDbLib.call('put', params);
-    callback(null, success(params.Item));
-  } catch (error) {
-    callback(null, failure({ status: false, error }, error.statusCode || 500));
+    const result = await Restaurants.create(restaurant);
+    console.log(result);
+    callback(null, success(result));
+  } catch (e) {
+    console.log(e);
+    callback(null, failure(e));
   }
 };
