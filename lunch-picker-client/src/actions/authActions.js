@@ -1,13 +1,13 @@
 import { Auth } from 'aws-amplify';
 import * as appActions from './appActions';
-import { AUTHENTICATION_ACTIONS } from './types';
+import { AUTH_ACTIONS } from './types';
 
 export const login = (email, password) => async dispatch => {
   try {
     dispatch(appActions.loading());
     await Auth.signIn(email, password);
     dispatch({
-      type: AUTHENTICATION_ACTIONS.AUTHENTICATE_SUCCESS,
+      type: AUTH_ACTIONS.AUTHENTICATE_SUCCESS,
       payload: {
         email
       }
@@ -26,7 +26,7 @@ export const signUp = (email, password) => async dispatch => {
       password
     });
     dispatch({
-      type: AUTHENTICATION_ACTIONS.SIGN_UP_SUCCESS,
+      type: AUTH_ACTIONS.SIGN_UP_SUCCESS,
       payload: {
         email,
         password
@@ -45,9 +45,7 @@ export const confirmSignUp = confirmCode => async (dispatch, getState) => {
     dispatch(appActions.loading());
     await Auth.confirmSignUp(username, confirmCode);
     await Auth.signIn(username, password);
-    dispatch({
-      type: AUTHENTICATION_ACTIONS.CONFIRM_SIGN_UP
-    });
+    dispatch({ type: AUTH_ACTIONS.CONFIRM_SIGN_UP });
   } catch (e) {
     dispatch(appActions.showError(e.message));
   }

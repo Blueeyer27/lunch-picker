@@ -1,4 +1,4 @@
-import { AUTHENTICATION_ACTIONS } from '../actions/types';
+import { AUTH_ACTIONS } from '../actions/types';
 
 const INITIAL_STATE = {
   username: null,
@@ -20,13 +20,13 @@ const handleConfirmSignUp = state => {
 
 export const authenticationReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case AUTHENTICATION_ACTIONS.AUTHENTICATE_SUCCESS:
+    case AUTH_ACTIONS.AUTHENTICATE_SUCCESS:
       return this.handleAuthenticateSuccess(state, action.payload);
 
-    case AUTHENTICATION_ACTIONS.SIGN_UP_SUCCESS:
+    case AUTH_ACTIONS.SIGN_UP_SUCCESS:
       return this.handleSignUpSuccess(state, action.payload);
 
-    case AUTHENTICATION_ACTIONS.CONFIRM_SIGN_UP:
+    case AUTH_ACTIONS.CONFIRM_SIGN_UP:
       return this.handleConfirmSignUp(state);
 
     default:

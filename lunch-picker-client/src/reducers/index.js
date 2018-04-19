@@ -1,2 +1,2 @@
 export * from './appReducer';
-export * from './authenticationReducer';
+export * from './authReducer';
