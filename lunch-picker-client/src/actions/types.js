@@ -8,3 +8,11 @@ export const AUTH_ACTIONS = {
   SIGN_UP_SUCCESS: 'authentication_actions_sign_up_success',
   CONFIRM_SIGN_UP: 'authentication_actions_confirm_sign_up'
 };
+
+export const USER_ACTIONS = {
+  GET_RESTAURANT_DETAIL: 'user_actions_get_restaurant_detail',
+  LIST_RESTAURANTS: 'user_actions_list_restaurants',
+  CREATE_RESTAURANT: 'user_actions_create_restaurant',
+  UPDATE_RESTAURANT: 'user_actions_update_restaurant',
+  DELETE_RESTAURANT: 'user_actions_delete_restaurant'
+};

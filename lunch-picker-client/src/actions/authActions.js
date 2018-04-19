@@ -39,7 +39,7 @@ export const signUp = (email, password) => async dispatch => {
 };
 
 export const confirmSignUp = confirmCode => async (dispatch, getState) => {
-  const { username, password } = getState().authentication;
+  const { username, password } = getState().auth;
 
   try {
     dispatch(appActions.loading());
