@@ -5,8 +5,7 @@ import Root from "./containers/Root";
 import configureStore from "./store/configureStore";
 import registerServiceWorker from "./registerServiceWorker";
 
-import "./assets/css/reset.css";
-import "./assets/css/app.css";
+import "./assets/style/reset.css";
 
 const store = configureStore();
 
