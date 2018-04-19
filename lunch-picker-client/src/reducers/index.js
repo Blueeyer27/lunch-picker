@@ -1,3 +1,2 @@
-export default () => {
-  return {};
-};
+export * from './appReducer';
+export * from './authenticationReducer';
