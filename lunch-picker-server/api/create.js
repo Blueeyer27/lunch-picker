@@ -5,7 +5,6 @@ import { Restaurants } from '../models/Restaurants';
 
 export const handler = async (event, context, callback) => {
   const data = JSON.parse(event.body);
-  console.log('data: ', data);
 
   const { restaurantName, rating, profileImage } = data;
 
@@ -19,10 +18,8 @@ export const handler = async (event, context, callback) => {
 
   try {
     const result = await Restaurants.create(restaurant);
-    console.log(result);
     callback(null, success(result));
   } catch (e) {
-    console.log(e);
     callback(null, failure(e));
   }
 };

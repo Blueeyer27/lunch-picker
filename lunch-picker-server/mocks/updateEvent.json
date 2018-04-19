@@ -1,7 +1,7 @@
 {
-  "pathParameters": { "id": "10417690-4168-11e8-a561-37a068eb9c28" },
+  "pathParameters": { "id": "d25e29b0-43b8-11e8-8ffa-33f3747fb750" },
   "body":
-    "{ \"restaurantName\": \"Grill'd\",\"profileImage\": \"Grill'd.png\",\"rating\": 3}",
+    "{ \"restaurantName\": \"Grill'd\",\"profileImage\": \"Grill'd.png\",\"rating\": 4}",
   "requestContext": {
     "identity": {
       "cognitoIdentityId": "USER-SUB-1234"
