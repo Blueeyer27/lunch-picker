@@ -29,19 +29,19 @@ const handleDeleteRestaurant = state => {
 export const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case USER_ACTIONS.LIST_RESTAURANTS:
-      return this.handleListRestaurants(state, action.payload);
+      return handleListRestaurants(state, action.payload);
 
     case USER_ACTIONS.GET_RESTAURANT_DETAIL:
-      return this.handleGetRestaurantDetail(state, action.payload);
+      return handleGetRestaurantDetail(state, action.payload);
 
     case USER_ACTIONS.CREATE_RESTAURANT:
-      return this.handleCreateRestaurant(state);
+      return handleCreateRestaurant(state);
 
     case USER_ACTIONS.UPDATE_RESTAURANT:
-      return this.handleUpdateRestaurant(state);
+      return handleUpdateRestaurant(state);
 
     case USER_ACTIONS.DELETE_RESTAURANT:
-      return this.handleDeleteRestaurant(state);
+      return handleDeleteRestaurant(state);
 
     default:
       return state;
