@@ -18,16 +18,16 @@ const handleConfirmSignUp = state => {
   return { ...state, authenticated: true, password: null };
 };
 
-export const authenticationReducer = (state = INITIAL_STATE, action) => {
+export const authReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case AUTH_ACTIONS.AUTHENTICATE_SUCCESS:
-      return this.handleAuthenticateSuccess(state, action.payload);
+      return handleAuthenticateSuccess(state, action.payload);
 
     case AUTH_ACTIONS.SIGN_UP_SUCCESS:
-      return this.handleSignUpSuccess(state, action.payload);
+      return handleSignUpSuccess(state, action.payload);
 
     case AUTH_ACTIONS.CONFIRM_SIGN_UP:
-      return this.handleConfirmSignUp(state);
+      return handleConfirmSignUp(state);
 
     default:
       return state;
