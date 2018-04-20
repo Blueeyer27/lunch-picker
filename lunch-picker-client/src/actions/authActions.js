@@ -21,7 +21,7 @@ export const login = (email, password) => async dispatch => {
 export const signUp = (email, password) => async dispatch => {
   try {
     dispatch(appActions.loading());
-    const newUser = await Auth.signUp({
+    await Auth.signUp({
       username: email,
       password
     });

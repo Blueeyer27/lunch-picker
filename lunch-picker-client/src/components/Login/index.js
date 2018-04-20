@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { Input, Button } from './component';
+import { connect } from 'react-redux';
+import { Input, Button } from './components';
+import { login } from '../../actions';
 import Logo from '../../assets/image/logo.svg';
 
-import './style/login.css';
+import './styles/login.css';
 
 class LoginPage extends Component {
-  static defaultProps = {
-    onSubmit: () => {}
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -17,15 +15,15 @@ class LoginPage extends Component {
     };
   }
 
-  handleClick = () => {
-    const { username, password } = this.state;
-    this.props.onSubmit(username, password);
-  };
-
   handleChange = (value, key) => {
     this.setState({
       [key]: value
     });
+  };
+
+  login = async () => {
+    const { username, password } = this.state;
+    await this.props.login(username, password);
   };
 
   render() {
@@ -38,22 +36,21 @@ class LoginPage extends Component {
           <Input
             placeholder="Username"
             fullWidth={true}
-            value={this.props.userName}
             onChange={value => this.handleChange(value, 'username')}
           />
           <Input
             placeholder="Password"
+            type="password"
             fullWidth={true}
-            value={this.props.Password}
             onChange={value => this.handleChange(value, 'password')}
           />
         </div>
         <div className="login-btn-container">
-          <Button onClick={this.handleClick} label="Login" />
+          <Button onClick={this.login} label="Login" />
         </div>
       </div>
     );
   }
 }
 
-export default LoginPage;
+export default connect(null, { login })(LoginPage);

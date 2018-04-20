@@ -43,7 +43,7 @@ export const createRestaurant = (restaurant, file = null) => async dispatch => {
       profileImage = s3.upload(file);
     }
     restaurant.profileImage = profileImage;
-    const result = await restaurantService.create(restaurant);
+    await restaurantService.create(restaurant);
     dispatch({
       type: USER_ACTIONS.CREATE_RESTAURANT
     });
@@ -61,7 +61,7 @@ export const updateRestaurant = (restaurant, file = null) => async dispatch => {
       profileImage = s3.upload(file);
     }
     restaurant.profileImage = profileImage;
-    const result = await restaurantService.update(restaurant);
+    await restaurantService.update(restaurant);
     dispatch({
       type: USER_ACTIONS.UPDATE_RESTAURANT
     });
@@ -74,7 +74,7 @@ export const updateRestaurant = (restaurant, file = null) => async dispatch => {
 export const deleteRestaurant = id => async dispatch => {
   try {
     dispatch(appActions.loading());
-    const result = await restaurantService.delete(id);
+    await restaurantService.delete(id);
     dispatch({
       type: USER_ACTIONS.DELETE_RESTAURANT
     });
