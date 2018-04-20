@@ -1,5 +1,5 @@
-import React from "react";
-import RaisedButton from "material-ui/RaisedButton";
+import React from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 
 export const Button = props => {
   return (
@@ -14,7 +14,7 @@ export const Button = props => {
 };
 
 Button.defaultProps = {
-  label: "Button",
+  label: 'Button',
   fullWidth: false,
   disabled: false,
   style: {},

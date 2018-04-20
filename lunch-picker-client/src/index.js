@@ -9,6 +9,7 @@ import config from './config';
 import './assets/css/reset.css';
 import './assets/css/app.css';
 import './index.css';
+import './assets/style/reset.css';
 
 const store = configureStore();
 

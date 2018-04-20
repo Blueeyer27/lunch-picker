@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import TextField from "material-ui/TextField";
+import React, { Component } from 'react';
+import TextField from 'material-ui/TextField';
 
 class Input extends Component {
   static defaultProps = {
-    placeholder: "Floating Label Text",
-    value: "",
+    placeholder: '',
+    value: '',
     fullWidth: false,
     onChange: () => {}
   };
@@ -12,7 +12,7 @@ class Input extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ""
+      value: ''
     };
   }
 
@@ -22,6 +22,7 @@ class Input extends Component {
 
   handleChange = (e, value) => {
     this.setState({ value });
+    this.props.onChange(value);
   };
 
   render() {
