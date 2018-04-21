@@ -22,6 +22,8 @@ provider:
   runtime: nodejs8.10
   stage: dev
   region: ap-southeast-2
+  environment:
+    YELP_API_KEY: 'kIR0vzSzmSfa8WkdTAMzj5PMDHIu9ukrN-x_wu3POdAFy-zzEBkCXj6wvH2FXjeoFWTGIx7ZNJn6e7NgSx-eG1tnEVKz4-fmtoTK-5kgDdMiC2apRZXxkcBFOhrbWnYx'
   vpc:
     securityGroupIds:
       - sg-07e7f48a7af8a95f3
@@ -38,14 +40,8 @@ provider:
   iamRoleStatements:
     - Effect: Allow
       Action:
-        - ec2:CreateNetworkInterface
-        - dynamodb:DescribeTable
-        - dynamodb:Query
-        - dynamodb:Scan
-        - dynamodb:GetItem
-        - dynamodb:PutItem
-        - dynamodb:UpdateItem
-        - dynamodb:DeleteItem
+        - ec2:CreateNetworkInterface 
+        - rekognition:DetectText	
       Resource: "*"
 
 functions:
@@ -94,6 +90,31 @@ functions:
           cors: true
           authorizer: aws_iam
 
+  detect:
+    handler: api/detect.handler
+    events:
+      - http:
+          path: restaurants/detect
+          method: get
+          cors: true
+          authorizer: aws_iam
 
+  yelpSearch:
+    handler: api/yelp/search.handler
+    events:
+      - http:
+          path: external/search
+          method: get
+          cors: true
+          authorizer: aws_iam
+    
+  yelpGet:
+    handler: api/yelp/get.handler
+    events:
+      - http:
+          path: external/get/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
   
 
