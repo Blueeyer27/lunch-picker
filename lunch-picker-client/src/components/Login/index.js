@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Logo from '../App/components/Logo';
-import { Input, Button } from '../Share';
-import { RoundButton } from './component';
+import { Input, Button, RoundButton } from '../Share';
 import { login } from '../../actions';
 
 import './styles/login.css';
