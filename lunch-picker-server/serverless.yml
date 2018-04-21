@@ -116,5 +116,15 @@ functions:
           method: get
           cors: true
           authorizer: aws_iam
+
+  yelpReviews: 
+    handler: api/yelp/reviews.handler
+    events:
+      - http:
+          path: external/reviews/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+
   
 

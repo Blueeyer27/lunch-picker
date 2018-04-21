@@ -31,5 +31,28 @@ export const search = async (term, location) => {
 export const get = async id => {
   const url = `${YELP_CONFIG.baseUrl}/${id}`;
   const response = await request({ ...baseOptions, url });
-  return response;
+  return {
+    id: response.id,
+    name: response.name,
+    categories: response.categories.map(c => c.title),
+    rating: response.rating,
+    coordinates: response.coordinates,
+    price: response.price,
+    address: response.location.display_address.join(', '),
+    photos: response.photos,
+    isOpen: response.hours[0].is_open_now
+  };
+};
+
+export const reviews = async id => {
+  const url = `${YELP_CONFIG.baseUrl}/${id}/reviews`;
+  const { reviews } = await request({ ...baseOptions, url });
+  return reviews.map(review => {
+    return {
+      rating: review.rating,
+      createdAt: review.createdAt,
+      text: review.text,
+      user: review.user.name
+    };
+  });
 };
