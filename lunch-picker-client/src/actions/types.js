@@ -1,6 +1,7 @@
 export const APP_ACTIONS = {
   TOGGLE_LOADER: 'app_actions_toggle_loader',
-  SHOW_ERROR: 'app_actions_show_error'
+  SHOW_ERROR: 'app_actions_show_error',
+  CLEAR: 'app_actions_clear'
 };
 
 export const AUTH_ACTIONS = {

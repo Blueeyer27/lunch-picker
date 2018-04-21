@@ -13,3 +13,9 @@ export const showError = (error = null) => {
     payload: { error }
   };
 };
+
+export const clear = () => {
+  return {
+    type: APP_ACTIONS.CLEAR
+  };
+};

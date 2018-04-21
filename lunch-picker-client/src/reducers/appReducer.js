@@ -13,6 +13,9 @@ export const appReducer = (state = INITIAL_STATE, action) => {
     case APP_ACTIONS.SHOW_ERROR:
       return { ...state, error: action.payload.error };
 
+    case APP_ACTIONS.CLEAR:
+      return INITIAL_STATE;
+
     default:
       return state;
   }
