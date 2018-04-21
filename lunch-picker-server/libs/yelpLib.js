@@ -1,10 +1,11 @@
 import request from 'request-promise';
 import qs from 'qs';
 import { YELP_CONFIG } from '../config';
+import { getParam } from './ssmLib';
 
-const baseOptions = {
-  headers: { Authorization: `Bearer ${process.env.YELP_API_KEY}` },
-  json: true
+const baseOptions = async () => {
+  const yelpApiKey = await getParam('YELP_API_KEY');
+  return { headers: { Authorization: `Bearer ${yelpApiKey}` }, json: true };
 };
 
 export const search = async (term, location) => {
@@ -13,8 +14,9 @@ export const search = async (term, location) => {
     location,
     category: 'food, All'
   };
+  const options = await baseOptions();
   const url = `${YELP_CONFIG.baseUrl}/search?${qs.stringify(query)}`;
-  const response = await request({ ...baseOptions, url });
+  const response = await request({ ...options, url });
   return response.businesses.map(business => {
     return {
       id: business.id,
@@ -30,7 +32,9 @@ export const search = async (term, location) => {
 
 export const get = async id => {
   const url = `${YELP_CONFIG.baseUrl}/${id}`;
-  const response = await request({ ...baseOptions, url });
+  const options = await baseOptions();
+
+  const response = await request({ ...options, url });
   return {
     id: response.id,
     name: response.name,
@@ -46,7 +50,10 @@ export const get = async id => {
 
 export const reviews = async id => {
   const url = `${YELP_CONFIG.baseUrl}/${id}/reviews`;
-  const { reviews } = await request({ ...baseOptions, url });
+  const options = await baseOptions();
+
+  const { reviews } = await request({ ...options, url });
+
   return reviews.map(review => {
     return {
       rating: review.rating,

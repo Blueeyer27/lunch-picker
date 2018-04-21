@@ -22,8 +22,8 @@ provider:
   runtime: nodejs8.10
   stage: dev
   region: ap-southeast-2
-  environment:
-    YELP_API_KEY: 'kIR0vzSzmSfa8WkdTAMzj5PMDHIu9ukrN-x_wu3POdAFy-zzEBkCXj6wvH2FXjeoFWTGIx7ZNJn6e7NgSx-eG1tnEVKz4-fmtoTK-5kgDdMiC2apRZXxkcBFOhrbWnYx'
+  environment: 
+    DB_PASSWORD: ${file(./serverless-var.yml):DB_PASSWORD}
   vpc:
     securityGroupIds:
       - sg-07e7f48a7af8a95f3
