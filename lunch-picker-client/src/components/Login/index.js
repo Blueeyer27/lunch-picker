@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Input, Button } from './components';
+import { Input, Button } from '../Share';
 import { login } from '../../actions';
 import Logo from '../../assets/image/logo.svg';
 
