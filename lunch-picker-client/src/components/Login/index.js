@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Logo from '../App/components/Logo';
 import { Input, Button } from '../Share';
 import { login } from '../../actions';
-import Logo from '../../assets/image/logo.svg';
 
 import './styles/login.css';
 
@@ -29,22 +29,18 @@ class LoginPage extends Component {
   render() {
     return (
       <div className="login">
-        <div className="logo-container">
-          <img src={Logo} className="logo" alt="logo" />
-        </div>
-        <div>
-          <Input
-            placeholder="Username"
-            fullWidth={true}
-            onChange={value => this.handleChange(value, 'username')}
-          />
-          <Input
-            placeholder="Password"
-            type="password"
-            fullWidth={true}
-            onChange={value => this.handleChange(value, 'password')}
-          />
-        </div>
+        <Logo />
+        <Input
+          placeholder="Username"
+          fullWidth={true}
+          onChange={value => this.handleChange(value, 'username')}
+        />
+        <Input
+          placeholder="Password"
+          type="password"
+          fullWidth={true}
+          onChange={value => this.handleChange(value, 'password')}
+        />
         <div className="login-btn-container">
           <Button onClick={this.login} label="Login" />
         </div>

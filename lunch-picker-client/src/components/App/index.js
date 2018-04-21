@@ -12,8 +12,6 @@ import { clear } from '../../actions';
 const muiTheme = getMuiTheme(customTheme);
 
 class App extends Component {
-  componentDidMount = () => {};
-
   render() {
     const { error, loading, clear } = this.props;
     return (
