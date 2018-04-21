@@ -4,6 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 export const Button = props => {
   return (
     <RaisedButton
+      type={props.type}
       label={props.label}
       style={props.style}
       fullWidth={props.fullWidth}
@@ -14,6 +15,7 @@ export const Button = props => {
 };
 
 Button.defaultProps = {
+  type: 'button',
   label: 'Button',
   fullWidth: false,
   disabled: false,

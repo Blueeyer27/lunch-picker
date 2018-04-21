@@ -1,8 +1,49 @@
 .login {
-  padding: 15vh 0;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 320px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
+
+.login-form {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #ddd;
+  padding: 3.5rem 1.5rem;
 }
 
 .login-btn-container {
   margin-top: 2rem;
   text-align: right;
+}
+
+.switch-button {
+  position: absolute;
+  height: 56px;
+  width: 56px;
+  right: -20px;
+  top: -20px;
+}
+
+.scaleIn {
+  transform: scale(0, 0);
+  animation: scaleIn 0.3s ease-in-out forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Logo from '../App/components/Logo';
 import { Input, Button } from '../Share';
+import { RoundButton } from './component';
 import { login } from '../../actions';
 
 import './styles/login.css';
@@ -11,7 +12,9 @@ class LoginPage extends Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      confirmPassword: '',
+      signUp: false
     };
   }
 
@@ -21,14 +24,21 @@ class LoginPage extends Component {
     });
   };
 
-  login = async () => {
+  handleFormFlip = () => {
+    this.setState({
+      signUp: !this.state.signUp
+    });
+  };
+
+  login = async e => {
+    e.preventDefault();
     const { username, password } = this.state;
     await this.props.login(username, password);
   };
 
-  render() {
+  renderLogin = () => {
     return (
-      <div className="login">
+      <form className="login-form" onSubmit={this.login}>
         <Logo />
         <Input
           placeholder="Username"
@@ -42,7 +52,49 @@ class LoginPage extends Component {
           onChange={value => this.handleChange(value, 'password')}
         />
         <div className="login-btn-container">
-          <Button onClick={this.login} label="Login" />
+          <Button type="submit" label="Login" />
+        </div>
+      </form>
+    );
+  };
+
+  renderSignUp = () => {
+    return (
+      <form className="login-form" onSubmit={this.signUp}>
+        <Logo />
+        <Input
+          placeholder="Username"
+          fullWidth={true}
+          onChange={value => this.handleChange(value, 'username')}
+        />
+        <Input
+          placeholder="Password"
+          type="password"
+          fullWidth={true}
+          onChange={value => this.handleChange(value, 'password')}
+        />
+        <Input
+          placeholder="Confirm Your Password"
+          type="password"
+          fullWidth={true}
+          onChange={value => this.handleChange(value, 'confirmPassword')}
+        />
+        <div className="login-btn-container">
+          <Button type="submit" label="Sign Up" />
+        </div>
+      </form>
+    );
+  };
+
+  render() {
+    return (
+      <div className="login">
+        <div className="login-container">
+          {this.state.signUp ? this.renderSignUp() : this.renderLogin()}
+          <RoundButton
+            className="switch-button"
+            onClick={this.handleFormFlip}
+          />
         </div>
       </div>
     );
