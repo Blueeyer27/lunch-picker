@@ -6,6 +6,10 @@ const INITIAL_STATE = {
   authenticated: false
 };
 
+const handleAuthenticateUser = (state, payload) => {
+  return { ...state, username: payload.email, authenticated: true };
+};
+
 const handleAuthenticateSuccess = (state, payload) => {
   return { ...state, username: payload.email, authenticated: true };
 };
@@ -20,6 +24,9 @@ const handleConfirmSignUp = state => {
 
 export const authReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case AUTH_ACTIONS.AUTHENTICATE_USER:
+      return handleAuthenticateUser(state, action.payload);
+
     case AUTH_ACTIONS.AUTHENTICATE_SUCCESS:
       return handleAuthenticateSuccess(state, action.payload);
 

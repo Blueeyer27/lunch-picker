@@ -1,28 +1,60 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Provider as AlertProvider } from 'react-alert';
+import AlertTemplate from 'react-alert-template-basic';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { Auth } from 'aws-amplify';
 import { Spinner } from '../Share';
 import AppBoundary from './components/AppBoundary';
+import Routes from '../../Routes';
 import { customTheme } from './theme';
 import { appSelector } from '../../selectors';
-import { clear } from '../../actions';
+import { clear, authenticateUser } from '../../actions';
 
 const muiTheme = getMuiTheme(customTheme);
 
+const options = {
+  position: 'top center',
+  timeout: 5000,
+  offset: '30px',
+  transition: 'scale'
+};
+
 class App extends Component {
+  // componentDidMount = async () => {
+  //   try {
+  //     const currentUser = await Auth.currentSession();
+  //     if (currentUser) {
+  //       this.props.authenticateUser(currentUser.idToken.payload.email);
+  //     }
+  //   } catch (e) {
+  //     if (e !== 'No current user') {
+  //       alert(e);
+  //     }
+  //   }
+  // };
   render() {
-    const { error, loading, clear } = this.props;
+    const { error, loading, clear, authenticated } = this.props;
+    const childProps = {
+      authenticated
+    };
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
-        <AppBoundary error={error} onClose={clear}>
-          <Spinner spinning={loading} />
-          <div className="container">{this.props.children}</div>
-        </AppBoundary>
+        <AlertProvider template={AlertTemplate} {...options}>
+          <AppBoundary error={error} onClose={clear}>
+            <Spinner spinning={loading} />
+            <div className="container">
+              <Routes childProps={childProps} />
+            </div>
+          </AppBoundary>
+        </AlertProvider>
       </MuiThemeProvider>
     );
   }
 }
 
-export default withRouter(connect(appSelector, { clear })(App));
+export default withRouter(
+  connect(appSelector, { clear, authenticateUser })(App)
+);

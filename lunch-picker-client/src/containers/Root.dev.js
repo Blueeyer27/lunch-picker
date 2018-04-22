@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Provider } from 'react-redux';
-import Routes from '../Routes';
+import { BrowserRouter as Router } from 'react-router-dom';
+import App from '../components/App';
 import DevTools from './DevTools';
 
 export default class Root extends Component {
@@ -9,7 +10,9 @@ export default class Root extends Component {
     return (
       <Provider store={store}>
         <Fragment>
-          <Routes />
+          <Router>
+            <App />
+          </Router>
           <DevTools />
         </Fragment>
       </Provider>
