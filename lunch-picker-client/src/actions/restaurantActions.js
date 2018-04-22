@@ -1,0 +1,13 @@
+//    take / upload photo
+// => upload to s3
+// => send file key to /restaurants/detect
+// => response: [detectText]
+//    => if no detection, manual input
+//    => if one detection, call restaurants/external/search?name=&location=
+//          => get matched result, take first one (hardcode)
+//          => call restaurants/external/{id} to get more details, display on UI
+//    => if multiple detection, dropdown to select
+//          => call restaurants/external/search??name=&location= with selected name
+//          => get matched result, take first one (hardcode)
+//          => call restaurants/external/{id} to get more details, display on
+// => post restaurants, with name, filekey, external id etc to save
