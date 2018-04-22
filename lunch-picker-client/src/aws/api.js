@@ -17,5 +17,17 @@ export const restaurantService = {
   },
   delete: id => {
     return API.del('restaurants', `/restaurants/${id}`);
+  },
+  detect: fileKey => {
+    return API.get(
+      'restaurants',
+      `/restaurants/detect?fileKey=${encodeURIComponent(fileKey)}`
+    );
+  },
+  detail: id => {
+    return API.get('restaurants', `restaurants/external/${id}`);
+  },
+  reviews: id => {
+    return API.get('restaurants', `restaurants/external/${id}/reviews`);
   }
 };

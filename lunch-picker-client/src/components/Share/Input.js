@@ -28,6 +28,7 @@ class Input extends Component {
   render() {
     return (
       <TextField
+        type={this.props.type}
         floatingLabelText={this.props.placeholder}
         fullWidth={this.props.fullWidth}
         value={this.state.value}
