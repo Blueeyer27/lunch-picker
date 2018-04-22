@@ -19,5 +19,6 @@ export const Restaurants = sequelize.define('restaurants', {
   },
   profileImage: Sequelize.STRING,
   rating: Sequelize.INTEGER,
-  restaurantName: Sequelize.STRING
+  restaurantName: Sequelize.STRING,
+  externalId: Sequelize.STRING
 });

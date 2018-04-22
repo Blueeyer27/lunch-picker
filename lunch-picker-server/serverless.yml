@@ -44,6 +44,9 @@ provider:
         - rekognition:DetectText	
       Resource: "*"
 
+package:
+  individually: true
+
 functions:
   create:
     handler: api/create.handler
@@ -103,7 +106,7 @@ functions:
     handler: api/yelp/search.handler
     events:
       - http:
-          path: external/search
+          path: restaurants/external/search
           method: get
           cors: true
           authorizer: aws_iam
@@ -112,7 +115,7 @@ functions:
     handler: api/yelp/get.handler
     events:
       - http:
-          path: external/get/{id}
+          path: restaurants/external/{id}
           method: get
           cors: true
           authorizer: aws_iam
@@ -121,7 +124,7 @@ functions:
     handler: api/yelp/reviews.handler
     events:
       - http:
-          path: external/reviews/{id}
+          path: restaurants/external/{id}/reviews
           method: get
           cors: true
           authorizer: aws_iam
