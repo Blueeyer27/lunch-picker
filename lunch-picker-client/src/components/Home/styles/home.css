@@ -1,0 +1,50 @@
+.drop-zone {
+  width: 100%;
+  height: 12rem;
+  text-align: center;
+  border: 2px dashed #555;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 2rem;
+}
+.drop-zone-icon {
+  width: 3rem !important;
+  height: 3rem !important;
+  margin-bottom: 1rem;
+}
+.drop-zone-text {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.preivew-image-container {
+  width: 100%;
+  height: 12rem;
+  text-align: center;
+  position: relative;
+}
+.preivew-image-container > img {
+  height: 12rem;
+}
+.preivew-image-container > .close-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  position: absolute;
+  right: 0.4rem;
+  top: 0.4rem;
+  z-index: 9999;
+  cursor: pointer;
+  background: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.preivew-image-container > .close-icon > svg {
+  height: 2.5rem !important;
+  transition: all 0.3s ease-in-out;
+}
+.preivew-image-container > .close-icon:hover {
+  background: #aaa;
+}
+
+.preivew-image-container > .close-icon:hover > svg {
+  color: #fff !important;
+}

@@ -8,7 +8,12 @@ import UnauthenticatedRoute from './components/App/components/UnauthenticatedRou
 const Routes = ({ childProps }) => {
   return (
     <Switch>
-      <AuthenticatedRoute exact path="/" component={Home} props={childProps} />
+      <UnauthenticatedRoute
+        exact
+        path="/"
+        component={Home}
+        props={childProps}
+      />
       <UnauthenticatedRoute
         path="/login"
         component={LoginPage}
