@@ -10,6 +10,7 @@ body {
   min-height: 100vh;
   height: 100%;
   background-color: #f1f1f1;
+  color: #333;
 }
 
 .container {
@@ -19,4 +20,8 @@ body {
   min-height: 100vh;
   margin: 0 auto;
   padding: 0 15px;
+}
+
+.wrapper {
+  padding: 44px 0;
 }

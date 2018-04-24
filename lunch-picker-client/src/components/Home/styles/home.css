@@ -23,7 +23,12 @@
   position: relative;
 }
 .preivew-image-container > img {
-  height: 12rem;
+  max-width: 100%;
+  max-height: 100%;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
 }
 .preivew-image-container > .close-icon {
   width: 2.5rem;
@@ -47,4 +52,37 @@
 
 .preivew-image-container > .close-icon:hover > svg {
   color: #fff !important;
+}
+
+.information-container {
+  padding: 1.5rem 0;
+  position: relative;
+}
+
+.info-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  padding-bottom: 1.2rem;
+  text-align: center;
+}
+
+.info-category {
+  position: absolute;
+  right: 2px;
+  top: calc(-2rem - 2px);
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.2rem;
+}
+.info-description {
+  color: #555;
+  padding-bottom: 1rem;
+}
+.info-map {
+  width: 100%;
+  height: 20rem;
+  background-image: url('../../../assets/image/sample-map.jpg');
+  background-size: cover;
 }
