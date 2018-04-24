@@ -1,7 +1,8 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import LoginPage from './components/Login';
+import Chat from './components/Chat';
 import AuthenticatedRoute from './components/App/components/AuthenticatedRoute';
 import UnauthenticatedRoute from './components/App/components/UnauthenticatedRoute';
 
@@ -14,6 +15,7 @@ const Routes = ({ childProps }) => {
         component={LoginPage}
         props={childProps}
       />
+      <Route path="/chat" component={Chat} />
     </Switch>
   );
 };
