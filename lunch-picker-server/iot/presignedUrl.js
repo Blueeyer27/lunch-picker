@@ -12,7 +12,7 @@ export const handler = (event, context, callback) => {
       .update('', 'utf8')
       .digest('hex'),
     {
-      key: process.env.IOT_ACESS_KEY,
+      key: process.env.IOT_ACCESS_KEY,
       secret: process.env.IOT_SECRET_KEY,
       protocol: 'wss',
       region: process.env.IOT_AWS_REGION
