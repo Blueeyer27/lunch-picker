@@ -4,7 +4,6 @@ import { getUserIdentity } from '../libs/requestLib';
 
 export const handler = async (event, context, callback) => {
   const userId = getUserIdentity(event);
-  console.log('event', event);
   const fileKey = event.queryStringParameters.fileKey;
   console.log('file key', fileKey);
 
@@ -18,8 +17,8 @@ export const handler = async (event, context, callback) => {
       }
       return results;
     }, []);
-    return callback(null, success(options));
+    callback(null, success({ results: options }));
   } catch (err) {
-    return callback(null, failure(err));
+    callback(null, failure(err));
   }
 };

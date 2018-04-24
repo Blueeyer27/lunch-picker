@@ -21,3 +21,10 @@ export const getReviewsById = async id => {
   const response = await restaurantService.reviews(id);
   console.log(response);
 };
+
+window.actions = {
+  detectTextInLogo,
+  searchByName,
+  getDetailById,
+  getReviewsById
+};

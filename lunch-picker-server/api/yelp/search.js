@@ -10,6 +10,6 @@ export const handler = async (event, context, callback) => {
     const results = await search(term, latitude, longitude);
     callback(null, success(results));
   } catch (error) {
-    callback(null, failure({ status: false, error }));
+    callback(null, failure(error));
   }
 };

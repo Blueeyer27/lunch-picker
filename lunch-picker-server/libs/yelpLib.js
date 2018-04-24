@@ -46,6 +46,7 @@ export const get = async id => {
 
 export const reviews = async id => {
   const url = `${YELP_CONFIG.baseUrl}/${id}/reviews`;
+
   const options = await baseOptions();
 
   const { reviews } = await request({ ...options, url });

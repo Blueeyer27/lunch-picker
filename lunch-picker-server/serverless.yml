@@ -9,13 +9,11 @@ plugins:
 # serverless-webpack configuration
 # Enable auto-packing of external modules
 custom:
-  webpack:
-    webpackConfig: ./webpack.config.js
-    includeModules: true
   webpackIncludeModules:
     forceInclude:
-      - mysql
       - mysql2
+    forceExclude:
+      - aws-sdk
 
 provider:
   name: aws
@@ -24,6 +22,7 @@ provider:
   region: ap-southeast-2
   environment: 
     DB_PASSWORD: ${file(./serverless-var.yml):DB_PASSWORD}
+    YELP_API_KEY: ${file(./serverless-var.yml):YELP_API_KEY}
   vpc:
     securityGroupIds:
       - sg-07e7f48a7af8a95f3
@@ -40,8 +39,22 @@ provider:
   iamRoleStatements:
     - Effect: Allow
       Action:
+        - s3:*
+      Resource: "*"
+    - Effect: Allow
+      Action:
         - ec2:CreateNetworkInterface 
-        - rekognition:DetectText	
+        - ec2:DescribeNetworkInterfaces
+        - ec2:DeleteNetworkInterface 
+      Resource: "*"
+    - Effect: Allow
+      Action: 
+        - ssm:GetParameter
+        - ssm:GetParameters
+      Resource: "*"
+    - Effect: Allow
+      Action: 
+        - rekognition:*	
       Resource: "*"
 
 package:
