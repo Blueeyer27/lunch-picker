@@ -1,13 +1,23 @@
-//    take / upload photo
-// => upload to s3
-// => send file key to /restaurants/detect
-// => response: [detectText]
-//    => if no detection, manual input
-//    => if one detection, call restaurants/external/search?name=&location=
-//          => get matched result, take first one (hardcode)
-//          => call restaurants/external/{id} to get more details, display on UI
-//    => if multiple detection, dropdown to select
-//          => call restaurants/external/search??name=&location= with selected name
-//          => get matched result, take first one (hardcode)
-//          => call restaurants/external/{id} to get more details, display on
-// => post restaurants, with name, filekey, external id etc to save
+import { restaurantService } from '../aws/api';
+import { getCurrentPosition } from '../utils';
+
+export const detectTextInLogo = async fileKey => {
+  const response = await restaurantService.detect(fileKey);
+  console.log(response);
+};
+
+export const searchByName = async name => {
+  const { latitude, longitude } = await getCurrentPosition();
+  const response = await restaurantService.search(name, latitude, longitude);
+  console.log(response);
+};
+
+export const getDetailById = async id => {
+  const response = await restaurantService.detail(id);
+  console.log(response);
+};
+
+export const getReviewsById = async id => {
+  const response = await restaurantService.reviews(id);
+  console.log(response);
+};

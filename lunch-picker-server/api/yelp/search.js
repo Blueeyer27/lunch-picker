@@ -4,10 +4,10 @@ import { search } from '../../libs/yelpLib';
 
 export const handler = async (event, context, callback) => {
   const userId = getUserIdentity(event);
-  const { term, location } = event.pathParameters;
+  const { term, latitude, longitude } = event.queryStringParameters;
 
   try {
-    const results = await search(term, location);
+    const results = await search(term, latitude, longitude);
     callback(null, success(results));
   } catch (error) {
     callback(null, failure({ status: false, error }));

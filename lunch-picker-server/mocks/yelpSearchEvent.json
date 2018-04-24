@@ -1,7 +1,8 @@
 {
   "pathParameters": {
     "term": "grill'd",
-    "location": "mooney pond, vic, au"
+    "latitude": -37.7622815,
+    "longitude": 145.0333737
   },
   "requestContext": {
     "identity": {

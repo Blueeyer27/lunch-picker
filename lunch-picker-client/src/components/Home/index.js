@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ContentClose from 'material-ui/svg-icons/navigation/close';
-
+import * as actions from '../../actions';
 import './styles/home.css';
 
 export default class Home extends Component {

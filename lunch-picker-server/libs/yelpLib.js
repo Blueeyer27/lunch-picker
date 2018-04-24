@@ -8,12 +8,8 @@ const baseOptions = async () => {
   return { headers: { Authorization: `Bearer ${yelpApiKey}` }, json: true };
 };
 
-export const search = async (term, location) => {
-  const query = {
-    term,
-    location,
-    category: 'food, All'
-  };
+export const search = async (term, latitude, longitude) => {
+  const query = { term, latitude, longitude, category: 'food, All' };
   const options = await baseOptions();
   const url = `${YELP_CONFIG.baseUrl}/search?${qs.stringify(query)}`;
   const response = await request({ ...options, url });
