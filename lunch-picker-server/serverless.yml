@@ -22,7 +22,6 @@ provider:
   region: ap-southeast-2
   environment: 
     DB_PASSWORD: ${file(./serverless-var.yml):DB_PASSWORD}
-    YELP_API_KEY: ${file(./serverless-var.yml):YELP_API_KEY}
   vpc:
     securityGroupIds:
       - sg-07e7f48a7af8a95f3

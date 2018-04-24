@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ContentClose from 'material-ui/svg-icons/navigation/close';
+import { upload } from '../../../aws/s3';
 
 class ImageUpload extends Component {
   constructor(props) {
@@ -9,10 +10,13 @@ class ImageUpload extends Component {
     this.state = { files: [] };
   }
 
-  handleDrop = files => {
+  handleDrop = async files => {
     this.setState({
       files
     });
+    //const file = files[0];
+    //const key = await upload(file);
+    //console.log(key);
   };
 
   handleRemoveImage = () => {

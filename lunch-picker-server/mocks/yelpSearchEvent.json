@@ -1,5 +1,5 @@
 {
-  "pathParameters": {
+  "queryStringParameters": {
     "term": "grill'd",
     "latitude": -37.7622815,
     "longitude": 145.0333737
