@@ -34,15 +34,17 @@ class ImageUpload extends Component {
     const file = this.state.files.length > 0 ? this.state.files[0] : undefined;
     if (file) {
       return (
-        <div className="preivew-image-container">
+        <div className="preivew-image-container animated fadeIn">
           <img src={file.preview} alt="preview" />
           <span
+            key="removeBtn"
             className="image-icon close-icon"
             onClick={this.handleRemoveImage}
           >
             <ContentClose />
-          </span>
+          </span>,
           <span
+            key="saveBtn"
             className="image-icon check-icon"
             onClick={this.handleSaveImage}
           >

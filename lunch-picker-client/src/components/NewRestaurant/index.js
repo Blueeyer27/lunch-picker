@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ImageUpload, ImageInfo, SelectedModal } from './components';
-import { Button } from '../Share';
+import {
+  ImageUpload,
+  NewRestaurantInfo,
+  SelectedModal,
+  SaveCancelButtons
+} from './components';
 import { newRestaurantSelector } from '../../selectors';
 import {
   detectTextInLogo,
   searchByName,
   getDetailById,
-  toggleDetectedNameModal
+  toggleDetectedNameModal,
+  resetRestaurantInfo
 } from '../../actions';
-import './styles/home.css';
+import './styles/new-restaurant.css';
 
 class NewRestaurant extends Component {
   selectRestaurantName = async name => {
@@ -20,18 +25,26 @@ class NewRestaurant extends Component {
 
   handleSave = () => {};
 
+  handleCancel = () => {
+    this.props.resetRestaurantInfo();
+  };
+
   render() {
     const { detectTextInLogo, restaurant } = this.props;
     return (
       <div className="wrapper">
         <ImageUpload detectTextInLogo={detectTextInLogo} />
-        <ImageInfo restaurant={restaurant.onlineDetail} />
+        <NewRestaurantInfo restaurant={restaurant.onlineDetail} />
         <SelectedModal
           open={this.props.isDetectedNameModalOpen}
           onSelect={this.selectRestaurantName}
           names={restaurant.detectedResults}
         />
-        <Button label="Save" disabled={false} onClick={this.handleSave} />
+        <SaveCancelButtons
+          show={restaurant.onlineDetail.name != null}
+          handleSave={this.handleSave}
+          handleCancel={this.handleCancel}
+        />
       </div>
     );
   }
@@ -41,5 +54,6 @@ export default connect(newRestaurantSelector, {
   detectTextInLogo,
   searchByName,
   getDetailById,
-  toggleDetectedNameModal
+  toggleDetectedNameModal,
+  resetRestaurantInfo
 })(NewRestaurant);

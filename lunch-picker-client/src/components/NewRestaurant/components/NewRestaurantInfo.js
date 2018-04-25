@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { GridList, GridTile } from 'material-ui/GridList';
 import { Gmap } from './';
 
-class ImageInfo extends Component {
+class NewRestaurantInfo extends Component {
   renderDetails = () => {
     const { restaurant } = this.props;
     if (restaurant.name == null) return null;
@@ -10,13 +10,19 @@ class ImageInfo extends Component {
     return (
       <div className="information-container">
         <p className="info-title">{restaurant.name}</p>
-        <p className="info-category">{restaurant.categories.join(' ')}</p>
-        <p className="info-description">Address: {restaurant.address}</p>
-        <p className="info-description">Rating: {restaurant.rating}</p>
+        <p className="info-description">
+          Category: <small>{restaurant.categories.join(' ')}</small>
+        </p>
+        <p className="info-description">
+          Address: <small>{restaurant.address}</small>
+        </p>
+        <p className="info-description">
+          Rating: <small>{restaurant.rating}</small>
+        </p>
         <p className="info-description">
           {restaurant.isOpen ? 'Open' : 'Closed'}
         </p>
-        <p className="info-description">
+        <div className="info-description">
           <GridList cols={2.2}>
             {restaurant.photos.map((photo, index) => (
               <GridTile key={index}>
@@ -24,7 +30,7 @@ class ImageInfo extends Component {
               </GridTile>
             ))}
           </GridList>
-        </p>
+        </div>
 
         <div className="info-map">
           <Gmap
@@ -43,4 +49,4 @@ class ImageInfo extends Component {
   }
 }
 
-export { ImageInfo };
+export { NewRestaurantInfo };

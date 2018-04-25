@@ -13,7 +13,9 @@ const customTheme = {
   },
   raisedButton: {
     color: '#cb202d',
-    textColor: '#fff'
+    textColor: '#fff',
+    primaryColor: '#555',
+    primaryTextColor: '#fff'
   }
 };
 export { customTheme };

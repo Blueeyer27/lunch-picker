@@ -1,6 +1,6 @@
 .drop-zone {
   width: 100%;
-  height: 12rem;
+  height: 10rem;
   text-align: center;
   border: 2px dashed #555;
   border-radius: 5px;
@@ -18,9 +18,10 @@
 }
 .preivew-image-container {
   width: 100%;
-  height: 12rem;
+  height: 10rem;
   text-align: center;
   position: relative;
+  margin-bottom: 4rem;
 }
 .preivew-image-container > img {
   max-width: 100%;
@@ -41,14 +42,16 @@
 }
 .preivew-image-container > .close-icon {
   position: absolute;
-  right: 0.5rem;
-  top: 0.5rem;
+  left: 50%;
+  margin-left: -4.25rem;
+  bottom: -3.5rem;
   background: #cb202d;
 }
 .preivew-image-container > .check-icon {
   position: absolute;
-  right: 0.5rem;
-  top: 3.5rem;
+  left: 50%;
+  margin-left: 1.75rem;
+  bottom: -3.5rem;
   background: #009600;
 }
 .preivew-image-container > .image-icon > svg {
@@ -64,7 +67,7 @@
 
 .info-title {
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 500;
   padding-bottom: 1.2rem;
   text-align: center;
 }
@@ -80,12 +83,17 @@
   border-radius: 0.2rem;
 }
 .info-description {
-  color: #555;
+  color: #333;
+  line-height: 1.3rem;
   padding-bottom: 1rem;
+}
+.info-description small {
+  color: #555;
+  font-size: 0.85rem;
 }
 .info-map {
   width: 100%;
-  height: 20rem;
+  height: 10rem;
   background-image: url('../../../assets/image/sample-map.jpg');
   background-size: cover;
 }
@@ -98,4 +106,27 @@
 .select-modal .modal-list {
   line-height: 1.5rem;
   cursor: pointer;
+}
+
+.animated {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-transform-origin: center center;
+  -ms-transform-origin: center center;
+  transform-origin: center center;
+}
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

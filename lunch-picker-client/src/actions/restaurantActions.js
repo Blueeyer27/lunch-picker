@@ -62,3 +62,9 @@ export const getReviewsById = id => async dispatch => {
   }
   dispatch(appActions.loading(false));
 };
+
+export const resetRestaurantInfo = () => {
+  return {
+    type: RESTAURANT_ACTIONS.RESET_RESTAURANT_INFO
+  };
+};

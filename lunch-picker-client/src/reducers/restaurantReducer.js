@@ -41,6 +41,9 @@ export const restaurantReducer = (state = INITIAL_STATE, action) => {
     case RESTAURANT_ACTIONS.GET_REVIEWS_SUCCESS:
       return handleGetReviewSuccess(state, action.payload);
 
+    case RESTAURANT_ACTIONS.RESET_RESTAURANT_INFO:
+      return INITIAL_STATE;
+
     default:
       return state;
   }

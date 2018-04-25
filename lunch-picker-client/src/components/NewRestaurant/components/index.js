@@ -1,4 +1,5 @@
 export * from './ImageUpload';
-export * from './ImageInfo';
+export * from './NewRestaurantInfo';
 export * from './SelectedModal';
 export * from './Gmap';
+export * from './SaveCancelButtons';

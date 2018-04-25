@@ -24,5 +24,6 @@ export const RESTAURANT_ACTIONS = {
   DETECT_SUCCESS: 'restaurant_actions_detect_success',
   SEARCH_SUCCESS: 'restaurant_actions_search_success',
   GET_DETAIL_SUCCESS: 'restaurant_actions_get_detail_success',
-  GET_REVIEWS_SUCCESS: 'restaurant_actions_get_review_success'
+  GET_REVIEWS_SUCCESS: 'restaurant_actions_get_review_success',
+  RESET_RESTAURANT_INFO: 'restaurant_actions_reset_restaurant_info'
 };

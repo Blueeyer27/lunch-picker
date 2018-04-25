@@ -6,6 +6,7 @@ export const Button = props => {
     <RaisedButton
       type={props.type}
       label={props.label}
+      primary={props.primary}
       style={props.style}
       fullWidth={props.fullWidth}
       onClick={props.onClick}
@@ -19,6 +20,7 @@ Button.defaultProps = {
   label: 'Button',
   fullWidth: false,
   disabled: false,
+  primary: false,
   style: {},
   onClick: () => {}
 };
