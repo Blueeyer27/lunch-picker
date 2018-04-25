@@ -13,9 +13,9 @@ import './styles/home.css';
 
 class NewRestaurant extends Component {
   selectRestaurantName = async name => {
+    this.props.toggleDetectedNameModal(false);
     await this.props.searchByName(name);
     await this.props.getDetailById(this.props.restaurant.searchSummary.id);
-    this.props.toggleDetectedNameModal(false);
   };
 
   handleSave = () => {};
