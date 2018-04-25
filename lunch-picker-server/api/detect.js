@@ -8,7 +8,7 @@ export const handler = async (event, context, callback) => {
   console.log('file key', fileKey);
 
   try {
-    const data = await detectText(fileKey);
+    const data = await detectText(`private/${userId}/${fileKey}`);
     console.log('detected data', data);
     const options = data.TextDetections.reduce((results, detection) => {
       const text = detection.DetectedText;
