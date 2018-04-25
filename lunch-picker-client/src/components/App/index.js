@@ -23,18 +23,19 @@ const options = {
 };
 
 class App extends Component {
-  // componentDidMount = async () => {
-  //   try {
-  //     const currentUser = await Auth.currentSession();
-  //     if (currentUser) {
-  //       this.props.authenticateUser(currentUser.idToken.payload.email);
-  //     }
-  //   } catch (e) {
-  //     if (e !== 'No current user') {
-  //       alert(e);
-  //     }
-  //   }
-  // };
+  componentDidMount = async () => {
+    try {
+      const currentUser = await Auth.currentSession();
+      if (currentUser) {
+        this.props.authenticateUser(currentUser.idToken.payload.email);
+      }
+    } catch (e) {
+      if (e !== 'No current user') {
+        alert(e);
+      }
+    }
+  };
+
   render() {
     const { error, loading, clear, authenticated } = this.props;
     const childProps = {

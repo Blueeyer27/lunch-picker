@@ -28,7 +28,6 @@ class ImageUpload extends Component {
     const key = await upload(file);
     console.log(key);
     await this.props.detectTextInLogo(key);
-    //await this.props.detectTextInLogo('1524621570606 - logo-grilld.png');
   };
 
   renderDropZone = () => {

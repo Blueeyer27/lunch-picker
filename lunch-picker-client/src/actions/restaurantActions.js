@@ -7,6 +7,9 @@ export const detectTextInLogo = fileKey => async dispatch => {
   dispatch(appActions.loading());
   try {
     const data = await restaurantService.detect(fileKey);
+    if (data.results && data.results.length > 0) {
+      dispatch(appActions.toggleDetectedNameModal());
+    }
     dispatch({
       type: RESTAURANT_ACTIONS.DETECT_SUCCESS,
       payload: { results: data.results }

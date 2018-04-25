@@ -3,7 +3,8 @@ import { USER_ACTIONS } from '../actions/types';
 const INITIAL_STATE = {
   restaurants: [],
   restaurantPicked: null,
-  restaurantInEdit: null
+  restaurantInEdit: null,
+  position: {}
 };
 
 const handleListRestaurants = (state, payload) => {

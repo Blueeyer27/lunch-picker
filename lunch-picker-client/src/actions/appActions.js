@@ -19,3 +19,7 @@ export const clear = () => {
     type: APP_ACTIONS.CLEAR
   };
 };
+
+export const toggleDetectedNameModal = (open = true) => {
+  return { type: APP_ACTIONS.TOGGLE_DETECTED_NAME_MODAL, payload: { open } };
+};

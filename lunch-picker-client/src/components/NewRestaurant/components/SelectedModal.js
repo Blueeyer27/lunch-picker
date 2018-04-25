@@ -7,11 +7,12 @@ class SelectedModal extends Component {
     modal: true,
     names: [],
     handleClose: () => {},
-    handleSelect: () => {}
+    onSelect: () => {}
   };
 
   handleClick = name => {
-    this.props.handleSelect(name);
+    console.log('select,', name);
+    this.props.onSelect(name);
   };
 
   renderList = () => {

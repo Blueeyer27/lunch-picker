@@ -2,7 +2,8 @@ import { APP_ACTIONS } from '../actions/types';
 
 const INITIAL_STATE = {
   loading: false,
-  error: null
+  error: null,
+  isDetectedNameModalOpen: false
 };
 
 export const appReducer = (state = INITIAL_STATE, action) => {
@@ -12,6 +13,9 @@ export const appReducer = (state = INITIAL_STATE, action) => {
 
     case APP_ACTIONS.SHOW_ERROR:
       return { ...state, error: action.payload.error };
+
+    case APP_ACTIONS.TOGGLE_DETECTED_NAME_MODAL:
+      return { ...state, isDetectedNameModalOpen: action.payload.open };
 
     case APP_ACTIONS.CLEAR:
       return INITIAL_STATE;
