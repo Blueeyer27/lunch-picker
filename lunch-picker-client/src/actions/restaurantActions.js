@@ -6,7 +6,7 @@ import { getCurrentPosition } from '../utils';
 export const detectTextInLogo = fileKey => async dispatch => {
   dispatch(appActions.loading());
   try {
-    const { data } = await restaurantService.detect(fileKey);
+    const data = await restaurantService.detect(fileKey);
     dispatch({
       type: RESTAURANT_ACTIONS.DETECT_SUCCESS,
       payload: { results: data.results }
@@ -21,7 +21,7 @@ export const searchByName = name => async dispatch => {
   dispatch(appActions.loading());
   try {
     const { latitude, longitude } = await getCurrentPosition();
-    const { data } = await restaurantService.search(name, latitude, longitude);
+    const data = await restaurantService.search(name, latitude, longitude);
     dispatch({
       type: RESTAURANT_ACTIONS.SEARCH_SUCCESS,
       payload: { searchSummary: data[0] }
@@ -35,7 +35,7 @@ export const searchByName = name => async dispatch => {
 export const getDetailById = id => async dispatch => {
   dispatch(appActions.loading());
   try {
-    const { data } = await restaurantService.detail(id);
+    const data = await restaurantService.detail(id);
     dispatch({
       type: RESTAURANT_ACTIONS.GET_DETAIL_SUCCESS,
       payload: { onlineDetail: data }

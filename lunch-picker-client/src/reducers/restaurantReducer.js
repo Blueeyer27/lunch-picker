@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 
 const handleDetectSuccess = (state, payload) => {
   const { results } = payload;
-  return { ...state, results };
+  return { ...state, detectedResults: results };
 };
 
 const handleSearchSuccess = (state, payload) => {
