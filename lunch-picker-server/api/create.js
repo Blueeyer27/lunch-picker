@@ -6,13 +6,14 @@ import { Restaurants } from '../models/Restaurants';
 export const handler = async (event, context, callback) => {
   const data = JSON.parse(event.body);
 
-  const { restaurantName, rating, profileImage } = data;
+  const { restaurantName, rating, profileImage, externalId } = data;
 
   const restaurant = {
     userId: getUserIdentity(event),
     restaurantId: uuid.v1(),
     restaurantName,
     rating,
+    externalId: externalId || null,
     profileImage
   };
 
