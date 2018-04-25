@@ -26,7 +26,6 @@ provider:
     securityGroupIds:
       - sg-07e7f48a7af8a95f3
     subnetIds:
-      - subnet-0e542247
       - subnet-242ed57c
       - subnet-fe0f4b99
   # To load environment variables externally
