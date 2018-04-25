@@ -51,12 +51,14 @@ export default (clientId, username) => {
 
   clientWrapper.onConnect = callback => {
     validateClientConnected(client);
+    console.log('Client On Connect');
     client.on('connect', callback);
     return clientWrapper;
   };
 
   clientWrapper.onDisconnect = callback => {
     validateClientConnected('client');
+    console.log('Client On Disconnect');
     client.on('close', callback);
     return clientWrapper;
   };

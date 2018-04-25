@@ -11,8 +11,9 @@ plugins:
 custom:
   webpackIncludeModules:
     forceInclude:
-      - mysql
       - mysql2
+    forceExclude:
+      - aws-sdk
 
 provider:
   name: aws
@@ -37,10 +38,25 @@ provider:
   iamRoleStatements:
     - Effect: Allow
       Action:
+        - s3:*
+      Resource: "*"
+    - Effect: Allow
+      Action:
         - ec2:CreateNetworkInterface 
         - ec2:DescribeNetworkInterfaces
         - ec2:DeleteNetworkInterface 
-        - rekognition:DetectText	
+      Resource: "*"
+    - Effect: Allow
+      Action: 
+        - ssm:GetParameter
+        - ssm:GetParameters
+      Resource: "*"
+    - Effect: Allow
+      Action: 
+        - rekognition:*	
+      Resource: "*"
+    - Effect: Allow
+      Action:
         - iot:Connect
         - iot:Publish
         - iot:Subscribe

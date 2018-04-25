@@ -24,10 +24,16 @@ export const restaurantService = {
       `/restaurants/detect?fileKey=${encodeURIComponent(fileKey)}`
     );
   },
+  search: (name, latitude, longitude) => {
+    return API.get(
+      'restaurants',
+      `/restaurants/external/search?term=${name}&latitude=${latitude}&longitude=${longitude}`
+    );
+  },
   detail: id => {
-    return API.get('restaurants', `restaurants/external/${id}`);
+    return API.get('restaurants', `/restaurants/external/${id}`);
   },
   reviews: id => {
-    return API.get('restaurants', `restaurants/external/${id}/reviews`);
+    return API.get('restaurants', `/restaurants/external/${id}/reviews`);
   }
 };

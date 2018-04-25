@@ -10,6 +10,6 @@ export const handler = async (event, context, callback) => {
     const result = await get(id);
     callback(null, success(result));
   } catch (error) {
-    callback(null, failure({ status: false, error }));
+    callback(null, failure(error));
   }
 };

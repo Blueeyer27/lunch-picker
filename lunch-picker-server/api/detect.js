@@ -4,9 +4,12 @@ import { getUserIdentity } from '../libs/requestLib';
 
 export const handler = async (event, context, callback) => {
   const userId = getUserIdentity(event);
+  const fileKey = event.queryStringParameters.fileKey;
+  console.log('file key', fileKey);
 
   try {
-    const data = await detectText('demo/logo-grilld.png');
+    const data = await detectText(`private/${userId}/${fileKey}`);
+    console.log('detected data', data);
     const options = data.TextDetections.reduce((results, detection) => {
       const text = detection.DetectedText;
       if (results.every(r => r !== text)) {
@@ -14,8 +17,8 @@ export const handler = async (event, context, callback) => {
       }
       return results;
     }, []);
-    callback(null, success(options));
+    callback(null, success({ results: options }));
   } catch (err) {
-    return callback(null, failure(err));
+    callback(null, failure(err));
   }
 };

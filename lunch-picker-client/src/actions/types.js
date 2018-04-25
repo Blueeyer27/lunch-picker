@@ -18,3 +18,10 @@ export const USER_ACTIONS = {
   UPDATE_RESTAURANT: 'user_actions_update_restaurant',
   DELETE_RESTAURANT: 'user_actions_delete_restaurant'
 };
+
+export const RESTAURANT_ACTIONS = {
+  DETECT_SUCCESS: 'restaurant_actions_detect_success',
+  SEARCH_SUCCESS: 'restaurant_actions_search_success',
+  GET_DETAIL_SUCCESS: 'restaurant_actions_get_detail_success',
+  GET_REVIEWS_SUCCESS: 'restaurant_actions_get_review_success'
+};

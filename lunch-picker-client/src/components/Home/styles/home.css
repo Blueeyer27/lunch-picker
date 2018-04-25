@@ -1,0 +1,88 @@
+.drop-zone {
+  width: 100%;
+  height: 12rem;
+  text-align: center;
+  border: 2px dashed #555;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 2rem;
+}
+.drop-zone-icon {
+  width: 3rem !important;
+  height: 3rem !important;
+  margin-bottom: 1rem;
+}
+.drop-zone-text {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.preivew-image-container {
+  width: 100%;
+  height: 12rem;
+  text-align: center;
+  position: relative;
+}
+.preivew-image-container > img {
+  max-width: 100%;
+  max-height: 100%;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.preivew-image-container > .close-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  position: absolute;
+  right: 0.4rem;
+  top: 0.4rem;
+  z-index: 9999;
+  cursor: pointer;
+  background: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.preivew-image-container > .close-icon > svg {
+  height: 2.5rem !important;
+  transition: all 0.3s ease-in-out;
+}
+.preivew-image-container > .close-icon:hover {
+  background: #aaa;
+}
+
+.preivew-image-container > .close-icon:hover > svg {
+  color: #fff !important;
+}
+
+.information-container {
+  padding: 1.5rem 0;
+  position: relative;
+}
+
+.info-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  padding-bottom: 1.2rem;
+  text-align: center;
+}
+
+.info-category {
+  position: absolute;
+  right: 2px;
+  top: calc(-2rem - 2px);
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.2rem;
+}
+.info-description {
+  color: #555;
+  padding-bottom: 1rem;
+}
+.info-map {
+  width: 100%;
+  height: 20rem;
+  background-image: url('../../../assets/image/sample-map.jpg');
+  background-size: cover;
+}
