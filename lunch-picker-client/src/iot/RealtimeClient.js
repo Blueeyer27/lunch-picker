@@ -27,9 +27,9 @@ export default (clientId, username) => {
 
   let client = null;
 
-  const clientWrapper = {};
+  const subscriber = {};
 
-  clientWrapper.connect = async () => {
+  subscriber.connect = async () => {
     const response = await axios.get('/iot-presigned-url');
     client = mqtt.connect(response.data.url, options);
     client.on('connect', () => {
@@ -49,35 +49,35 @@ export default (clientId, username) => {
     });
   };
 
-  clientWrapper.onConnect = callback => {
+  subscriber.onConnect = callback => {
     validateClientConnected(client);
     console.log('Client On Connect');
     client.on('connect', callback);
-    return clientWrapper;
+    return subscriber;
   };
 
-  clientWrapper.onDisconnect = callback => {
+  subscriber.onDisconnect = callback => {
     validateClientConnected('client');
     console.log('Client On Disconnect');
     client.on('close', callback);
-    return clientWrapper;
+    return subscriber;
   };
 
-  clientWrapper.onMessageReceived = callback => {
+  subscriber.onMessageReceived = callback => {
     validateClientConnected(client);
     client.on('message', (topic, message) => {
       console.log(`Received message: ${topic} - ${message}`);
       callback(topic, JSON.parse(message.toString('utf8')));
     });
-    return clientWrapper;
+    return subscriber;
   };
 
-  clientWrapper.sendMessage = message => {
+  subscriber.sendMessage = message => {
     validateClientConnected(client);
     client.publish(MESSAGE_TOPIC, JSON.stringify(message));
     console.log(`Sent message: ${MESSAGE_TOPIC} - ${JSON.stringify(message)}`);
-    return clientWrapper;
+    return subscriber;
   };
 
-  return clientWrapper;
+  return subscriber;
 };
