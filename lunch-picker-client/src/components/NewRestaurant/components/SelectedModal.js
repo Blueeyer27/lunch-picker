@@ -11,7 +11,6 @@ class SelectedModal extends Component {
   };
 
   handleClick = name => {
-    console.log('select,', name);
     this.props.onSelect(name);
   };
 
@@ -33,11 +32,15 @@ class SelectedModal extends Component {
     return (
       <Dialog
         contentClassName="select-modal"
+        title="Are these restaurants?"
         modal={this.props.modal}
         open={this.props.open}
         onRequestClose={this.props.handleClose}
       >
         <ul>{this.renderList()}</ul>
+        <p onClick={() => this.handleClick('')} className="modal-list">
+          Nope, I will type it manually.
+        </p>
       </Dialog>
     );
   }

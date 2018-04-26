@@ -33,7 +33,10 @@ class NewRestaurant extends Component {
     const { detectTextInLogo, restaurant } = this.props;
     return (
       <div className="wrapper">
-        <ImageUpload detectTextInLogo={detectTextInLogo} />
+        <ImageUpload
+          detectTextInLogo={detectTextInLogo}
+          imageKey={restaurant.imageKey}
+        />
         <NewRestaurantInfo restaurant={restaurant.onlineDetail} />
         <SelectedModal
           open={this.props.isDetectedNameModalOpen}

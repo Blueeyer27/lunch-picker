@@ -7,7 +7,7 @@ import { upload } from '../../../aws/s3';
 
 class ImageUpload extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = { files: [] };
   }
 
@@ -24,9 +24,11 @@ class ImageUpload extends Component {
   };
 
   handleSaveImage = async () => {
-    const file = this.state.files[0];
-    const key = await upload(file);
-    console.log(key);
+    let key = this.props.imageKey;
+    if (this.props.imageKey == null) {
+      const file = this.state.files[0];
+      key = await upload(file);
+    }
     await this.props.detectTextInLogo(key);
   };
 
