@@ -24,7 +24,7 @@ provider:
     DB_PASSWORD: ${file(./serverless-var.yml):DB_PASSWORD}
   vpc:
     securityGroupIds:
-      - sg-07e7f48a7af8a95f3
+      - sg-01d0fbe4e3c2c4247
     subnetIds:
       - subnet-242ed57c
       - subnet-fe0f4b99
