@@ -3,6 +3,6 @@ import './styles/online-info.css';
 
 export default class OnlineInfomation extends Component {
   render() {
-    return <div />;
+    return <div>123</div>;
   }
 }
