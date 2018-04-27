@@ -3,14 +3,16 @@ import {
   appReducer,
   authReducer,
   userReducer,
-  restaurantReducer
+  restaurantReducer,
+  detailReducer
 } from '../reducers';
 
 const rootReducer = combineReducers({
   app: appReducer,
   auth: authReducer,
   user: userReducer,
-  restaurant: restaurantReducer
+  restaurant: restaurantReducer,
+  detail: detailReducer
 });
 
 export default rootReducer;

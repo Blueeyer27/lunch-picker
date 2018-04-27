@@ -13,11 +13,7 @@ export const AUTH_ACTIONS = {
 };
 
 export const USER_ACTIONS = {
-  GET_RESTAURANT_DETAIL: 'user_actions_get_restaurant_detail',
-  LIST_RESTAURANTS: 'user_actions_list_restaurants',
-  CREATE_RESTAURANT: 'user_actions_create_restaurant',
-  UPDATE_RESTAURANT: 'user_actions_update_restaurant',
-  DELETE_RESTAURANT: 'user_actions_delete_restaurant'
+  LIST_RESTAURANTS: 'user_actions_list_restaurants'
 };
 
 export const RESTAURANT_ACTIONS = {
@@ -26,4 +22,13 @@ export const RESTAURANT_ACTIONS = {
   GET_DETAIL_SUCCESS: 'restaurant_actions_get_detail_success',
   GET_REVIEWS_SUCCESS: 'restaurant_actions_get_review_success',
   RESET_RESTAURANT_INFO: 'restaurant_actions_reset_restaurant_info'
+};
+
+export const DETAIL_ACTIONS = {
+  UPDATE_FIELD: 'detail_actions_update_field',
+  GET_DETAILS_SUCCESS: 'detail_actions_get_details_success',
+  ADD_RESTAURANT_SUCCESS: 'detail_actions_add_restaurant_success',
+  UPDATE_RESTAURANT_SUCCESS: 'detail_actions_update_restaurant_success',
+  REMOVE_RESTAURANT_SUCCESS: 'detail_actions_remove_restaurant_success',
+  LIST_RESTAURANTS_SUCCESS: 'detail_actions_list_restaurants_success'
 };
