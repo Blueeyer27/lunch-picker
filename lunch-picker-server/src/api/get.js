@@ -1,13 +1,14 @@
 import { success, failure } from '../libs/responseLib';
 import { getUserIdentity } from '../libs/requestLib';
-import { Restaurants } from '../models/Restaurants';
+import RestaurantRepository from '../repositories/RestaurantRepository';
 
 export const handler = async (event, context, callback) => {
   const userId = getUserIdentity(event);
   const restaurantId = event.pathParameters.id;
 
   try {
-    const restaurant = await Restaurants.findById(restaurantId);
+    const repository = new RestaurantRepository();
+    const restaurant = await repository.get(restaurantId);
     if (restaurant) {
       callback(null, success(restaurant));
     } else {

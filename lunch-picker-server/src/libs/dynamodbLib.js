@@ -14,6 +14,15 @@ export const get = async id => {
   return result.Item;
 };
 
+export const add = async (key, details) => {
+  const params = {
+    TableName: 'restaurants',
+    Item: { restaurantId: key, details }
+  };
+
+  await call('put', params);
+};
+
 export const update = async (id, updateKey, updateValue) => {
   const params = {
     TableName: 'restaurants',
@@ -23,6 +32,6 @@ export const update = async (id, updateKey, updateValue) => {
     ReturnValues: 'ALL_NEW'
   };
 
-  const result = await call('get', param);
+  const result = await call('get', params);
   return result.Item;
 };

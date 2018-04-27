@@ -3,7 +3,7 @@ export const success = body => {
 };
 
 export const failure = (body, statusCode = 500) => {
-  return buildResponse(statusCode, body);
+  return buildResponse(statusCode, { error: body });
 };
 
 const buildResponse = (statusCode, body) => {

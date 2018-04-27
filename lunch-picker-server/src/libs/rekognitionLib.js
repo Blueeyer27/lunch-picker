@@ -17,6 +17,14 @@ export const detectText = async fileKey => {
       }
     })
     .promise();
-
-  return data;
+  console.log('All detected results', data);
+  const options = data.TextDetections.reduce((results, detection) => {
+    const { DetectedText, Confidence } = detection;
+    if (Confidence > 80)
+      if (results.every(r => r !== DetectedText)) {
+        results.push(DetectedText);
+      }
+    return results;
+  }, []);
+  return options;
 };

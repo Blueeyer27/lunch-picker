@@ -1,6 +1,6 @@
 import { success, failure } from '../libs/responseLib';
 import { getUserIdentity } from '../libs/requestLib';
-import { Restaurants } from '../models/Restaurants';
+import RestaurantRepository from '../repositories/RestaurantRepository';
 
 export const handler = async (event, context, callback) => {
   const data = JSON.parse(event.body);
@@ -8,16 +8,9 @@ export const handler = async (event, context, callback) => {
   const restaurantId = event.pathParameters.id;
 
   try {
-    await Restaurants.update(
-      {
-        ...data
-      },
-      {
-        where: {
-          restaurantId
-        }
-      }
-    );
+    const repository = new RestaurantRepository();
+
+    await repository.update(restaurantId, data);
     callback(null, success());
   } catch (e) {
     callback(null, failure(e));

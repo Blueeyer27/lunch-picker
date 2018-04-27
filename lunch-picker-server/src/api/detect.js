@@ -9,16 +9,10 @@ export const handler = async (event, context, callback) => {
 
   try {
     const data = await detectText(`private/${userId}/${fileKey}`);
+
     console.log('detected data', data);
-    const options = data.TextDetections.reduce((results, detection) => {
-      const { DetectedText, Confidence } = detection;
-      if (Confidence > 80)
-        if (results.every(r => r !== DetectedText)) {
-          results.push(DetectedText);
-        }
-      return results;
-    }, []);
-    callback(null, success({ results: options }));
+
+    callback(null, success({ results: data }));
   } catch (err) {
     callback(null, failure(err));
   }
