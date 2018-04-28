@@ -6,8 +6,8 @@ export default {
   },
   apiGateway: {
     REGION: 'ap-southeast-2',
-    //URL: 'http://localhost:8080'
-    URL: 'https://enozxwxjm8.execute-api.ap-southeast-2.amazonaws.com/dev'
+    URL: 'http://localhost:8080'
+    //URL: 'https://enozxwxjm8.execute-api.ap-southeast-2.amazonaws.com/dev'
   },
   cognito: {
     REGION: 'ap-southeast-2',

@@ -20,8 +20,7 @@ provider:
   runtime: nodejs8.10
   stage: dev
   region: ap-southeast-2
-  environment: 
-    DB_PASSWORD: ${file(./serverless-var.yml):DB_PASSWORD}
+  environment: ${file(serverless-var.yml):${self:provider.stage}}
   vpc:
     securityGroupIds:
       - sg-01d0fbe4e3c2c4247
@@ -82,7 +81,7 @@ functions:
     handler: src/api/get.handler
     events:
       - http:
-          path: src/restaurants/{id}
+          path: restaurants/{id}
           method: get
           cors: true
           authorizer: aws_iam
@@ -118,7 +117,7 @@ functions:
     handler: src/api/detect.handler
     events:
       - http:
-          path: src/restaurants/detect
+          path: restaurants/detect
           method: get
           cors: true
           authorizer: aws_iam
