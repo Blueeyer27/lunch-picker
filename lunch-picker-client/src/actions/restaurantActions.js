@@ -1,4 +1,5 @@
 import * as appActions from './appActions';
+import { updateField } from './detailActions';
 import { RESTAURANT_ACTIONS } from './types';
 import { restaurantService } from '../aws/api';
 import { getCurrentPosition } from '../utils';
@@ -24,10 +25,14 @@ export const searchByName = name => async dispatch => {
   try {
     //const { latitude, longitude } = await getCurrentPosition();
     const data = await restaurantService.search(name, -37.7622815, 145.0333737);
-    dispatch({
-      type: RESTAURANT_ACTIONS.SEARCH_SUCCESS,
-      payload: { searchSummary: data[0] }
-    });
+    const searchSummary = data[0];
+    if (searchSummary) {
+      dispatch({
+        type: RESTAURANT_ACTIONS.SEARCH_SUCCESS,
+        payload: { searchSummary: data[0] }
+      });
+      dispatch(updateField('externalId', data[0].id));
+    }
   } catch (e) {
     dispatch(appActions.showError(e.message));
   }

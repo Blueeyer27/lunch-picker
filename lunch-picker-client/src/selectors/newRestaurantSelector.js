@@ -8,7 +8,8 @@ const getState = (app, restaurant, details) => {
   return {
     restaurant,
     isDetectedNameModalOpen: app.isDetectedNameModalOpen,
-    details
+    details,
+    hasOnlineInfo: restaurant.searchSummary.id != null
   };
 };
 

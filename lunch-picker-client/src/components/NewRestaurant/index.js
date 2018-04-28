@@ -6,10 +6,12 @@ import {
   ImageUpload,
   SelectedModal,
   ActionButtons,
-  Ratings
+  Ratings,
+  OnlineInfoLink
 } from './components';
 import { newRestaurantSelector } from '../../selectors';
 import {
+  add,
   detectTextInLogo,
   searchByName,
   getDetailById,
@@ -27,16 +29,23 @@ class NewRestaurant extends Component {
 
   handleRestaurantNameSelect = value => {
     this.props.toggleDetectedNameModal(false);
-    this.props.updateField('restaurantName', value);
-    this.props.searchByName(value);
+    if (value) {
+      this.props.updateField('restaurantName', value);
+      this.props.searchByName(value);
+    }
   };
 
   handleFieldUpdate = (field, value) => {
-    console.log(value);
     this.props.updateField(field, value);
   };
 
-  handleSave = () => {};
+  handleExternalLinkClick = () => {
+    this.props.history.push(`/onlineInfo/${this.props.details.externalId}`);
+  };
+  handleSave = () => {
+    const { details, add } = this.props;
+    add(details);
+  };
 
   handleCancel = () => {
     this.props.resetRestaurantInfo();
@@ -70,19 +79,9 @@ class NewRestaurant extends Component {
           )}
         />
 
-        {this.props.restaurant.searchSummary.id != null ? (
-          <p
-            className="link"
-            onClick={() => {
-              // link to online infomation
-              this.props.history.push(
-                `/onlineInfo/${this.props.restaurant.searchSummary.id}`
-              );
-            }}
-          >
-            online details
-          </p>
-        ) : null}
+        {this.props.hasOnlineInfo && (
+          <OnlineInfoLink onClick={this.handleExternalLinkClick} />
+        )}
       </div>
     );
   };
@@ -104,9 +103,9 @@ class NewRestaurant extends Component {
         />
         {this.renderRestaurantDetails()}
         <ActionButtons
-          show={restaurant.onlineDetail.name != null}
-          handleSave={this.handleSave}
-          handleCancel={this.handleCancel}
+          show={details.restaurantName && details.rating}
+          onSave={this.handleSave}
+          onCancel={this.handleCancel}
         />
       </div>
     );
@@ -114,6 +113,7 @@ class NewRestaurant extends Component {
 }
 
 export default connect(newRestaurantSelector, {
+  add,
   detectTextInLogo,
   searchByName,
   getDetailById,
