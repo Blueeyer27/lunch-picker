@@ -1,27 +1,28 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
+  Ratings,
   ImageUpload,
   NewRestaurantInfo,
   SelectedModal,
   SaveCancelButtons
-} from "./components";
-import { Input, Button } from "../Share";
-import { newRestaurantSelector } from "../../selectors";
+} from './components';
+import { Input, Button } from '../Share';
+import { newRestaurantSelector } from '../../selectors';
 import {
   detectTextInLogo,
   searchByName,
   getDetailById,
   toggleDetectedNameModal,
   resetRestaurantInfo
-} from "../../actions";
-import "./styles/new-restaurant.css";
+} from '../../actions';
+import './styles/new-restaurant.css';
 
 class NewRestaurant extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageKey: "1524621570606 - logo-grilld.png",
+      imageKey: '1524621570606 - logo-grilld.png',
       restaurantName: null
     };
   }
@@ -60,7 +61,7 @@ class NewRestaurant extends Component {
         <Input
           placeholder="Restaurant Name"
           value={this.state.restaurantName}
-          onChange={value => this.handleUpdateValue("restaurantName", value)}
+          onChange={value => this.handleUpdateValue('restaurantName', value)}
         />
         <p>** there would be panel for rating in furture. **</p>
         <Button
@@ -80,11 +81,12 @@ class NewRestaurant extends Component {
     const { detectTextInLogo, restaurant } = this.props;
     return (
       <div className="wrapper">
+        <Ratings />
         <ImageUpload
           detectTextInLogo={detectTextInLogo}
           imageKey={this.state.imageKey}
           handleUpdateImageKey={value =>
-            this.handleUpdateValue("imageKey", value)
+            this.handleUpdateValue('imageKey', value)
           }
         />
         <NewRestaurantInfo restaurant={restaurant.onlineDetail} />
