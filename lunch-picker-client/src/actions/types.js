@@ -15,7 +15,8 @@ export const AUTH_ACTIONS = {
 
 export const USER_ACTIONS = {
   LIST_RESTAURANTS: 'user_actions_list_restaurants',
-  UPDATE_IMAGE_SOURCE: 'user_actions_update_image_source'
+  UPDATE_IMAGE_SOURCE: 'user_actions_update_image_source',
+  PICK_RESTAURANT: 'user_actions_pick_restaurant'
 };
 
 export const RESTAURANT_ACTIONS = {

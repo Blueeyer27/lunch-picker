@@ -2,6 +2,7 @@ import * as appActions from './appActions';
 import { USER_ACTIONS } from './types';
 import { restaurantService } from '../aws/api';
 import { getUrl } from '../aws/s3';
+import { getRandom } from '../utils';
 
 export const updateRestaurantImageSrc = (id, imageSrc) => {
   return {
@@ -34,4 +35,20 @@ export const listRestaurants = () => async dispatch => {
     dispatch(appActions.showError('Oops, something wrong on here'));
   }
   dispatch(appActions.loading(false));
+};
+
+export const pick = restaurants => {
+  const options = restaurants.reduce((current, next) => {
+    for (let i = 1; i <= next.rating; i++) {
+      current.push(next);
+    }
+    return current;
+  }, []);
+  const random = getRandom(0, options.length - 1);
+
+  const picked = options[random];
+  return {
+    type: USER_ACTIONS.PICK_RESTAURANT,
+    payload: { pickedRestaurant: picked }
+  };
 };

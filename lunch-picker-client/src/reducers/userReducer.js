@@ -21,6 +21,10 @@ const handleUpdateImageSrc = (state, payload) => {
   return { ...state, restaurants };
 };
 
+const handleRestaurantPicked = (state, payload) => {
+  return { ...state, restaurantPicked: payload.pickedRestaurant };
+};
+
 export const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case USER_ACTIONS.LIST_RESTAURANTS:
@@ -28,6 +32,10 @@ export const userReducer = (state = INITIAL_STATE, action) => {
 
     case USER_ACTIONS.UPDATE_IMAGE_SOURCE:
       return handleUpdateImageSrc(state, action.payload);
+
+    case USER_ACTIONS.PICK_RESTAURANT:
+      return handleRestaurantPicked(state, action.payload);
+
     default:
       return state;
   }

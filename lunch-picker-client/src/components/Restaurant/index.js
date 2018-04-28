@@ -62,7 +62,7 @@ class NewRestaurant extends Component {
 
   handleCancel = () => {
     this.props.resetRestaurantInfo();
-    this.props.history.push('/new');
+    this.props.history.push('/');
   };
 
   renderRestaurantDetails = () => {
