@@ -1,35 +1,18 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import { upload } from '../../../aws/s3';
 
 class ImageUpload extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { files: [] };
-  }
-
   handleDrop = async files => {
-    this.setState({
-      files
-    });
-
-    let key = this.props.imageKey;
-    if (this.props.imageKey == null) {
-      const file = this.state.files[0];
-      key = await upload(file);
-      this.props.handleUpdateImageKey(key);
-    }
-    console.log('key', key);
-    await this.props.detectTextInLogo(key);
+    await this.props.onUpload(files[0]);
   };
 
   renderDropZone = () => {
-    const file = this.state.files.length > 0 ? this.state.files[0] : undefined;
-    if (file) {
+    const { imageSrc } = this.props;
+    if (imageSrc) {
       return (
         <div className="preivew-image-container animated fadeIn">
-          <img src={file.preview} alt="preview" />
+          <img src={imageSrc} alt="preview" />
         </div>
       );
     } else {

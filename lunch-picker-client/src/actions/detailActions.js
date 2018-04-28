@@ -1,12 +1,29 @@
 import { DETAIL_ACTIONS } from './types';
 import * as appActions from './appActions';
+import { detectTextInLogo } from './restaurantActions';
 import { restaurantService } from '../aws/api';
+import { upload, getUrl } from '../aws/s3';
 
 export const updateField = (field, value) => {
   return {
     type: DETAIL_ACTIONS.UPDATE_FIELD,
     payload: { field, value }
   };
+};
+
+export const uploadProfileImage = file => async dispatch => {
+  dispatch(appActions.loading());
+
+  try {
+    const fileKey = await upload(file);
+    dispatch(updateField('profileImage', fileKey));
+    const imageUrl = await getUrl(fileKey);
+    dispatch(updateField('imageUrl', imageUrl));
+    dispatch(detectTextInLogo(fileKey));
+  } catch (e) {
+    dispatch(appActions.showError(e.message));
+  }
+  dispatch(appActions.loading(false));
 };
 
 export const get = id => async dispatch => {

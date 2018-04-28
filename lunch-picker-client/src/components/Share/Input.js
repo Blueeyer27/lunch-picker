@@ -9,19 +9,7 @@ class Input extends Component {
     onChange: () => {}
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: ''
-    };
-  }
-
-  componentDidMount = () => {
-    this.setState({ value: this.props.value });
-  };
-
   handleChange = (e, value) => {
-    this.setState({ value });
     this.props.onChange(value);
   };
 
@@ -31,7 +19,7 @@ class Input extends Component {
         type={this.props.type}
         floatingLabelText={this.props.placeholder}
         fullWidth={this.props.fullWidth}
-        value={this.state.value}
+        value={this.props.value}
         onChange={this.handleChange}
       />
     );

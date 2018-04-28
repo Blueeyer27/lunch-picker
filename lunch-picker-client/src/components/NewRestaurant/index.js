@@ -1,42 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Emoji } from 'emoji-mart';
-import { ImageUpload, SelectedModal, SaveCancelButtons } from './components';
-import { Input } from '../Share';
+import {
+  ItemBlock,
+  RestaurantName,
+  ImageUpload,
+  SelectedModal,
+  ActionButtons,
+  Ratings
+} from './components';
 import { newRestaurantSelector } from '../../selectors';
 import {
   detectTextInLogo,
   searchByName,
   getDetailById,
   toggleDetectedNameModal,
-  resetRestaurantInfo
+  resetRestaurantInfo,
+  updateField,
+  uploadProfileImage
 } from '../../actions';
 import './styles/new-restaurant.css';
 
 class NewRestaurant extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      imageKey: null,
-      restaurantName: null
-    };
-  }
-  selectRestaurantName = async () => {
-    const name = this.state.restaurantName;
-    await this.props.searchByName(name);
+  handleUpload = async file => {
+    await this.props.uploadProfileImage(file);
   };
 
-  handleSelectRestaurantName = value => {
+  handleRestaurantNameSelect = value => {
     this.props.toggleDetectedNameModal(false);
-    this.setState({
-      restaurantName: value
-    });
+    this.props.updateField('restaurantName', value);
+    this.props.searchByName(value);
   };
 
-  handleUpdateValue = (key, value) => {
-    this.setState({
-      [key]: value
-    });
+  handleFieldUpdate = (field, value) => {
+    console.log(value);
+    this.props.updateField(field, value);
   };
 
   handleSave = () => {};
@@ -45,52 +42,39 @@ class NewRestaurant extends Component {
     this.props.resetRestaurantInfo();
   };
 
-  renderRestaurantName = () => {
-    if (this.state.restaurantName == null) return null;
-
+  renderRestaurantDetails = () => {
+    const { details } = this.props;
     return (
       <div>
-        <div className="item-block">
-          <Input
-            placeholder="Name"
-            fullWidth={true}
-            value={this.state.restaurantName}
-            onChange={value => this.handleUpdateValue('restaurantName', value)}
-          />
-        </div>
-        <div className="item-block">
-          <h2>Rate this place</h2>
-          <ul className="rate-list">
-            <li>
-              <Emoji set="apple" emoji="scream" size="1.5rem" />
-            </li>
-            <li>
-              <Emoji set="apple" emoji="confused" size="1.5rem" />
-            </li>
-            <li>
-              <Emoji set="apple" emoji="relieved" size="1.5rem" />
-            </li>
-            <li>
-              <Emoji set="apple" emoji="stuck_out_tongue" size="1.5rem" />
-            </li>
-            <li>
-              <Emoji
-                set="apple"
-                emoji="stuck_out_tongue_closed_eyes"
-                size="1.5rem"
+        <ItemBlock
+          render={() => (
+            <RestaurantName
+              value={details.restaurantName}
+              onChange={value =>
+                this.handleFieldUpdate('restaurantName', value)
+              }
+            />
+          )}
+        />
+        <ItemBlock
+          label={details.rating ? 'Your rating' : 'Rate this place'}
+          render={() => (
+            <ul className="rate-list">
+              <Ratings
+                value={details.rating}
+                onClick={rating => {
+                  this.handleFieldUpdate('rating', rating);
+                }}
               />
-            </li>
-          </ul>
-        </div>
-        <p className="link" onClick={this.selectRestaurantName}>
-          Search Restaurant Online
-        </p>
+            </ul>
+          )}
+        />
 
         {this.props.restaurant.searchSummary.id != null ? (
-          // link to online infomation
           <p
             className="link"
             onClick={() => {
+              // link to online infomation
               this.props.history.push(
                 `/onlineInfo/${this.props.restaurant.searchSummary.id}`
               );
@@ -104,23 +88,22 @@ class NewRestaurant extends Component {
   };
 
   render() {
-    const { detectTextInLogo, restaurant } = this.props;
+    const { detectTextInLogo, restaurant, details } = this.props;
     return (
       <div className="wrapper">
         <ImageUpload
           detectTextInLogo={detectTextInLogo}
-          imageKey={this.state.imageKey}
-          handleUpdateImageKey={value =>
-            this.handleUpdateValue('imageKey', value)
-          }
+          imageKey={details.profileImage}
+          imageSrc={details.imageUrl}
+          onUpload={this.handleUpload}
         />
         <SelectedModal
           open={this.props.isDetectedNameModalOpen}
-          onSelect={this.handleSelectRestaurantName}
+          onSelect={this.handleRestaurantNameSelect}
           names={restaurant.detectedResults}
         />
-        {this.renderRestaurantName()}
-        <SaveCancelButtons
+        {this.renderRestaurantDetails()}
+        <ActionButtons
           show={restaurant.onlineDetail.name != null}
           handleSave={this.handleSave}
           handleCancel={this.handleCancel}
@@ -135,5 +118,7 @@ export default connect(newRestaurantSelector, {
   searchByName,
   getDetailById,
   toggleDetectedNameModal,
-  resetRestaurantInfo
+  resetRestaurantInfo,
+  updateField,
+  uploadProfileImage
 })(NewRestaurant);

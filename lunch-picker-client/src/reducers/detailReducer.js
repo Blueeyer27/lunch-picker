@@ -1,9 +1,10 @@
-import { DETAIL_ACTIONS } from '../actions/types';
+import { DETAIL_ACTIONS, RESTAURANT_ACTIONS } from '../actions/types';
 
 const INITIAL_STATE = {
   restaurantId: '',
   restaurantName: '',
   profileImage: null,
+  imageUrl: null,
   externalId: null,
   rating: null
 };
@@ -33,6 +34,7 @@ export const detailReducer = (state = INITIAL_STATE, action) => {
       return handleStateUpdateSuccess(state, action.payload);
 
     case DETAIL_ACTIONS.REMOVE_RESTAURANT_SUCCESS:
+    case RESTAURANT_ACTIONS.RESET_RESTAURANT_INFO:
       return INITIAL_STATE;
 
     default:

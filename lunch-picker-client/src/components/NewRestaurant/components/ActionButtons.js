@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { Button } from '../../Share';
 
-class SaveCancelButtons extends Component {
+class ActionButtons extends Component {
   render() {
     const { show, handleSave, handleCancel } = this.props;
     if (!show) return null;
 
     return (
       <div>
-        <Button label="Save" disabled={false} onClick={handleSave} />
         <Button
           label="Cancel"
           disabled={false}
@@ -16,9 +15,10 @@ class SaveCancelButtons extends Component {
           primary={true}
           style={{ float: 'right' }}
         />
+        <Button label="Save" disabled={false} onClick={handleSave} />
       </div>
     );
   }
 }
 
-export { SaveCancelButtons };
+export { ActionButtons };

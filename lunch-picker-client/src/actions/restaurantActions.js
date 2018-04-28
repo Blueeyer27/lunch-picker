@@ -21,10 +21,9 @@ export const detectTextInLogo = fileKey => async dispatch => {
 };
 
 export const searchByName = name => async dispatch => {
-  dispatch(appActions.loading());
   try {
-    const { latitude, longitude } = await getCurrentPosition();
-    const data = await restaurantService.search(name, latitude, longitude);
+    //const { latitude, longitude } = await getCurrentPosition();
+    const data = await restaurantService.search(name, -37.7622815, 145.0333737);
     dispatch({
       type: RESTAURANT_ACTIONS.SEARCH_SUCCESS,
       payload: { searchSummary: data[0] }
@@ -32,7 +31,6 @@ export const searchByName = name => async dispatch => {
   } catch (e) {
     dispatch(appActions.showError(e.message));
   }
-  dispatch(appActions.loading(false));
 };
 
 export const getDetailById = id => async dispatch => {
