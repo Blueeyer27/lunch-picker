@@ -17,19 +17,16 @@ class NewRestaurant extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageKey: '1524621570606 - logo-grilld.png',
+      imageKey: null,
       restaurantName: null
     };
   }
   selectRestaurantName = async () => {
     const name = this.state.restaurantName;
-
     await this.props.searchByName(name);
-    //await this.props.getDetailById(this.props.restaurant.searchSummary.id);
   };
 
   handleSelectRestaurantName = value => {
-    console.log(value);
     this.props.toggleDetectedNameModal(false);
     this.setState({
       restaurantName: value
@@ -37,7 +34,6 @@ class NewRestaurant extends Component {
   };
 
   handleUpdateValue = (key, value) => {
-    console.log(key, value);
     this.setState({
       [key]: value
     });

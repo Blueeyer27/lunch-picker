@@ -15,11 +15,11 @@ class ImageUpload extends Component {
     });
 
     let key = this.props.imageKey;
-    // if (this.props.imageKey == null) {
-    //   const file = this.state.files[0];
-    //   key = await upload(file);
-    //   this.props.handleUpdateImageKey(key);
-    // }
+    if (this.props.imageKey == null) {
+      const file = this.state.files[0];
+      key = await upload(file);
+      this.props.handleUpdateImageKey(key);
+    }
     console.log('key', key);
     await this.props.detectTextInLogo(key);
   };
