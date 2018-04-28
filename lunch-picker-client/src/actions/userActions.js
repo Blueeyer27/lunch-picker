@@ -1,6 +1,17 @@
 import * as appActions from './appActions';
 import { USER_ACTIONS } from './types';
 import { restaurantService } from '../aws/api';
+import { getUrl } from '../aws/s3';
+
+export const updateRestaurantImageSrc = (id, imageSrc) => {
+  return {
+    type: USER_ACTIONS.UPDATE_IMAGE_SOURCE,
+    payload: {
+      id,
+      imageSrc
+    }
+  };
+};
 
 export const listRestaurants = () => async dispatch => {
   try {
@@ -10,6 +21,13 @@ export const listRestaurants = () => async dispatch => {
       type: USER_ACTIONS.LIST_RESTAURANTS,
       payload: {
         restaurants
+      }
+    });
+    restaurants.forEach(restaurant => {
+      if (restaurant.profileImage) {
+        getUrl(restaurant.profileImage).then(url => {
+          dispatch(updateRestaurantImageSrc(restaurant.restaurantId, url));
+        });
       }
     });
   } catch (e) {

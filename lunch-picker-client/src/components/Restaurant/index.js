@@ -9,7 +9,7 @@ import {
   Ratings,
   OnlineInfoLink
 } from './components';
-import { newRestaurantSelector } from '../../selectors';
+import { detailSelector } from '../../selectors';
 import {
   add,
   get,
@@ -50,6 +50,7 @@ class NewRestaurant extends Component {
   handleExternalLinkClick = () => {
     this.props.history.push(`/onlineInfo/${this.props.details.externalId}`);
   };
+
   handleSave = () => {
     const { details, add, update } = this.props;
     if (!details.restaurantId) {
@@ -61,7 +62,7 @@ class NewRestaurant extends Component {
 
   handleCancel = () => {
     this.props.resetRestaurantInfo();
-    this.props.history.push('/');
+    this.props.history.push('/new');
   };
 
   renderRestaurantDetails = () => {
@@ -102,7 +103,7 @@ class NewRestaurant extends Component {
   render() {
     const { detectTextInLogo, restaurant, details } = this.props;
     return (
-      <div className="wrapper">
+      <div className="restaurant-detail">
         <ImageUpload
           detectTextInLogo={detectTextInLogo}
           imageKey={details.profileImage}
@@ -125,7 +126,7 @@ class NewRestaurant extends Component {
   }
 }
 
-export default connect(newRestaurantSelector, {
+export default connect(detailSelector, {
   get,
   add,
   update,

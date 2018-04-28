@@ -1,2 +1,3 @@
 export * from './appSelector';
-export * from './newRestaurantSelector';
+export * from './detailSelector';
+export * from './listSelector';

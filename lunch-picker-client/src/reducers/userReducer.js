@@ -10,11 +10,24 @@ const handleListRestaurants = (state, payload) => {
   return { ...state, restaurants: payload.restaurants };
 };
 
+const handleUpdateImageSrc = (state, payload) => {
+  const { id, imageSrc } = payload;
+  const restaurants = state.restaurants.map(restaurant => {
+    if (restaurant.restaurantId === id) {
+      return { ...restaurant, imageSrc };
+    }
+    return restaurant;
+  });
+  return { ...state, restaurants };
+};
+
 export const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case USER_ACTIONS.LIST_RESTAURANTS:
       return handleListRestaurants(state, action.payload);
 
+    case USER_ACTIONS.UPDATE_IMAGE_SOURCE:
+      return handleUpdateImageSrc(state, action.payload);
     default:
       return state;
   }

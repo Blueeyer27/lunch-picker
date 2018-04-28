@@ -14,7 +14,8 @@ export const AUTH_ACTIONS = {
 };
 
 export const USER_ACTIONS = {
-  LIST_RESTAURANTS: 'user_actions_list_restaurants'
+  LIST_RESTAURANTS: 'user_actions_list_restaurants',
+  UPDATE_IMAGE_SOURCE: 'user_actions_update_image_source'
 };
 
 export const RESTAURANT_ACTIONS = {

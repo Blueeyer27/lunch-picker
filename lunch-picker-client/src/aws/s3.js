@@ -10,6 +10,5 @@ export const upload = async file => {
 };
 
 export const getUrl = async key => {
-  const url = await Storage.vault.get(key);
-  return url;
+  return Storage.vault.get(key);
 };

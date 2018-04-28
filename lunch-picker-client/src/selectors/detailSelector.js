@@ -13,11 +13,11 @@ const getState = (app, restaurant, details) => {
   };
 };
 
-const newRestaurantSelector = createSelector(
+const detailSelector = createSelector(
   appState,
   restaurantState,
   detailsState,
   getState
 );
 
-export { newRestaurantSelector };
+export { detailSelector };

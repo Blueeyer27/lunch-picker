@@ -38,8 +38,9 @@ export const get = id => async dispatch => {
       }
     });
     if (data.profileImage) {
-      const url = await getUrl(data.profileImage);
-      dispatch(updateField('imageUrl', url));
+      getUrl(data.profileImage).then(url => {
+        dispatch(updateField('imageUrl', url));
+      });
     }
   } catch (e) {
     dispatch(appActions.showError(e.message));
