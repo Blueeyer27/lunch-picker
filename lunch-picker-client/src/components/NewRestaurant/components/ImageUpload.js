@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import ContentClose from 'material-ui/svg-icons/navigation/close';
-import ContentCheck from 'material-ui/svg-icons/navigation/check';
 import { upload } from '../../../aws/s3';
 
 class ImageUpload extends Component {
@@ -11,26 +9,17 @@ class ImageUpload extends Component {
     this.state = { files: [] };
   }
 
-  handleDrop = files => {
+  handleDrop = async files => {
     this.setState({
       files
     });
-  };
 
-  handleRemoveImage = () => {
-    this.setState({
-      files: []
-    });
-    this.props.handleUpdateImageKey(null);
-  };
-
-  handleSaveImage = async () => {
     let key = this.props.imageKey;
-    // if (this.props.imageKey == null) {
-    //   const file = this.state.files[0];
-    //   key = await upload(file);
-    //   this.props.handleUpdateImageKey(key);
-    // }
+    if (this.props.imageKey == null) {
+      const file = this.state.files[0];
+      key = await upload(file);
+      this.props.handleUpdateImageKey(key);
+    }
     console.log('key', key);
     await this.props.detectTextInLogo(key);
   };
@@ -41,20 +30,6 @@ class ImageUpload extends Component {
       return (
         <div className="preivew-image-container animated fadeIn">
           <img src={file.preview} alt="preview" />
-          <span
-            key="removeBtn"
-            className="image-icon close-icon"
-            onClick={this.handleRemoveImage}
-          >
-            <ContentClose />
-          </span>,
-          <span
-            key="saveBtn"
-            className="image-icon check-icon"
-            onClick={this.handleSaveImage}
-          >
-            <ContentCheck />
-          </span>
         </div>
       );
     } else {

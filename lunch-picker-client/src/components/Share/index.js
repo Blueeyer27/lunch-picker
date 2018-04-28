@@ -4,5 +4,4 @@ export * from './Overlay';
 export * from './Spinner';
 export * from './Animation';
 export * from './RoundButton';
-export * from './Gmap';
 export * from './Popup';
