@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
-import NewRestaurant from './components/NewRestaurant';
+import Restaurant from './components/Restaurant';
 import LoginPage from './components/Login';
 import OnlineInfomation from './components/OnlineInfomation';
 import AuthenticatedRoute from './components/App/components/AuthenticatedRoute';
@@ -12,14 +12,10 @@ const Routes = ({ childProps }) => {
       <AuthenticatedRoute
         exact
         path="/"
-        component={NewRestaurant}
+        component={Restaurant}
         props={childProps}
       />
-      <AuthenticatedRoute
-        path="/new"
-        component={NewRestaurant}
-        props={childProps}
-      />
+
       <AuthenticatedRoute
         path="/onlineInfo/:id"
         component={OnlineInfomation}
@@ -28,6 +24,11 @@ const Routes = ({ childProps }) => {
       <UnauthenticatedRoute
         path="/login"
         component={LoginPage}
+        props={childProps}
+      />
+      <AuthenticatedRoute
+        path="/:restaurantId/"
+        component={Restaurant}
         props={childProps}
       />
     </Switch>

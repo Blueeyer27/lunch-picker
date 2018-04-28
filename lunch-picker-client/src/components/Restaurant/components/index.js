@@ -1,5 +1,5 @@
 export * from './ImageUpload';
-export * from './NewRestaurantInfo';
+export * from './RestaurantInfo';
 export * from './SelectedModal';
 export * from './ActionButtons';
 export * from './RestaurantName';

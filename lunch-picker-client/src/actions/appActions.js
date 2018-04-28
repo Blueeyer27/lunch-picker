@@ -7,11 +7,12 @@ export const loading = (loading = true) => {
   };
 };
 
-export const showError = (error = null) => {
-  return {
-    type: APP_ACTIONS.SHOW_ERROR,
-    payload: { error }
-  };
+export const showError = (message = null) => {
+  return { type: APP_ACTIONS.SHOW_ERROR, payload: { message } };
+};
+
+export const showSuccess = message => {
+  return { type: APP_ACTIONS.SHOW_SUCCESS, payload: { message } };
 };
 
 export const clear = () => {

@@ -8,11 +8,12 @@ class AppBoundary extends Component {
   };
 
   componentDidUpdate = previousProps => {
-    const { alert, error, onClose } = this.props;
+    const { alert, error, success, onClose } = this.props;
     if (error !== previousProps.error && error) {
-      alert.error(error, {
-        onClose: onClose
-      });
+      alert.error(error, { onClose });
+    }
+    if (success !== previousProps.success && success) {
+      alert.success(success, { onClose });
     }
   };
 

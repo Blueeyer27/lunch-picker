@@ -12,6 +12,8 @@ import {
 import { newRestaurantSelector } from '../../selectors';
 import {
   add,
+  get,
+  update,
   detectTextInLogo,
   searchByName,
   getDetailById,
@@ -23,6 +25,12 @@ import {
 import './styles/new-restaurant.css';
 
 class NewRestaurant extends Component {
+  componentDidMount = () => {
+    const { restaurantId } = this.props.match.params;
+    if (restaurantId) {
+      this.props.get(restaurantId);
+    }
+  };
   handleUpload = async file => {
     await this.props.uploadProfileImage(file);
   };
@@ -43,12 +51,17 @@ class NewRestaurant extends Component {
     this.props.history.push(`/onlineInfo/${this.props.details.externalId}`);
   };
   handleSave = () => {
-    const { details, add } = this.props;
-    add(details);
+    const { details, add, update } = this.props;
+    if (!details.restaurantId) {
+      add(details);
+    } else {
+      update(details);
+    }
   };
 
   handleCancel = () => {
     this.props.resetRestaurantInfo();
+    this.props.history.push('/');
   };
 
   renderRestaurantDetails = () => {
@@ -113,7 +126,9 @@ class NewRestaurant extends Component {
 }
 
 export default connect(newRestaurantSelector, {
+  get,
   add,
+  update,
   detectTextInLogo,
   searchByName,
   getDetailById,

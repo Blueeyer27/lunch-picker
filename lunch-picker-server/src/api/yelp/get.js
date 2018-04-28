@@ -19,7 +19,7 @@ export const handler = async (event, context, callback) => {
     const yelpClient = new YelpClient(apiKey);
     const result = await yelpClient.getDetail(id);
 
-    await repository.saveOnlineDetail(id, result);
+    await repository.saveOnlineDetail(result);
     callback(null, success(result));
   } catch (error) {
     callback(null, failure(error));

@@ -37,14 +37,14 @@ class App extends Component {
   };
 
   render() {
-    const { error, loading, clear, authenticated } = this.props;
+    const { success, error, loading, clear, authenticated } = this.props;
     const childProps = {
       authenticated
     };
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <AlertProvider template={AlertTemplate} {...options}>
-          <AppBoundary error={error} onClose={clear}>
+          <AppBoundary success={success} error={error} onClose={clear}>
             <Spinner spinning={loading} />
             <div className="container">
               <Routes childProps={childProps} />
