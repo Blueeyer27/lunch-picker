@@ -9,6 +9,10 @@ class RestaurantList extends Component {
     this.props.listRestaurants();
   };
 
+  handleEditClick = id => {
+    this.props.history.push(`/${id}`);
+  };
+
   render() {
     return (
       <div>
@@ -16,6 +20,7 @@ class RestaurantList extends Component {
           <RestaurantOverview
             restaurant={restaurant}
             key={restaurant.restaurantId}
+            onEditClick={this.handleEditClick}
           />
         ))}
       </div>
