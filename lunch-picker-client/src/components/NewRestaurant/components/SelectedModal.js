@@ -32,7 +32,7 @@ class SelectedModal extends Component {
     return (
       <Dialog
         contentClassName="select-modal"
-        title="Are these restaurants?"
+        title={<h3 className="select-modal-title">Are these restaurants?</h3>}
         modal={this.props.modal}
         open={this.props.open}
         onRequestClose={this.props.handleClose}

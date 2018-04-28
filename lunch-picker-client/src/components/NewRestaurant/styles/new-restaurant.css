@@ -21,7 +21,7 @@
   height: 10rem;
   text-align: center;
   position: relative;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 .preivew-image-container > img {
   max-width: 100%;
@@ -100,14 +100,58 @@
 
 .select-modal {
   max-width: 580px !important;
-  width: 100%;
+  width: 100% !important;
   padding: 1rem !important;
+}
+.select-modal-title {
+  font-size: 1.2rem !important;
+  padding: 1.2rem !important;
+  line-height: 2rem !important;
 }
 .select-modal .modal-list {
   line-height: 1.5rem;
   cursor: pointer;
 }
 
+.item-block {
+  padding: 0.25rem 0 0.75rem;
+}
+.item-block h2 {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+.rate-list {
+  position: relative;
+}
+.rate-list li {
+  float: left;
+  margin-right: 1rem;
+  width: 2rem;
+  height: 2rem;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  text-align: center;
+  padding: 0.25rem 0;
+}
+.rate-list:after {
+  display: table;
+  content: '';
+  clear: both;
+}
+.link {
+  color: #009600;
+  padding: 0.5rem 0 0.25rem;
+  font-size: 0.8rem;
+  border-bottom: 1px dashed;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  margin-right: 1rem;
+}
 .animated {
   -webkit-animation-duration: 0.3s;
   animation-duration: 0.3s;

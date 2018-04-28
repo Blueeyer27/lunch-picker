@@ -1,27 +1,23 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import {
-  ImageUpload,
-  NewRestaurantInfo,
-  SelectedModal,
-  SaveCancelButtons
-} from "./components";
-import { Input, Button } from "../Share";
-import { newRestaurantSelector } from "../../selectors";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Emoji } from 'emoji-mart';
+import { ImageUpload, SelectedModal, SaveCancelButtons } from './components';
+import { Input } from '../Share';
+import { newRestaurantSelector } from '../../selectors';
 import {
   detectTextInLogo,
   searchByName,
   getDetailById,
   toggleDetectedNameModal,
   resetRestaurantInfo
-} from "../../actions";
-import "./styles/new-restaurant.css";
+} from '../../actions';
+import './styles/new-restaurant.css';
 
 class NewRestaurant extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageKey: "1524621570606 - logo-grilld.png",
+      imageKey: '1524621570606 - logo-grilld.png',
       restaurantName: null
     };
   }
@@ -33,6 +29,7 @@ class NewRestaurant extends Component {
   };
 
   handleSelectRestaurantName = value => {
+    console.log(value);
     this.props.toggleDetectedNameModal(false);
     this.setState({
       restaurantName: value
@@ -57,20 +54,54 @@ class NewRestaurant extends Component {
 
     return (
       <div>
-        <Input
-          placeholder="Restaurant Name"
-          value={this.state.restaurantName}
-          onChange={value => this.handleUpdateValue("restaurantName", value)}
-        />
-        <p>** there would be panel for rating in furture. **</p>
-        <Button
-          label="Search Restaurant Online"
-          onClick={this.selectRestaurantName}
-        />
+        <div className="item-block">
+          <Input
+            placeholder="Name"
+            fullWidth={true}
+            value={this.state.restaurantName}
+            onChange={value => this.handleUpdateValue('restaurantName', value)}
+          />
+        </div>
+        <div className="item-block">
+          <h2>Rate this place</h2>
+          <ul className="rate-list">
+            <li>
+              <Emoji set="apple" emoji="scream" size="1.5rem" />
+            </li>
+            <li>
+              <Emoji set="apple" emoji="confused" size="1.5rem" />
+            </li>
+            <li>
+              <Emoji set="apple" emoji="relieved" size="1.5rem" />
+            </li>
+            <li>
+              <Emoji set="apple" emoji="stuck_out_tongue" size="1.5rem" />
+            </li>
+            <li>
+              <Emoji
+                set="apple"
+                emoji="stuck_out_tongue_closed_eyes"
+                size="1.5rem"
+              />
+            </li>
+          </ul>
+        </div>
+        <p className="link" onClick={this.selectRestaurantName}>
+          Search Restaurant Online
+        </p>
 
         {this.props.restaurant.searchSummary.id != null ? (
           // link to online infomation
-          <p />
+          <p
+            className="link"
+            onClick={() => {
+              this.props.history.push(
+                `/onlineInfo/${this.props.restaurant.searchSummary.id}`
+              );
+            }}
+          >
+            online details
+          </p>
         ) : null}
       </div>
     );
@@ -84,10 +115,9 @@ class NewRestaurant extends Component {
           detectTextInLogo={detectTextInLogo}
           imageKey={this.state.imageKey}
           handleUpdateImageKey={value =>
-            this.handleUpdateValue("imageKey", value)
+            this.handleUpdateValue('imageKey', value)
           }
         />
-        <NewRestaurantInfo restaurant={restaurant.onlineDetail} />
         <SelectedModal
           open={this.props.isDetectedNameModalOpen}
           onSelect={this.handleSelectRestaurantName}

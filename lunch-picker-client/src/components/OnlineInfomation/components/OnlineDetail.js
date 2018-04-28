@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { GridList, GridTile } from 'material-ui/GridList';
-import { Gmap } from '../../Share';
 
 class OnlineDetail extends Component {
   renderDetails = () => {
@@ -30,15 +29,6 @@ class OnlineDetail extends Component {
               </GridTile>
             ))}
           </GridList>
-        </div>
-
-        <div className="info-map">
-          <Gmap
-            lat={restaurant.coordinates.latitude}
-            lng={restaurant.coordinates.longitude}
-            defaultZoom={15}
-            isMarkerShown={true}
-          />
         </div>
       </div>
     );
