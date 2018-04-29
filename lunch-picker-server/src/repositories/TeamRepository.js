@@ -1,4 +1,5 @@
 import { Teams } from '../models/Teams';
+import { TeamMembers } from '../models/TeamMembers';
 
 export default class TeamRepository {
   get(id) {
@@ -21,7 +22,14 @@ export default class TeamRepository {
     });
   }
 
-  getByUser(userId) {
+  getTeamsOwnedByUser(userId) {
     return Teams.findAll({ where: { ownerUserId: userId } });
+  }
+
+  addUserToTeam(teamId, userId) {
+    return TeamMembers.create({
+      teamId,
+      userId
+    });
   }
 }

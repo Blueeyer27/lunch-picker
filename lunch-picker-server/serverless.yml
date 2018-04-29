@@ -167,13 +167,22 @@ functions:
           method: delete
           cors: true
           authorizer: aws_iam
-          
+
   list_team:
     handler: src/api/teams/list.handler
     events:
       - http:
           path: teams
           method: get
+          cors: true
+          authorizer: aws_iam
+
+  add_team_user:
+    handler: src/api/teams/teamManager/addTeamMember.handler
+    events:
+      - http:
+          path: teams/{id}/users
+          method: post
           cors: true
           authorizer: aws_iam
 

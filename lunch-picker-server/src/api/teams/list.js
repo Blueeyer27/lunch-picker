@@ -8,7 +8,7 @@ export const handler = async (event, context, callback) => {
   try {
     const repository = new TeamRepository();
 
-    const result = await repository.getByUser(userId);
+    const result = await repository.getTeamsOwnedByUser(userId);
     callback(null, success(result));
   } catch (error) {
     callback(null, failure(error));
