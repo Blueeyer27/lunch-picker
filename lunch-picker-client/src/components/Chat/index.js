@@ -18,7 +18,7 @@ import uuid from 'uuid';
 import RealtimeClient from '../../iot/RealtimeClient';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
-import './index.css';
+import './index.less';
 
 const getClientId = () => 'web-client:' + uuid.v1();
 const getMessageId = () => 'message-id:' + uuid.v1();

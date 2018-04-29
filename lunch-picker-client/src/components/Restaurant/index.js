@@ -22,7 +22,7 @@ import {
   updateField,
   uploadProfileImage
 } from '../../actions';
-import './styles/new-restaurant.css';
+import './styles/new-restaurant.less';
 
 class NewRestaurant extends Component {
   componentDidMount = () => {
