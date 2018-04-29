@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 import { sequelize } from '../sequelize';
 
-export const Restaurants = sequelize.define('users', {
+export const Users = sequelize.define('users', {
   userId: {
     type: Sequelize.STRING,
     primaryKey: true,

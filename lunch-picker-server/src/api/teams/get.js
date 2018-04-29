@@ -1,16 +1,16 @@
 import { success, failure } from '../../libs/responseLib';
 import { getUserIdentity } from '../../libs/requestLib';
-import RestaurantRepository from '../../repositories/RestaurantRepository';
+import TeamRepository from '../../repositories/TeamRepository';
 
 export const handler = async (event, context, callback) => {
   const userId = getUserIdentity(event);
-  const restaurantId = event.pathParameters.id;
+  const teamId = event.pathParameters.id;
 
   try {
-    const repository = new RestaurantRepository();
-    const restaurant = await repository.get(restaurantId);
-    if (restaurant) {
-      callback(null, success(restaurant));
+    const repository = new TeamRepository();
+    const team = await repository.get(teamId);
+    if (team) {
+      callback(null, success(team));
     } else {
       callback(null, failure({ status: false, error: 'Item not found' }, 404));
     }

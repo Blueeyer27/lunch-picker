@@ -1,13 +1,13 @@
 import { success, failure } from '../../libs/responseLib';
 import { getUserIdentity } from '../../libs/requestLib';
-import RestaurantRepository from '../../repositories/RestaurantRepository';
+import TeamRepository from '../../repositories/TeamRepository';
 
 export const handler = async (event, context, callback) => {
-  const restaurantId = event.pathParameters.id;
+  const teamId = event.pathParameters.id;
 
   try {
-    var repository = new RestaurantRepository();
-    await repository.delete(restaurantId);
+    var repository = new TeamRepository();
+    await repository.delete(teamId);
     callback(null, success());
   } catch (e) {
     callback(null, failure(e));

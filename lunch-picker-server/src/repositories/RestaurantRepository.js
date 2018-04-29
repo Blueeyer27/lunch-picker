@@ -14,6 +14,14 @@ export default class RestaurantRepository {
     return Restaurants.update({ ...fields }, { where: { restaurantId: id } });
   }
 
+  delete(id) {
+    return Restaurants.destroy({
+      where: {
+        restaurantId: id
+      }
+    });
+  }
+
   getByUser(userId) {
     return Restaurants.findAll({ where: { userId } });
   }

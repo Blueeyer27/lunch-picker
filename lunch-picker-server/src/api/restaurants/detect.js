@@ -1,6 +1,6 @@
-import { detectText } from '../libs/rekognitionLib';
-import { success, failure } from '../libs/responseLib';
-import { getUserIdentity } from '../libs/requestLib';
+import { detectText } from '../../libs/rekognitionLib';
+import { success, failure } from '../../libs/responseLib';
+import { getUserIdentity } from '../../libs/requestLib';
 
 export const handler = async (event, context, callback) => {
   const userId = getUserIdentity(event);

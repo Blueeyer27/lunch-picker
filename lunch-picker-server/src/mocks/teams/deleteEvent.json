@@ -1,6 +1,6 @@
 {
-  "queryStringParameters": {
-    "fileKey": "1524621570606 - logo-grilld.png"
+  "pathParameters": {
+    "id": "3548b0a0-4b60-11e8-9f9a-b9e6da12165f"
   },
   "requestContext": {
     "identity": {

@@ -1,6 +1,6 @@
-import { success, failure } from '../libs/responseLib';
-import { getUserIdentity } from '../libs/requestLib';
-import RestaurantRepository from '../repositories/RestaurantRepository';
+import { success, failure } from '../../libs/responseLib';
+import { getUserIdentity } from '../../libs/requestLib';
+import RestaurantRepository from '../../repositories/RestaurantRepository';
 
 export const handler = async (event, context, callback) => {
   const data = JSON.parse(event.body);

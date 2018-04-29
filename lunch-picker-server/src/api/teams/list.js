@@ -1,12 +1,12 @@
 import { success, failure } from '../../libs/responseLib';
 import { getUserIdentity } from '../../libs/requestLib';
-import RestaurantRepository from '../../repositories/RestaurantRepository';
+import TeamRepository from '../../repositories/TeamRepository';
 
 export const handler = async (event, context, callback) => {
   const userId = getUserIdentity(event);
 
   try {
-    const repository = new RestaurantRepository();
+    const repository = new TeamRepository();
 
     const result = await repository.getByUser(userId);
     callback(null, success(result));

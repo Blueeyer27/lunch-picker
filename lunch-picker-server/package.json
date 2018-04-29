@@ -1,10 +1,21 @@
 {
   "name": "lunch-picker-server",
   "version": "1.1.0",
-  "description": "A Node.js starter for the Serverless Framework with async/await and unit test support",
+  "description":
+    "A Node.js starter for the Serverless Framework with async/await and unit test support",
   "main": "handler.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test_list_team":
+      "sls invoke local --function list_team --path ./src/mocks/teams/listEvent.json",
+    "test_get_team":
+      "sls invoke local --function get_team --path ./src/mocks/teams/getEvent.json",
+    "test_create_team":
+      "sls invoke local --function create_team --path ./src/mocks/teams/createEvent.json",
+    "test_update_team":
+      "sls invoke local --function update_team --path ./src/mocks/teams/updateEvent.json",
+    "test_delete_team":
+      "sls invoke local --function delete_team --path ./src/mocks/teams/deleteEvent.json"
   },
   "author": "",
   "license": "MIT",
