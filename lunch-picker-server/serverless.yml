@@ -63,7 +63,16 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource: "arn:aws:dynamodb:ap-southeast-2:*:*"
-      
+    - Effect: Allow
+      Action:
+        - iot:Connect
+        - iot:Publish
+        - iot:Subscribe
+        - iot:Receive
+        - iot:GetThingShadow
+        - iot:UpdateThingShadow
+      Resource: "*"
+
 package:
   individually: true
 
@@ -148,6 +157,30 @@ functions:
           method: get
           cors: true
           authorizer: aws_iam
+      
+  iotPresignedUrl:
+    handler: src/api/iot/presignedUrl.handler
+    timeout: 30
+    events:
+      - http: OPTIONS /iot-presigned-url
+      - http:
+          method: GET
+          path: /iot-presigned-url
+    environment:
+      IOT_AWS_REGION: ap-southeast-2
+      IOT_ENDPOINT_HOST: a14poj2vgozr9g.iot.ap-southeast-2.amazonaws.com
+      IOT_ACCESS_KEY: ${file(./serverless-var.yml):IOT_ACCESS_KEY}
+      IOT_SECRET_KEY: ${file(./serverless-var.yml):IOT_SECRET_KEY}
 
+  notifyDisconnect:
+    handler: src/api/iot/notifyDisconnect.handler
+    timeout: 30
+    events:
+      - iot:
+          sql: "SELECT * FROM 'last-will'"
+    environment:
+      IOT_AWS_REGION: ap-southeast-2
+      IOT_ENDPOINT_HOST: a14poj2vgozr9g.iot.ap-southeast-2.amazonaws.com
+    
   
 
