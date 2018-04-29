@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
 import { Emoji } from 'emoji-mart';
-import 'emoji-mart/css/emoji-mart.css';
 
-const SIZE = '1.5rem';
+const SIZE = '2rem';
 
 const RATES = {
   1: <Emoji set="apple" emoji=":triumph:" size={SIZE} />,

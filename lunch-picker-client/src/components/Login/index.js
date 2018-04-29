@@ -5,7 +5,7 @@ import SignUpForm from './components/SignUpForm';
 import { RoundButton } from '../Share';
 import { login, signUp, confirmSignUp } from '../../actions';
 
-import './styles/login.css';
+import './styles/login.less';
 
 class LoginPage extends Component {
   state = {
