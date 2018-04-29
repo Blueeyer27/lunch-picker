@@ -1,5 +1,6 @@
 import { Teams } from '../models/Teams';
 import { TeamMembers } from '../models/TeamMembers';
+import { Invitations } from '../models/Invitations';
 
 export default class TeamRepository {
   get(id) {
@@ -31,5 +32,21 @@ export default class TeamRepository {
       teamId,
       userId
     });
+  }
+
+  getTeamMembers(teamId) {
+    return TeamMembers.findAll({ where: { teamId } });
+  }
+
+  removeTeamMember(teamId, userId) {
+    return TeamMembers.destroy({ where: { teamId, userId } });
+  }
+
+  sendInvitation(invitation) {
+    return Invitations.create(invitation);
+  }
+
+  updateInvitation(invitationId, fields) {
+    return Invitations.update({ ...fields }, { where: { invitationId } });
   }
 }

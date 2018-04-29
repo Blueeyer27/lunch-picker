@@ -4,14 +4,17 @@ import TeamRepository from '../../../repositories/TeamRepository';
 
 export const handler = async (event, context, callback) => {
   const data = JSON.parse(event.body);
-  const { userId } = data;
-  const teamId = event.pathParameters.id;
-  console.log(`Add user ${userId} to team ${teamId}`);
+  const invitationId = event.pathParameters.id;
+
+  const invitation = {
+    status: data.status
+  };
 
   const repository = new TeamRepository();
+
   try {
-    const teamMember = await repository.addUserToTeam(teamId, userId);
-    callback(null, success(teamMember));
+    await repository.updateInvitation(invitationId, invitation);
+    callback(null, success());
   } catch (e) {
     callback(null, failure(e));
   }

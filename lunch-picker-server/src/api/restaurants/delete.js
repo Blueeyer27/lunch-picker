@@ -8,7 +8,7 @@ export const handler = async (event, context, callback) => {
   try {
     var repository = new RestaurantRepository();
     await repository.delete(restaurantId);
-    callback(null, success());
+    callback(null, success({ success: true }));
   } catch (e) {
     callback(null, failure(e));
   }

@@ -16,8 +16,12 @@
       "sls invoke local --function update_team --path ./src/mocks/teams/updateEvent.json",
     "test_delete_team":
       "sls invoke local --function delete_team --path ./src/mocks/teams/deleteEvent.json",
-    "test_add_team_user":
-      "sls invoke local --function add_team_user --path ./src/mocks/teams/addTeamUserEvent.json"
+    "test_add_team_member":
+      "sls invoke local --function add_team_member --path ./src/mocks/teams/addTeamUserEvent.json",
+    "test_get_team_member":
+      "sls invoke local --function get_team_member --path ./src/mocks/teams/getTeamMemberEvent.json",
+    "test_remove_team_member":
+      "sls invoke local --function remove_team_member --path ./src/mocks/teams/removeTeamMemberEvent.json"
   },
   "author": "",
   "license": "MIT",

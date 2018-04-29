@@ -177,7 +177,7 @@ functions:
           cors: true
           authorizer: aws_iam
 
-  add_team_user:
+  add_team_member:
     handler: src/api/teams/teamManager/addTeamMember.handler
     events:
       - http:
@@ -186,6 +186,42 @@ functions:
           cors: true
           authorizer: aws_iam
 
+  get_team_member:
+    handler: src/api/teams/teamManager/getTeamMembers.handler
+    events:
+      - http:
+          path: teams/{id}/users
+          method: get
+          cors: true
+          authorizer: aws_iam
+
+  remove_team_member:
+    handler: src/api/teams/teamManager/removeTeamMember.handler
+    events:
+      - http:
+          path: teams/{id}/users/{userId}
+          method: delete
+          cors: true
+          authorizer: aws_iam
+      
+  send_team_invitation:
+    handler: src/api/teams/teamManager/sendInvitation.handler
+    events:
+      - http:
+          path: teams/{id}/invitations
+          method: post
+          cors: true
+          authorizer: aws_iam
+
+  respond_team_invitation:
+    handler: src/api/teams/teamManager/respondInvitation.js
+    events:
+      - http:
+          path: teams/invitations/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+          
   yelpSearch:
     handler: src/api/yelp/search.handler
     events:

@@ -8,7 +8,7 @@ export const handler = async (event, context, callback) => {
   try {
     var repository = new TeamRepository();
     await repository.delete(teamId);
-    callback(null, success());
+    callback(null, success({ success: true }));
   } catch (e) {
     callback(null, failure(e));
   }
