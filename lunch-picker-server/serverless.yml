@@ -87,7 +87,7 @@ functions:
           authorizer: aws_iam
 
   get:
-    handler: src/api/get.handler
+    handler: src/api/restaurants/get.handler
     events:
       - http:
           path: restaurants/{id}
@@ -96,7 +96,7 @@ functions:
           authorizer: aws_iam
 
   update:
-    handler: src/api/update.handler
+    handler: src/api/restaurants/update.handler
     events:
       - http:
           path: restaurants/{id}
@@ -105,7 +105,7 @@ functions:
           authorizer: aws_iam
   
   delete:
-    handler: src/api/delete.handler
+    handler: src/api/restaurants/delete.handler
     events:
       - http:
           path: restaurants/{id}
@@ -114,7 +114,7 @@ functions:
           authorizer: aws_iam
 
   list:
-    handler: src/api/list.handler
+    handler: src/api/restaurants/list.handler
     events:
       - http:
           path: restaurants
@@ -123,7 +123,7 @@ functions:
           authorizer: aws_iam
 
   detect:
-    handler: src/api/detect.handler
+    handler: src/api/restaurants/detect.handler
     events:
       - http:
           path: restaurants/detect
