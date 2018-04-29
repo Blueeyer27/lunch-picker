@@ -79,7 +79,7 @@ package:
 
 functions:
   create_restaurant:
-    handler: src/api/create.handler
+    handler: src/api/restaurants/create.handler
     events:
       - http:
           path: restaurants

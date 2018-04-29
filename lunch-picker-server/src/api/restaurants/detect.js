@@ -8,7 +8,7 @@ export const handler = async (event, context, callback) => {
   console.log('file key', fileKey);
 
   try {
-    const data = await detectText(`private/${userId}/${fileKey}`);
+    const data = await detectText(fileKey);
     console.log('detected data', data);
     callback(null, success({ results: data }));
   } catch (err) {
