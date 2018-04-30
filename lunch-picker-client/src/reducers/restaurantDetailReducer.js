@@ -19,7 +19,7 @@ const handleStateUpdateSuccess = (state, payload) => {
   return { ...state, ...details };
 };
 
-export const detailReducer = (state = INITIAL_STATE, action) => {
+export const restaurantDetailReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case DETAIL_ACTIONS.UPDATE_FIELD:
       return handleFieldUpdate(state, action.payload);

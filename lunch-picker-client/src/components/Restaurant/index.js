@@ -9,7 +9,7 @@ import {
   Ratings,
   OnlineInfoLink
 } from './components';
-import { detailSelector } from '../../selectors';
+import { restaurantDetailSelector } from '../../selectors';
 import {
   add,
   get,
@@ -126,7 +126,7 @@ class NewRestaurant extends Component {
   }
 }
 
-export default connect(detailSelector, {
+export default connect(restaurantDetailSelector, {
   get,
   add,
   update,

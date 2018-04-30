@@ -1,10 +1,23 @@
+import Sequelize from 'sequelize';
 import { Teams } from '../models/Teams';
 import { TeamMembers } from '../models/TeamMembers';
 import { Invitations } from '../models/Invitations';
 
+const Op = Sequelize.Op;
+
 export default class TeamRepository {
   get(id) {
     return Teams.findById(id);
+  }
+
+  getList(ids) {
+    return Teams.findAll({
+      where: {
+        teamId: {
+          [Op.in]: ids
+        }
+      }
+    });
   }
 
   create(team) {
@@ -25,6 +38,10 @@ export default class TeamRepository {
 
   getTeamsOwnedByUser(userId) {
     return Teams.findAll({ where: { ownerUserId: userId } });
+  }
+
+  getTeamsJoinedByUser(userId) {
+    return TeamMembers.findAll({ where: { userId } });
   }
 
   addUserToTeam(teamId, userId) {

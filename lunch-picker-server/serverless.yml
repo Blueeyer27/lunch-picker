@@ -168,11 +168,20 @@ functions:
           cors: true
           authorizer: aws_iam
 
-  list_team:
-    handler: src/api/teams/list.handler
+  list_team_owned:
+    handler: src/api/teams/listOwned.handler
     events:
       - http:
-          path: teams
+          path: teams/owned
+          method: get
+          cors: true
+          authorizer: aws_iam
+
+  list_team_joined:
+    handler: src/api/teams/listJoined.handler
+    events:
+      - http:
+          path: teams/joined
           method: get
           cors: true
           authorizer: aws_iam

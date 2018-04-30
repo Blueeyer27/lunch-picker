@@ -2,22 +2,22 @@ import { createSelector } from 'reselect';
 
 const appState = state => state.app;
 const restaurantState = state => state.restaurant;
-const detailsState = state => state.details;
+const detailsState = state => state.restaurantDetails;
 
 const getState = (app, restaurant, details) => {
   return {
     restaurant,
     isDetectedNameModalOpen: app.isDetectedNameModalOpen,
     details,
-    hasOnlineInfo: restaurant.searchSummary.id != null
+    hasOnlineInfo: details.externalId != null
   };
 };
 
-const detailSelector = createSelector(
+const restaurantDetailSelector = createSelector(
   appState,
   restaurantState,
   detailsState,
   getState
 );
 
-export { detailSelector };
+export { restaurantDetailSelector };

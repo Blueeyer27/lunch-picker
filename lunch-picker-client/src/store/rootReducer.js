@@ -4,7 +4,7 @@ import {
   authReducer,
   userReducer,
   restaurantReducer,
-  detailReducer
+  restaurantDetailReducer
 } from '../reducers';
 
 const rootReducer = combineReducers({
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   user: userReducer,
   restaurant: restaurantReducer,
-  details: detailReducer
+  restaurantDetails: restaurantDetailReducer
 });
 
 export default rootReducer;

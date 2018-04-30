@@ -1,5 +1,5 @@
 import * as appActions from './appActions';
-import { updateField } from './detailActions';
+import { updateField } from './restaurantDetailActions';
 import { RESTAURANT_ACTIONS } from './types';
 import { restaurantService } from '../aws/api';
 import { getCurrentPosition } from '../utils';
