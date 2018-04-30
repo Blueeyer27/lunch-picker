@@ -4,6 +4,9 @@ import RestaurantList from './components/List';
 import Restaurant from './components/Restaurant';
 import LoginPage from './components/Login';
 import OnlineInfomation from './components/OnlineInfomation';
+import JoinedTeams from './components/JoinedTeams';
+import TeamMembers from './components/TeamMembers';
+import MyTeams from './components/MyTeams';
 import AuthenticatedRoute from './components/App/components/AuthenticatedRoute';
 import UnauthenticatedRoute from './components/App/components/UnauthenticatedRoute';
 
@@ -30,6 +33,21 @@ const Routes = ({ childProps }) => {
       <UnauthenticatedRoute
         path="/login"
         component={LoginPage}
+        props={childProps}
+      />
+      <AuthenticatedRoute
+        path="/teams/joined"
+        component={JoinedTeams}
+        props={childProps}
+      />
+      <AuthenticatedRoute
+        path="/teams/my"
+        component={MyTeams}
+        props={childProps}
+      />
+      <AuthenticatedRoute
+        path="/members/:teamId/"
+        component={TeamMembers}
         props={childProps}
       />
       <AuthenticatedRoute

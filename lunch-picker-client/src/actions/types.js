@@ -35,3 +35,9 @@ export const DETAIL_ACTIONS = {
   REMOVE_RESTAURANT_SUCCESS: 'detail_actions_remove_restaurant_success',
   LIST_RESTAURANTS_SUCCESS: 'detail_actions_list_restaurants_success'
 };
+
+export const TEAM_ACTIONS = {
+  GET_JOINED_TEAM_SUCCESS: 'team_actions_get_joined_team_success',
+  GET_TEAM_MEMBERS_SUCCESS: 'team_actions_get_team_member_success',
+  GET_MY_TEAM_SUCCESS: 'team_actions_get_my_team_success'
+};

@@ -30,6 +30,11 @@ Amplify.configure({
         name: 'restaurants',
         endpoint: config.apiGateway.URL,
         region: config.apiGateway.REGION
+      },
+      {
+        name: 'teams',
+        endpoint: config.apiGateway.URL,
+        region: config.apiGateway.REGION
       }
     ]
   }

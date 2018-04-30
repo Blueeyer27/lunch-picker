@@ -45,6 +45,16 @@ export default class AppHeader extends Component {
               New Restaurant
             </Link>
           </MenuItem>
+          <MenuItem className="app-bar-menu-item">
+            <Link to="/teams/joined" onClick={this.handleClose}>
+              Joined Teams
+            </Link>
+          </MenuItem>
+          <MenuItem className="app-bar-menu-item">
+            <Link to="/teams/my" onClick={this.handleClose}>
+              My Teams
+            </Link>
+          </MenuItem>
         </Drawer>
       </div>
     );

@@ -1,9 +1,11 @@
-import { USER_ACTIONS } from '../actions/types';
+import { USER_ACTIONS, TEAM_ACTIONS } from '../actions/types';
 
 const INITIAL_STATE = {
   restaurants: [],
   restaurantPicked: null,
-  position: {}
+  position: {},
+  myTeams: [],
+  joinedTeams: []
 };
 
 const handleListRestaurants = (state, payload) => {
@@ -25,6 +27,14 @@ const handleRestaurantPicked = (state, payload) => {
   return { ...state, restaurantPicked: payload.pickedRestaurant };
 };
 
+const handleGetJoinedTeamSuccess = (state, payload) => {
+  return { ...state, joinedTeams: payload.teams };
+};
+
+const handleGetMyTeamSuccess = (state, payload) => {
+  return { ...state, myTeams: payload.teams };
+};
+
 export const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case USER_ACTIONS.LIST_RESTAURANTS:
@@ -35,6 +45,12 @@ export const userReducer = (state = INITIAL_STATE, action) => {
 
     case USER_ACTIONS.PICK_RESTAURANT:
       return handleRestaurantPicked(state, action.payload);
+
+    case TEAM_ACTIONS.GET_JOINED_TEAM_SUCCESS:
+      return handleGetJoinedTeamSuccess(state, action.payload);
+
+    case TEAM_ACTIONS.GET_MY_TEAM_SUCCESS:
+      return handleGetMyTeamSuccess(state, action.payload);
 
     default:
       return state;
