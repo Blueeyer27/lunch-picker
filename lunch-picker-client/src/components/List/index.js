@@ -32,7 +32,7 @@ class RestaurantList extends Component {
   renderReataurantOverviews = () => {
     var restaurants = [
       {
-        restaurantName: 'Grilled',
+        restaurantName: 'Grilled Grilled Grilled Grilled Grilled',
         restaurantId: '1',
         imageSrc: 'http://via.placeholder.com/400x300'
       },

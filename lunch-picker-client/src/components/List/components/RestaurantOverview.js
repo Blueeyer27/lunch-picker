@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../../Share';
+import { Button, RateEmoji } from '../../Share';
 
 export const RestaurantOverview = ({ restaurant, onEditClick }) => {
   return (
@@ -13,6 +13,9 @@ export const RestaurantOverview = ({ restaurant, onEditClick }) => {
       </div>
       <div className="restaurant-item-middle">
         <h3 className="restaurant-item-name">{restaurant.restaurantName}</h3>
+        <p>
+          <RateEmoji rate={0} />
+        </p>
       </div>
       <div className="restaurant-item-right">
         <Button
