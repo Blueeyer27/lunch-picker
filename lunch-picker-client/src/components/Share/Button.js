@@ -8,6 +8,7 @@ export const Button = props => {
       label={props.label}
       primary={props.primary}
       style={props.style}
+      className={props.className}
       fullWidth={props.fullWidth}
       onClick={props.onClick}
       disabled={props.disabled}
@@ -22,5 +23,6 @@ Button.defaultProps = {
   disabled: false,
   primary: false,
   style: {},
+  className: null,
   onClick: () => {}
 };
