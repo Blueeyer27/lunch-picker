@@ -7,6 +7,7 @@ import OnlineInfomation from './components/OnlineInfomation';
 import JoinedTeams from './components/JoinedTeams';
 import TeamMembers from './components/TeamMembers';
 import MyTeams from './components/MyTeams';
+import TeamDetails from './components/TeamDetails';
 import AuthenticatedRoute from './components/App/components/AuthenticatedRoute';
 import UnauthenticatedRoute from './components/App/components/UnauthenticatedRoute';
 
@@ -48,6 +49,16 @@ const Routes = ({ childProps }) => {
       <AuthenticatedRoute
         path="/members/:teamId/"
         component={TeamMembers}
+        props={childProps}
+      />
+      <AuthenticatedRoute
+        path="/teams/new/"
+        component={TeamDetails}
+        props={childProps}
+      />
+      <AuthenticatedRoute
+        path="/teams/:teamId/"
+        component={TeamDetails}
         props={childProps}
       />
       <AuthenticatedRoute

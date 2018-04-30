@@ -22,6 +22,7 @@ class MyTeams extends Component {
     return (
       <div>
         <h2>My Teams</h2>
+        <Link to="/teams/new">Create Team</Link>
         <div>{this.renderMyTeams()}</div>
       </div>
     );

@@ -39,5 +39,7 @@ export const DETAIL_ACTIONS = {
 export const TEAM_ACTIONS = {
   GET_JOINED_TEAM_SUCCESS: 'team_actions_get_joined_team_success',
   GET_TEAM_MEMBERS_SUCCESS: 'team_actions_get_team_member_success',
-  GET_MY_TEAM_SUCCESS: 'team_actions_get_my_team_success'
+  GET_MY_TEAM_SUCCESS: 'team_actions_get_my_team_success',
+  CREATE_TEAM_SUCCESS: 'team_actions_create_team_success',
+  UPDATE_TEAM_FIELD: 'team_actions_update_team_field'
 };

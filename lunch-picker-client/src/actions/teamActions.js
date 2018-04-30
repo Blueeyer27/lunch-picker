@@ -2,6 +2,13 @@ import { TEAM_ACTIONS } from './types';
 import * as appActions from './appActions';
 import { teamService } from '../aws/api';
 
+export const updateTeamField = (field, value) => {
+  return {
+    type: TEAM_ACTIONS.UPDATE_TEAM_FIELD,
+    payload: { field, value }
+  };
+};
+
 export const getMyTeams = () => async dispatch => {
   dispatch(appActions.loading());
 
@@ -52,4 +59,18 @@ export const getTeamMembers = teamId => async dispatch => {
   } catch (e) {
     dispatch(appActions.showError(e.message));
   }
+};
+
+export const createTeam = team => async dispatch => {
+  dispatch(appActions.loading());
+  try {
+    const data = await teamService.create(team);
+    dispatch({
+      type: TEAM_ACTIONS.CREATE_TEAM_SUCCESS,
+      payload: { team: data }
+    });
+  } catch (e) {
+    dispatch(appActions.showError(e.message));
+  }
+  dispatch(appActions.loading(false));
 };

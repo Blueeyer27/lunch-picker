@@ -9,5 +9,8 @@ export const teamService = {
   },
   getTeamMembers: teamId => {
     return API.get('teams', `/teams/${teamId}/users`);
+  },
+  create: team => {
+    return API.post('teams', '/teams', { body: team });
   }
 };
