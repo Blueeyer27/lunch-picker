@@ -1,0 +1,47 @@
+.margin-top-1rem {
+  margin-top: 1rem;
+}
+.restaurant-item {
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: row;
+  min-height: 5rem;
+  line-height: 2rem;
+  color: #555;
+
+  &-left {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+
+  &-middle {
+    flex: 2;
+    position: relative;
+    padding: 0 0.5rem;
+  }
+
+  &-right {
+    flex: 1;
+    position: relative;
+  }
+
+  &-image {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &-name {
+  }
+
+  &-button {
+    width: 100% !important;
+    position: absolute;
+    top: 50%;
+    min-width: auto !important;
+    transform: translate(0, -50%);
+  }
+}
