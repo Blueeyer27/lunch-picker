@@ -36,6 +36,9 @@ export const authReducer = (state = INITIAL_STATE, action) => {
     case AUTH_ACTIONS.CONFIRM_SIGN_UP:
       return handleConfirmSignUp(state);
 
+    case AUTH_ACTIONS.SIGN_OUT:
+      return INITIAL_STATE;
+
     default:
       return state;
   }

@@ -12,7 +12,7 @@ import AppHeader from './components/AppHeader';
 import Routes from '../../Routes';
 import { customTheme } from './theme';
 import { appSelector } from '../../selectors';
-import { clear, authenticateUser } from '../../actions';
+import { clear, authenticateUser, signOut } from '../../actions';
 
 const muiTheme = getMuiTheme(customTheme);
 
@@ -37,6 +37,11 @@ class App extends Component {
     }
   };
 
+  handleSignOut = async () => {
+    await this.props.signOut();
+    this.props.history.push('/login');
+  };
+
   render() {
     const { success, error, loading, clear, authenticated } = this.props;
     const childProps = {
@@ -47,7 +52,7 @@ class App extends Component {
         <AlertProvider template={AlertTemplate} {...options}>
           <AppBoundary success={success} error={error} onClose={clear}>
             <Spinner spinning={loading} />
-            <AppHeader />
+            <AppHeader onSignOut={this.handleSignOut} />
             <div className="container">
               <Routes childProps={childProps} />
             </div>
@@ -59,5 +64,5 @@ class App extends Component {
 }
 
 export default withRouter(
-  connect(appSelector, { clear, authenticateUser })(App)
+  connect(appSelector, { clear, authenticateUser, signOut })(App)
 );

@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, RateEmoji } from '../../Share';
 
 export const RestaurantOverview = ({ restaurant, onEditClick }) => {
+  console.log('restaurant', restaurant);
   return (
     <div className="restaurant-item">
       <div className="restaurant-item-left">
@@ -14,7 +15,7 @@ export const RestaurantOverview = ({ restaurant, onEditClick }) => {
       <div className="restaurant-item-middle">
         <h3 className="restaurant-item-name">{restaurant.restaurantName}</h3>
         <p>
-          <RateEmoji rate={0} />
+          <RateEmoji rate={restaurant.rating} />
         </p>
       </div>
       <div className="restaurant-item-right">

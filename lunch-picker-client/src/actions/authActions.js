@@ -55,3 +55,8 @@ export const confirmSignUp = confirmCode => async (dispatch, getState) => {
   }
   dispatch(appActions.loading(false));
 };
+
+export const signOut = () => async dispatch => {
+  await Auth.signOut();
+  dispatch({ type: AUTH_ACTIONS.SIGN_OUT });
+};

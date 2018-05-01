@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import { Button } from '../../Share';
 import '../styles/app-bar.less';
 
 export default class AppHeader extends Component {
@@ -14,6 +15,11 @@ export default class AppHeader extends Component {
   handleToggle = () => this.setState({ open: !this.state.open });
 
   handleClose = () => this.setState({ open: false });
+
+  handleSignOut = () => {
+    this.setState({ open: false });
+    this.props.onSignOut();
+  };
 
   render() {
     return (
@@ -54,6 +60,9 @@ export default class AppHeader extends Component {
             <Link to="/teams/my" onClick={this.handleClose}>
               My Teams
             </Link>
+          </MenuItem>
+          <MenuItem className="app-bar-menu-item">
+            <Button onClick={this.handleSignOut} label="Sign Out" />
           </MenuItem>
         </Drawer>
       </div>

@@ -9,6 +9,21 @@ export const updateTeamField = (field, value) => {
   };
 };
 
+export const getTeamDetails = teamId => async dispatch => {
+  dispatch(appActions.loading());
+
+  try {
+    const data = await teamService.get(teamId);
+    dispatch({
+      type: TEAM_ACTIONS.GET_TEAM_DETAILS_SUCCESS,
+      payload: { team: data }
+    });
+  } catch (e) {
+    dispatch(appActions.showError(e.message));
+  }
+  dispatch(appActions.loading(false));
+};
+
 export const getMyTeams = () => async dispatch => {
   dispatch(appActions.loading());
 
@@ -66,7 +81,21 @@ export const createTeam = team => async dispatch => {
   try {
     const data = await teamService.create(team);
     dispatch({
-      type: TEAM_ACTIONS.CREATE_TEAM_SUCCESS,
+      type: TEAM_ACTIONS.SAVE_TEAM_SUCCESS,
+      payload: { team: data }
+    });
+  } catch (e) {
+    dispatch(appActions.showError(e.message));
+  }
+  dispatch(appActions.loading(false));
+};
+
+export const updateTeam = team => async dispatch => {
+  dispatch(appActions.loading());
+  try {
+    const data = await teamService.update(team);
+    dispatch({
+      type: TEAM_ACTIONS.SAVE_TEAM_SUCCESS,
       payload: { team: data }
     });
   } catch (e) {

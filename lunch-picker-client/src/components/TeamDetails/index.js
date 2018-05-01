@@ -1,17 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Input, Button } from '../Share';
-import { createTeam, updateTeamField } from '../../actions';
+import {
+  getTeamDetails,
+  createTeam,
+  updateTeam,
+  updateTeamField
+} from '../../actions';
 import { teamDetailSelector } from '../../selectors';
 
 class TeamDetails extends Component {
+  componentDidMount = () => {
+    const { teamId } = this.props.match.params;
+    if (teamId) {
+      this.props.getTeamDetails(teamId);
+    }
+  };
+
   handleChange = (field, value) => {
     this.props.updateTeamField(field, value);
   };
 
   handleSave = () => {
-    const { details, createTeam } = this.props;
-    createTeam(details);
+    const { details, createTeam, updateTeam } = this.props;
+    if (!details.teamId) {
+      createTeam(details);
+    } else {
+      updateTeam(details);
+    }
   };
 
   render() {
@@ -31,6 +47,8 @@ class TeamDetails extends Component {
 }
 
 export default connect(teamDetailSelector, {
+  getTeamDetails,
   createTeam,
+  updateTeam,
   updateTeamField
 })(TeamDetails);

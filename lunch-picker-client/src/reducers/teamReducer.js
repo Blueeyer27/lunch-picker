@@ -18,10 +18,16 @@ const handleGetTeamMemberSuccess = (state, payload) => {
   return { ...state, teams: newTeams };
 };
 
-const handleCreateTeamSuccess = (state, payload) => {
+const handleSaveTeamSuccess = (state, payload) => {
   const { team } = payload;
   return { ...state, details: team };
 };
+
+const handleGetTeamDetailSuccess = (state, payload) => {
+  const { team } = payload;
+  return { ...state, details: team };
+};
+
 export const teamReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case TEAM_ACTIONS.UPDATE_TEAM_FIELD:
@@ -30,8 +36,11 @@ export const teamReducer = (state = INITIAL_STATE, action) => {
     case TEAM_ACTIONS.GET_TEAM_MEMBERS_SUCCESS:
       return handleGetTeamMemberSuccess(state, action.payload);
 
-    case TEAM_ACTIONS.CREATE_TEAM_SUCCESS:
-      return handleCreateTeamSuccess(state, action.payload);
+    case TEAM_ACTIONS.GET_TEAM_DETAILS_SUCCESS:
+      return handleGetTeamDetailSuccess(state, action.payload);
+
+    case TEAM_ACTIONS.SAVE_TEAM_SUCCESS:
+      return handleSaveTeamSuccess(state, action.payload);
 
     default:
       return state;

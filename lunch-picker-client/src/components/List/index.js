@@ -8,7 +8,7 @@ import './styles/list.less';
 
 class RestaurantList extends Component {
   componentDidMount = () => {
-    //this.props.listRestaurants();
+    this.props.listRestaurants();
   };
 
   handleEditClick = id => {
@@ -30,24 +30,7 @@ class RestaurantList extends Component {
   };
 
   renderReataurantOverviews = () => {
-    var restaurants = [
-      {
-        restaurantName: 'Grilled Grilled Grilled Grilled Grilled',
-        restaurantId: '1',
-        imageSrc: 'http://via.placeholder.com/400x300'
-      },
-      {
-        restaurantName: 'Grilled',
-        restaurantId: '2',
-        imageSrc: 'http://via.placeholder.com/400x300'
-      },
-      {
-        restaurantName: 'Grilled',
-        restaurantId: '3',
-        imageSrc: 'http://via.placeholder.com/400x300'
-      }
-    ];
-    return restaurants.map(restaurant => (
+    return this.props.restaurants.map(restaurant => (
       <RestaurantOverview
         restaurant={restaurant}
         key={restaurant.restaurantId}
