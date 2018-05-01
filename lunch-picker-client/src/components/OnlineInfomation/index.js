@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { OnlineDetail } from './components';
 import { getDetailById } from '../../actions';
-import './styles/online-info.css';
+import './styles/online-info.less';
 
 class OnlineInfomation extends Component {
   componentDidMount = () => {
