@@ -5,3 +5,4 @@ export * from './joinedTeamSelector';
 export * from './teamMemberSelector';
 export * from './myTeamSelector';
 export * from './teamDetailSelector';
+export * from './authSelector';

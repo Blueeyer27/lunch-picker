@@ -10,7 +10,8 @@ export const AUTH_ACTIONS = {
   AUTHENTICATE_USER: 'authentication_actions_authenticate_user',
   AUTHENTICATE_SUCCESS: 'authentication_actions_authenticate_success',
   SIGN_UP_SUCCESS: 'authentication_actions_sign_up_success',
-  CONFIRM_SIGN_UP: 'authentication_actions_confirm_sign_up'
+  CONFIRM_SIGN_UP: 'authentication_actions_confirm_sign_up',
+  SIGN_OUT: 'authentication_action_sign_out'
 };
 
 export const USER_ACTIONS = {
@@ -40,6 +41,7 @@ export const TEAM_ACTIONS = {
   GET_JOINED_TEAM_SUCCESS: 'team_actions_get_joined_team_success',
   GET_TEAM_MEMBERS_SUCCESS: 'team_actions_get_team_member_success',
   GET_MY_TEAM_SUCCESS: 'team_actions_get_my_team_success',
-  CREATE_TEAM_SUCCESS: 'team_actions_create_team_success',
+  GET_TEAM_DETAILS_SUCCESS: 'team_actions_get_team_details_success',
+  SAVE_TEAM_SUCCESS: 'team_actions_save_team_success',
   UPDATE_TEAM_FIELD: 'team_actions_update_team_field'
 };
