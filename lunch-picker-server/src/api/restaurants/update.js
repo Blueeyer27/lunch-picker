@@ -11,7 +11,9 @@ export const handler = async (event, context, callback) => {
     const repository = new RestaurantRepository();
 
     await repository.update(restaurantId, data);
-    callback(null, success());
+    const restaurant = await repository.get(restaurantId);
+
+    callback(null, success(restaurant));
   } catch (e) {
     callback(null, failure(e));
   }

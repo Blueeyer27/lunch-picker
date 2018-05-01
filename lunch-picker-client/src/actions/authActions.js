@@ -2,20 +2,19 @@ import { Auth } from 'aws-amplify';
 import * as appActions from './appActions';
 import { AUTH_ACTIONS } from './types';
 
-export const authenticateUser = email => {
-  return { type: AUTH_ACTIONS.AUTHENTICATE_USER, payload: { email } };
+export const authenticateUser = (email, userToken) => {
+  return {
+    type: AUTH_ACTIONS.AUTHENTICATE_USER,
+    payload: { email, userToken }
+  };
 };
 
 export const login = (email, password) => async dispatch => {
   try {
     dispatch(appActions.loading());
-    await Auth.signIn(email, password);
-    dispatch({
-      type: AUTH_ACTIONS.AUTHENTICATE_SUCCESS,
-      payload: {
-        email
-      }
-    });
+    const response = await Auth.signIn(email, password);
+    const { username } = response;
+    dispatch(authenticateUser(email, username));
   } catch (e) {
     dispatch(appActions.showError(e.message));
   }

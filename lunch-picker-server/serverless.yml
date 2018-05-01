@@ -137,7 +137,7 @@ functions:
     events:
       - http:
           path: teams/{id}
-          method: post
+          method: get
           cors: true
           authorizer: aws_iam
 

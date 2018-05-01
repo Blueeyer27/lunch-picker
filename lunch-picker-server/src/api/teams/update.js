@@ -9,7 +9,9 @@ export const handler = async (event, context, callback) => {
   try {
     const repository = new TeamRepository();
     await repository.update(teamId, data);
-    callback(null, success());
+    const team = await repository.get(teamId);
+
+    callback(null, success(team));
   } catch (e) {
     callback(null, failure(e));
   }
