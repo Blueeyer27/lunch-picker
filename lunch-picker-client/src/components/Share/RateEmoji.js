@@ -12,7 +12,7 @@ const RATES = [
 ];
 
 export const RateEmoji = props => {
-  return <Emoji set="apple" emoji={RATES[props.rate]} size={SIZE} />;
+  return <Emoji set="apple" emoji={RATES[props.rate - 1]} size={SIZE} />;
 };
 
 RateEmoji.defaultProps = {

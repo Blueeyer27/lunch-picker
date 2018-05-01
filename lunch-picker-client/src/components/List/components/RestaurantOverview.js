@@ -14,7 +14,7 @@ export const RestaurantOverview = ({ restaurant, onEditClick }) => {
       <div className="restaurant-item-middle">
         <h3 className="restaurant-item-name">{restaurant.restaurantName}</h3>
         <p>
-          <RateEmoji rate={0} />
+          <RateEmoji rate={1} />
         </p>
       </div>
       <div className="restaurant-item-right">
