@@ -2,16 +2,27 @@ import { AUTH_ACTIONS } from '../actions/types';
 
 const INITIAL_STATE = {
   username: null,
+  userToken: null,
   password: null,
   authenticated: false
 };
 
 const handleAuthenticateUser = (state, payload) => {
-  return { ...state, username: payload.email, authenticated: true };
+  return {
+    ...state,
+    username: payload.email,
+    userToken: payload.userToken,
+    authenticated: true
+  };
 };
 
 const handleAuthenticateSuccess = (state, payload) => {
-  return { ...state, username: payload.email, authenticated: true };
+  return {
+    ...state,
+    username: payload.email,
+    userToken: payload.userToken,
+    authenticated: true
+  };
 };
 
 const handleSignUpSuccess = (state, payload) => {
