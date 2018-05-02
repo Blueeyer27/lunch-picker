@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button, RateEmoji } from '../../Share';
+import { Button, RateEmoji, Card } from '../../Share';
 
 export const RestaurantOverview = ({ restaurant, onEditClick }) => {
   return (
-    <div className="restaurant-item">
+    <Card>
       <div className="restaurant-item-left">
         <img
           src={restaurant.imageSrc}
@@ -26,6 +26,6 @@ export const RestaurantOverview = ({ restaurant, onEditClick }) => {
           fullWidth={false}
         />
       </div>
-    </div>
+    </Card>
   );
 };

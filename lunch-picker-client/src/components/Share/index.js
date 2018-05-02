@@ -6,3 +6,4 @@ export * from './Animation';
 export * from './RoundButton';
 export * from './Popup';
 export * from './RateEmoji';
+export * from './Card';

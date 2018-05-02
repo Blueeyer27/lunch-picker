@@ -9,6 +9,9 @@ import './styles/list.less';
 class RestaurantList extends Component {
   componentDidMount = () => {
     this.props.listRestaurants();
+    if (this.props.match.path === '/pick') {
+      this.handlePick();
+    }
   };
 
   handleEditClick = id => {
@@ -17,6 +20,7 @@ class RestaurantList extends Component {
 
   handlePick = () => {
     const { restaurants, pick } = this.props;
+    console.log('restaurants', restaurants);
     pick(restaurants);
   };
 
@@ -40,12 +44,10 @@ class RestaurantList extends Component {
   };
   render() {
     return (
-      <div className="margin-top-1rem">
+      <div className="margin-top-1rem with-footer">
         {this.props.hasPicked
           ? this.renderPickedRestaurantOverview()
           : this.renderReataurantOverviews()}
-
-        <button onClick={this.handlePick}>Pick</button>
       </div>
     );
   }

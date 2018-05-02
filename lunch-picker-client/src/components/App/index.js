@@ -8,7 +8,6 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Auth } from 'aws-amplify';
 import { Spinner } from '../Share';
 import AppBoundary from './components/AppBoundary';
-import AppHeader from './components/AppHeader';
 import Routes from '../../Routes';
 import { customTheme } from './theme';
 import { appSelector } from '../../selectors';
@@ -52,9 +51,8 @@ class App extends Component {
         <AlertProvider template={AlertTemplate} {...options}>
           <AppBoundary success={success} error={error} onClose={clear}>
             <Spinner spinning={loading} />
-            <AppHeader onSignOut={this.handleSignOut} />
             <div className="container">
-              <Routes childProps={childProps} />
+              <Routes childProps={childProps} onSignOut={this.handleSignOut} />
             </div>
           </AppBoundary>
         </AlertProvider>

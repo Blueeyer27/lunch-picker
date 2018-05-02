@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import FlatButton from 'material-ui/FlatButton';
+import IconButton from 'material-ui/IconButton';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import ActionPowerSettingsNew from 'material-ui/svg-icons/action/power-settings-new';
 import { Button } from '../../Share';
-import '../styles/app-bar.less';
+import '../styles/app-header.less';
 
 export default class AppHeader extends Component {
   constructor(props) {
@@ -23,11 +26,15 @@ export default class AppHeader extends Component {
 
   render() {
     return (
-      <div>
+      <div className="full-width">
         <AppBar
           title={<h2 className="app-bar-title">Lunch Picker</h2>}
-          iconClassNameRight="muidocs-icon-navigation-expand-more"
           onLeftIconButtonClick={this.handleToggle}
+          iconElementRight={
+            <IconButton onClick={this.handleSignOut}>
+              <ActionPowerSettingsNew />
+            </IconButton>
+          }
           className="app-bar"
         />
         <Drawer
@@ -60,9 +67,6 @@ export default class AppHeader extends Component {
             <Link to="/teams/my" onClick={this.handleClose}>
               My Teams
             </Link>
-          </MenuItem>
-          <MenuItem className="app-bar-menu-item">
-            <Button onClick={this.handleSignOut} label="Sign Out" />
           </MenuItem>
         </Drawer>
       </div>
