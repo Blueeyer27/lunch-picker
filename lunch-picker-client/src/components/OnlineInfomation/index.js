@@ -9,11 +9,7 @@ class OnlineInfomation extends Component {
     this.props.getDetailById(this.props.match.params.id);
   };
   render() {
-    return (
-      <div>
-        <OnlineDetail restaurant={this.props.restaurant} />
-      </div>
-    );
+    return <OnlineDetail restaurant={this.props.restaurant} />;
   }
 }
 

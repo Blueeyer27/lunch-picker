@@ -33,7 +33,7 @@ class OnlineDetail extends Component {
     if (rate > 5) rate = 5;
 
     return (
-      <div className="information-container">
+      <div className="with-footer">
         {this.renderSlider()}
         <p className="info-title">{restaurant.name}</p>
         <p className="info-description">

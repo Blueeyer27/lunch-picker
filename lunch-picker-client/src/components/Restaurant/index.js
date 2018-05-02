@@ -103,7 +103,7 @@ class NewRestaurant extends Component {
   render() {
     const { detectTextInLogo, restaurant, details } = this.props;
     return (
-      <div className="restaurant-detail">
+      <div className="margin-top-1rem with-footer">
         <ImageUpload
           detectTextInLogo={detectTextInLogo}
           imageKey={details.profileImage}
