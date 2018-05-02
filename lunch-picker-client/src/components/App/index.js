@@ -28,10 +28,7 @@ class App extends Component {
     try {
       const currentUser = await Auth.currentSession();
       if (currentUser) {
-        this.props.authenticateUser(
-          currentUser.idToken.payload.email,
-          currentUser.accessToken.payload.username
-        );
+        this.props.authenticateUser(currentUser.accessToken.payload.username);
       }
     } catch (e) {
       if (e !== 'No current user') {

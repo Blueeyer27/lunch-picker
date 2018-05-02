@@ -10,8 +10,7 @@ const INITIAL_STATE = {
 const handleAuthenticateUser = (state, payload) => {
   return {
     ...state,
-    username: payload.email,
-    userToken: payload.userToken,
+    ...payload.user,
     authenticated: true
   };
 };

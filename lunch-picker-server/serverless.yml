@@ -132,6 +132,15 @@ functions:
           cors: true
           authorizer: aws_iam
 
+  get_user:
+    handler: src/api/users/get.handler
+    events:
+      - http:
+          path: users/{username}
+          method: get
+          cors: true
+          authorizer: aws_iam
+
   get_team:
     handler: src/api/teams/get.handler
     events:

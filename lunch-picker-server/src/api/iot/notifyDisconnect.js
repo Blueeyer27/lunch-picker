@@ -5,6 +5,7 @@ AWS.config.region = process.env.IOT_AWS_REGION;
 const iotData = new AWS.iotData({ endpoint: process.env.IOT_ENDPOINT_HOST });
 
 export const handler = message => {
+  console.log('notify disconnect', message);
   const params = {
     topc: 'client-disconnected',
     payload: JSON.stringify(message),

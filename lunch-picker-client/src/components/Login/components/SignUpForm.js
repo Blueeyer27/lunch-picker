@@ -47,17 +47,20 @@ class SignUpForm extends Component {
       <form className="login-form" onSubmit={this.handleSignUp}>
         <Logo />
         <Input
+          value={this.state.username}
           placeholder="Username"
           fullWidth={true}
           onChange={value => this.handleChange(value, 'username')}
         />
         <Input
+          value={this.state.password}
           placeholder="Password"
           type="password"
           fullWidth={true}
           onChange={value => this.handleChange(value, 'password')}
         />
         <Input
+          value={this.state.confirmPassword}
           placeholder="Confirm Your Password"
           type="password"
           fullWidth={true}
@@ -75,6 +78,7 @@ class SignUpForm extends Component {
       <form className="login-form" onSubmit={this.handleSignUp}>
         <Logo />
         <Input
+          value={this.state.confirmCode}
           placeholder="Confirm Code"
           fullWidth={true}
           onChange={value => this.handleChange(value, 'confirmCode')}

@@ -45,3 +45,10 @@ export const TEAM_ACTIONS = {
   SAVE_TEAM_SUCCESS: 'team_actions_save_team_success',
   UPDATE_TEAM_FIELD: 'team_actions_update_team_field'
 };
+
+export const ONLINE_ACTIONS = {
+  USER_CONNECTED: 'online_actions_user_connected',
+  MESSAGE_RECEIVED: 'online_actions_online_message_received',
+  CONNECT_TO_TEAM: 'online_actions_connect_to_team',
+  NOTIFY_TEAM_MEMBER: 'online_actions_notify_team_member'
+};

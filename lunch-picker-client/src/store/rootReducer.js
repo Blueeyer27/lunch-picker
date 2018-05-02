@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import {
   appReducer,
   authReducer,
+  onlineReducer,
   userReducer,
   restaurantReducer,
   teamReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   user: userReducer,
   team: teamReducer,
+  online: onlineReducer,
   restaurant: restaurantReducer,
   restaurantDetails: restaurantDetailReducer
 });

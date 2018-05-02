@@ -21,5 +21,14 @@ export const Users = sequelize.define('users', {
     type: Sequelize.DATE,
     notNull: false,
     defaultValue: Sequelize.NOW
+  },
+  userToken: Sequelize.STRING,
+  email: {
+    type: Sequelize.STRING,
+    notNull: true
+  },
+  online: {
+    type: Sequelize.BOOLEAN,
+    notNull: true
   }
 });

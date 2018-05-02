@@ -4,3 +4,4 @@ export * from './userReducer';
 export * from './restaurantReducer';
 export * from './restaurantDetailReducer';
 export * from './teamReducer';
+export * from './onlineReducer';
