@@ -18,5 +18,10 @@ export const teamService = {
   },
   update: team => {
     return API.put('teams', `/teams/${team.teamId}`, { body: team });
+  },
+  invite: (teamId, userId) => {
+    return API.post('teams', `/teams/${teamId}/invitations`, {
+      body: { userId }
+    });
   }
 };

@@ -103,3 +103,8 @@ export const updateTeam = team => async dispatch => {
   }
   dispatch(appActions.loading(false));
 };
+
+export const inviteUser = (teamId, userId) => async dispatch => {
+  await teamService.invite(teamId, userId);
+  dispatch(appActions.showSuccess('Invitation has been sent'));
+};

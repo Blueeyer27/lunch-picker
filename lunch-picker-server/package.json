@@ -5,6 +5,9 @@
     "A Node.js starter for the Serverless Framework with async/await and unit test support",
   "main": "handler.js",
   "scripts": {
+    "start-server":
+      "aws ec2 start-instances --instance-ids i-03e7dc2b1cb66b3c5",
+    "stop-server": "aws ec2 stop-instances --instance-ids i-03e7dc2b1cb66b3c5",
     "test": "jest",
     "offline": "export AWS_REGION=ap-southeast-2 | sls offline --port 8080",
     "test_list_team":

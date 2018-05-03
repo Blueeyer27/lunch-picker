@@ -13,6 +13,7 @@ const validateUserConnected = user => {
 
 const OnlineUser = (userId, username) => {
   const options = {
+    clientId: userId,
     will: {
       topic: Topics.LAST_WILL_TOPIC,
       payload: getNotification(userId, username)
@@ -30,10 +31,6 @@ const OnlineUser = (userId, username) => {
         user.subscribe(Topics.CONNECTED_TOPIC);
         user.subscribe(Topics.DISCONNECTED_TOPIC);
       });
-
-      user.on('close', () => {
-        console.log(`${username} disconnected`);
-      });
     },
     disconnect: () => {
       validateUserConnected(user);
@@ -42,6 +39,14 @@ const OnlineUser = (userId, username) => {
         getNotification(userId, username)
       );
       user.end();
+    },
+    onConnect: callback => {
+      validateUserConnected(user);
+      user.on('connect', callback);
+    },
+    onDisconnect: callback => {
+      validateUserConnected(user);
+      user.on('close', callback);
     },
     subscribeToTeams: teams => {
       validateUserConnected(user);

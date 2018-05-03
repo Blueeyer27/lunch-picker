@@ -54,12 +54,12 @@ const Routes = ({ childProps, onSignOut }) => {
         props={childProps}
       />
       <AuthenticatedRoute
-        path="/teams/invite"
+        path="/teams/invite/:teamId"
         component={TeamInvitation}
         props={childProps}
       />
       <AuthenticatedRoute
-        path="/members/:teamId/"
+        path="/members/:teamId"
         component={TeamMembers}
         props={childProps}
       />
@@ -69,12 +69,12 @@ const Routes = ({ childProps, onSignOut }) => {
         props={childProps}
       />
       <AuthenticatedRoute
-        path="/teams/:teamId/"
+        path="/teams/:teamId"
         component={TeamDetails}
         props={childProps}
       />
       <AuthenticatedRoute
-        path="/:restaurantId/"
+        path="/:restaurantId"
         component={Restaurant}
         props={childProps}
       />
