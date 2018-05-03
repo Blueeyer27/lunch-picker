@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import ActionPowerSettingsNew from 'material-ui/svg-icons/action/power-settings-new';
-import { Button } from '../../Share';
+import ExitToApp from 'material-ui/svg-icons/action/exit-to-app';
 import '../styles/app-header.less';
 
 export default class AppHeader extends Component {
@@ -32,7 +30,7 @@ export default class AppHeader extends Component {
           onLeftIconButtonClick={this.handleToggle}
           iconElementRight={
             <IconButton onClick={this.handleSignOut}>
-              <ActionPowerSettingsNew />
+              <ExitToApp />
             </IconButton>
           }
           className="app-bar"

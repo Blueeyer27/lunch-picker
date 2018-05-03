@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { RestaurantOverview } from './components';
-import { listRestaurants, pick } from '../../actions';
+import { listRestaurants } from '../../actions';
 import { listSelector } from '../../selectors';
 
 import './styles/list.less';
@@ -9,19 +9,10 @@ import './styles/list.less';
 class RestaurantList extends Component {
   componentDidMount = () => {
     this.props.listRestaurants();
-    if (this.props.match.path === '/pick') {
-      this.handlePick();
-    }
   };
 
   handleEditClick = id => {
     this.props.history.push(`/${id}`);
-  };
-
-  handlePick = () => {
-    const { restaurants, pick } = this.props;
-    console.log('restaurants', restaurants);
-    pick(restaurants);
   };
 
   renderPickedRestaurantOverview = () => {
@@ -53,4 +44,4 @@ class RestaurantList extends Component {
   }
 }
 
-export default connect(listSelector, { listRestaurants, pick })(RestaurantList);
+export default connect(listSelector, { listRestaurants })(RestaurantList);

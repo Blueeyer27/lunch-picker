@@ -11,7 +11,7 @@ import AppBoundary from './components/AppBoundary';
 import Routes from '../../Routes';
 import { customTheme } from './theme';
 import { appSelector } from '../../selectors';
-import { clear, authenticateUser, signOut } from '../../actions';
+import { clear, authenticateUser, signOut, pick } from '../../actions';
 
 const muiTheme = getMuiTheme(customTheme);
 
@@ -62,5 +62,5 @@ class App extends Component {
 }
 
 export default withRouter(
-  connect(appSelector, { clear, authenticateUser, signOut })(App)
+  connect(appSelector, { clear, authenticateUser, signOut, pick })(App)
 );

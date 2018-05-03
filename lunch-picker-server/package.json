@@ -6,6 +6,7 @@
   "main": "handler.js",
   "scripts": {
     "test": "jest",
+    "offline": "export AWS_REGION=ap-southeast-2 | sls offline --port 8080",
     "test_list_team":
       "sls invoke local --function list_team --path ./src/mocks/teams/listEvent.json",
     "test_get_team":

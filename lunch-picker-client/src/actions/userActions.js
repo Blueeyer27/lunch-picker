@@ -37,7 +37,15 @@ export const listRestaurants = () => async dispatch => {
   dispatch(appActions.loading(false));
 };
 
-export const pick = restaurants => {
+export const pick = (reset = false) => (dispatch, getState) => {
+  if (reset) {
+    dispatch({
+      type: USER_ACTIONS.PICK_RESTAURANT,
+      payload: { pickedRestaurant: null }
+    });
+    return;
+  }
+  const { restaurants } = getState().user;
   const options = restaurants.reduce((current, next) => {
     for (let i = 1; i <= next.rating; i++) {
       current.push(next);
@@ -47,8 +55,8 @@ export const pick = restaurants => {
   const random = getRandom(0, options.length - 1);
 
   const picked = options[random];
-  return {
+  dispatch({
     type: USER_ACTIONS.PICK_RESTAURANT,
     payload: { pickedRestaurant: picked }
-  };
+  });
 };

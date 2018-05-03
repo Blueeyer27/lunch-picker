@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import ActionGroupWork from 'material-ui/svg-icons/action/group-work';
+import { pick } from '../../../actions';
 import '../styles/app-footer.less';
 
-export default class AppFooter extends Component {
+class AppFooter extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,9 +16,8 @@ export default class AppFooter extends Component {
   }
 
   handleChange = value => {
-    this.props.history.push(value);
-    this.setState({
-      slideValue: value
+    this.setState({ slideValue: value }, () => {
+      this.props.history.push(value);
     });
   };
 
@@ -27,10 +28,18 @@ export default class AppFooter extends Component {
         onChange={this.handleChange}
         value={this.state.slideIndex}
       >
-        <Tab icon={<ActionHome />} value={'/'} />
+        <Tab
+          icon={<ActionHome onClick={() => this.props.pick(true)} />}
+          value={'/'}
+        />
         <Tab icon={<ContentAdd />} value={'/new'} />
-        <Tab icon={<ActionGroupWork />} value={'/pick'} />
+        <Tab
+          icon={<ActionGroupWork onClick={() => this.props.pick()} />}
+          value={'/'}
+        />
       </Tabs>
     );
   }
 }
+
+export default connect(null, { pick })(AppFooter);
