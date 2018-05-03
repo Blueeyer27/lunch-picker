@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import ActionGroupWork from 'material-ui/svg-icons/action/group-work';
 import { pick } from '../../../actions';
 import '../styles/app-footer.less';
+import { CostExplorer } from 'aws-sdk/clients/all';
 
 class AppFooter extends Component {
   constructor(props) {
@@ -17,7 +18,9 @@ class AppFooter extends Component {
 
   handleChange = value => {
     this.setState({ slideValue: value }, () => {
-      this.props.history.push(value);
+      if (value != null) {
+        this.props.history.push(value);
+      }
     });
   };
 
@@ -29,10 +32,19 @@ class AppFooter extends Component {
         value={this.state.slideIndex}
       >
         <Tab
-          icon={<ActionHome onClick={() => this.props.pick(true)} />}
-          value={'/'}
+          icon={<NavigationArrowBack />}
+          value={null}
+          onActive={() => {
+            this.props.history.goBack();
+          }}
         />
-        <Tab icon={<ContentAdd />} value={'/new'} />
+        <Tab
+          icon={<ActionHome />}
+          value={'/'}
+          onActive={() => {
+            this.props.pick(true);
+          }}
+        />
         <Tab
           icon={<ActionGroupWork onClick={() => this.props.pick()} />}
           value={'/'}

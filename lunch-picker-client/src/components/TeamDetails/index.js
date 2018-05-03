@@ -14,9 +14,7 @@ import { teamDetailSelector } from '../../selectors';
 class TeamDetails extends Component {
   componentDidMount = () => {
     const { teamId } = this.props.match.params;
-    if (teamId) {
-      this.props.getTeamDetails(teamId);
-    }
+    this.props.getTeamDetails(teamId);
   };
 
   handleChange = (field, value) => {
@@ -36,11 +34,12 @@ class TeamDetails extends Component {
 
   render() {
     const { details } = this.props;
+    console.log(this.props);
     return (
       <div>
         <Input
           placeholder="Team Name"
-          fullWidht={true}
+          fullWidth={true}
           value={details.teamName}
           onChange={value => this.handleChange('teamName', value)}
         />

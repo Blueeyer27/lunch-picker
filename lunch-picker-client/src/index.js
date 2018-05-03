@@ -7,7 +7,6 @@ import registerServiceWorker from './registerServiceWorker';
 import config from './config';
 
 import './index.less';
-import './assets/style/reset.less';
 
 const store = configureStore();
 

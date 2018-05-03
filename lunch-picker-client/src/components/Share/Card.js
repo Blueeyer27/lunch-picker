@@ -2,7 +2,6 @@ import React from 'react';
 
 const style = {
   padding: '0.5rem',
-  display: 'flex',
   flexDirection: 'row',
   minHeight: '5rem',
   lineHeight: '2rem',
@@ -14,5 +13,12 @@ const style = {
 };
 
 export const Card = props => {
-  return <div style={style}>{props.children}</div>;
+  const flexstyle = props.flex
+    ? { display: 'flex', flexDirection: 'row' }
+    : { display: 'block' };
+  return <div style={{ ...style, ...flexstyle }}>{props.children}</div>;
+};
+
+Card.defaultProps = {
+  flex: false
 };

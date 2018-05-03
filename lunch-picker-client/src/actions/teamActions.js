@@ -10,6 +10,13 @@ export const updateTeamField = (field, value) => {
 };
 
 export const getTeamDetails = teamId => async dispatch => {
+  if (teamId == null) {
+    dispatch({
+      type: TEAM_ACTIONS.SAVE_TEAM_SUCCESS
+    });
+    return;
+  }
+
   dispatch(appActions.loading());
 
   try {

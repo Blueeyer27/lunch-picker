@@ -10,9 +10,9 @@ export default ({ component: C, props: cProps, ...rest }) => {
       render={props =>
         cProps.authenticated ? (
           [
-            <AppHeader key="header" onSignOut={cProps.onSignOut} />,
+            <AppHeader key="header" {...props} onSignOut={cProps.onSignOut} />,
             <C key="body" {...props} {...cProps} />,
-            <AppFooter key="footer" {...props} {...cProps} />
+            <AppFooter key="footer" {...props} />
           ]
         ) : (
           <Redirect

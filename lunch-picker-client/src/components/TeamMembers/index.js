@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Card } from '../Share';
 import { getTeamMembers } from '../../actions';
 import { teamMemberSelector } from '../../selectors';
 
@@ -15,13 +16,17 @@ class TeamMembers extends Component {
   };
 
   renderMembers = () => {
-    return this.props.members.map(m => <div key={m.userId}>{m.username}</div>);
+    return this.props.members.map(m => (
+      <Card key={m.userId}>{m.username}</Card>
+    ));
   };
 
   render() {
     return (
-      <div>
-        <h2>Team Members</h2>
+      <div className="margin-top-1rem with-footer">
+        <div className="page-title">
+          <h2>Team Members</h2>
+        </div>
         {this.renderMembers()}
       </div>
     );

@@ -3,7 +3,7 @@ import { Button, RateEmoji, Card } from '../../Share';
 
 export const RestaurantOverview = ({ restaurant, onEditClick }) => {
   return (
-    <Card>
+    <Card flex={true}>
       <div className="restaurant-item-left">
         <img
           src={restaurant.imageSrc}

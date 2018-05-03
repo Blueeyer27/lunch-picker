@@ -13,8 +13,12 @@ class JoinedTeams extends Component {
   renderJoinedTeams = () => {
     return this.props.teams.map(team => (
       <Card key={team.teamId}>
-        {team.teamName} ({team.members.length} members)
-        <Link to={`/members/${team.teamId}`}>view members</Link>
+        <div className="card-title">
+          {team.teamName} ({team.members.length} members)
+        </div>
+        <div className="card-link">
+          <Link to={`/members/${team.teamId}`}>view members</Link>
+        </div>
       </Card>
     ));
   };
@@ -22,7 +26,9 @@ class JoinedTeams extends Component {
   render() {
     return (
       <div className="margin-top-1rem with-footer">
-        <h2>Joined Teams</h2>
+        <div className="page-title">
+          <h2>Joined Teams</h2>
+        </div>
         <div>{this.renderJoinedTeams()}</div>
       </div>
     );
