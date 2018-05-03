@@ -9,9 +9,7 @@ const ScaleAnimation = ({ children, ...props }) => (
     timeout={50000}
     classNames="scale"
     unmountOnExit
-    onExited={() => {
-      console.log('ininin');
-    }}
+    onExited={() => {}}
   >
     {children}
   </CSSTransition>

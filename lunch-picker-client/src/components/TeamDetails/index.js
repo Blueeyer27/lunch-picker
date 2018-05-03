@@ -34,7 +34,6 @@ class TeamDetails extends Component {
 
   render() {
     const { details } = this.props;
-    console.log(this.props);
     return (
       <div>
         <Input
