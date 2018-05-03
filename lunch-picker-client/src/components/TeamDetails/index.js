@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Input, Button } from '../Share';
 import {
   getTeamDetails,
+  getMyTeams,
   createTeam,
   updateTeam,
   updateTeamField
@@ -21,13 +23,15 @@ class TeamDetails extends Component {
     this.props.updateTeamField(field, value);
   };
 
-  handleSave = () => {
-    const { details, createTeam, updateTeam } = this.props;
+  handleSave = async () => {
+    const { details, createTeam, updateTeam, getMyTeams } = this.props;
     if (!details.teamId) {
-      createTeam(details);
+      await createTeam(details);
     } else {
-      updateTeam(details);
+      await updateTeam(details);
     }
+    getMyTeams();
+    this.props.history.goBack();
   };
 
   render() {
@@ -46,9 +50,12 @@ class TeamDetails extends Component {
   }
 }
 
-export default connect(teamDetailSelector, {
-  getTeamDetails,
-  createTeam,
-  updateTeam,
-  updateTeamField
-})(TeamDetails);
+export default withRouter(
+  connect(teamDetailSelector, {
+    getTeamDetails,
+    getMyTeams,
+    createTeam,
+    updateTeam,
+    updateTeamField
+  })(TeamDetails)
+);

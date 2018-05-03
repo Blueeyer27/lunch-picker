@@ -4,7 +4,8 @@ const INITIAL_STATE = {
   loading: false,
   error: null,
   success: null,
-  isDetectedNameModalOpen: false
+  isDetectedNameModalOpen: false,
+  users: []
 };
 
 export const appReducer = (state = INITIAL_STATE, action) => {
@@ -21,8 +22,11 @@ export const appReducer = (state = INITIAL_STATE, action) => {
     case APP_ACTIONS.TOGGLE_DETECTED_NAME_MODAL:
       return { ...state, isDetectedNameModalOpen: action.payload.open };
 
+    case APP_ACTIONS.GET_ALL_USERS:
+      return { ...state, users: action.payload.users };
+
     case APP_ACTIONS.CLEAR:
-      return INITIAL_STATE;
+      return { ...INITIAL_STATE, users: state.users };
 
     default:
       return state;

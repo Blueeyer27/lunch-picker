@@ -8,6 +8,10 @@ export default class UserRepository {
     return Users.findById(id);
   }
 
+  getAll() {
+    return Users.findAll();
+  }
+
   getByUsername(username) {
     return Users.findAll({ where: { userToken: username } });
   }

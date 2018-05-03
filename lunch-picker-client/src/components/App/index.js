@@ -44,7 +44,8 @@ class App extends Component {
   render() {
     const { success, error, loading, clear, authenticated } = this.props;
     const childProps = {
-      authenticated
+      authenticated,
+      onSignOut: this.handleSignOut
     };
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
@@ -52,7 +53,7 @@ class App extends Component {
           <AppBoundary success={success} error={error} onClose={clear}>
             <Spinner spinning={loading} />
             <div className="container">
-              <Routes childProps={childProps} onSignOut={this.handleSignOut} />
+              <Routes childProps={childProps} />
             </div>
           </AppBoundary>
         </AlertProvider>

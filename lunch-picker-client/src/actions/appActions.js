@@ -1,4 +1,5 @@
 import { APP_ACTIONS } from './types';
+import { userService } from '../aws/api';
 
 export const loading = (loading = true) => {
   return {
@@ -23,4 +24,12 @@ export const clear = () => {
 
 export const toggleDetectedNameModal = (open = true) => {
   return { type: APP_ACTIONS.TOGGLE_DETECTED_NAME_MODAL, payload: { open } };
+};
+
+export const getAllUsers = () => async dispatch => {
+  const users = await userService.getAllUsers();
+  dispatch({
+    type: APP_ACTIONS.GET_ALL_USERS,
+    payload: { users }
+  });
 };

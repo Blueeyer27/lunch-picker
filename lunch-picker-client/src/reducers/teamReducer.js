@@ -19,8 +19,7 @@ const handleGetTeamMemberSuccess = (state, payload) => {
 };
 
 const handleSaveTeamSuccess = (state, payload) => {
-  const { team } = payload;
-  return { ...state, details: team };
+  return { ...state, details: {} };
 };
 
 const handleGetTeamDetailSuccess = (state, payload) => {

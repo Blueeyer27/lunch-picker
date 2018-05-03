@@ -16,6 +16,7 @@ class MyTeams extends Component {
         {team.teamName} ({team.members.length} members)
         <Link to={`/members/${team.teamId}`}>view members</Link>
         <Link to={`/teams/${team.teamId}`}>edit team</Link>
+        <Link to={`/teams/invite`}>invite</Link>
       </Card>
     ));
   };
