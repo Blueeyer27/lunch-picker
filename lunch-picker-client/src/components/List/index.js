@@ -25,51 +25,7 @@ class RestaurantList extends Component {
   };
 
   renderReataurantOverviews = () => {
-    const restaurants = [
-      {
-        restaurantId: '1',
-        restaurantName: '12312312312314124adafaf',
-        imageSrc:
-          'https://s3-media4.fl.yelpcdn.com/bphoto/yKI1S4xAf_qMAC2YjvkQjQ/o.jpg'
-      },
-      {
-        restaurantId: '2',
-        restaurantName: '12312312312314124adafaf',
-        imageSrc:
-          'https://s3-media4.fl.yelpcdn.com/bphoto/yKI1S4xAf_qMAC2YjvkQjQ/o.jpg'
-      },
-      {
-        restaurantId: '3',
-        restaurantName: '12312312312314124adafaf',
-        imageSrc:
-          'https://s3-media4.fl.yelpcdn.com/bphoto/yKI1S4xAf_qMAC2YjvkQjQ/o.jpg'
-      },
-      {
-        restaurantId: '4',
-        restaurantName: '12312312312314124adafaf',
-        imageSrc:
-          'https://s3-media4.fl.yelpcdn.com/bphoto/yKI1S4xAf_qMAC2YjvkQjQ/o.jpg'
-      },
-      {
-        restaurantId: '5',
-        restaurantName: '12312312312314124adafaf',
-        imageSrc:
-          'https://s3-media4.fl.yelpcdn.com/bphoto/yKI1S4xAf_qMAC2YjvkQjQ/o.jpg'
-      },
-      {
-        restaurantId: '6',
-        restaurantName: '12312312312314124adafaf',
-        imageSrc:
-          'https://s3-media4.fl.yelpcdn.com/bphoto/yKI1S4xAf_qMAC2YjvkQjQ/o.jpg'
-      },
-      {
-        restaurantId: '7',
-        restaurantName: '12312312312314124adafaf',
-        imageSrc:
-          'https://s3-media4.fl.yelpcdn.com/bphoto/yKI1S4xAf_qMAC2YjvkQjQ/o.jpg'
-      }
-    ];
-    return restaurants.map(restaurant => (
+    return this.props.restaurants.map(restaurant => (
       <RestaurantOverview
         restaurant={restaurant}
         key={restaurant.restaurantId}
