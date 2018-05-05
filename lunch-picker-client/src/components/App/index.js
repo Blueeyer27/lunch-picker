@@ -13,7 +13,6 @@ import { appSelector } from '../../selectors';
 import { clear, authenticateUser, signOut, pick } from '../../actions';
 
 const muiTheme = createMuiTheme(customTheme);
-console.log(muiTheme);
 
 const options = {
   position: 'top center',
