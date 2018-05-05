@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withAlert } from 'react-alert';
-import { Input, Button } from '../../Share';
+import { Input } from '../../Share';
+import Button from 'material-ui/Button';
 import Logo from '../../App/components/Logo';
 
 class LoginForm extends Component {
@@ -39,7 +40,9 @@ class LoginForm extends Component {
           onChange={value => this.handleChange(value, 'password')}
         />
         <div className="login-btn-container">
-          <Button type="submit" label="Login" />
+          <Button variant="raised" type="submit" color="primary">
+            Login
+          </Button>
         </div>
       </form>
     );

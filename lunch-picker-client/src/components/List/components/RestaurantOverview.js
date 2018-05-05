@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, RateEmoji, Card } from '../../Share';
+import Button from 'material-ui/Button';
+import { RateEmoji, Card } from '../../Share';
 
 export const RestaurantOverview = ({ restaurant, onEditClick }) => {
   return (
@@ -19,12 +20,13 @@ export const RestaurantOverview = ({ restaurant, onEditClick }) => {
       </div>
       <div className="restaurant-item-right">
         <Button
-          label="Edit"
-          primary={true}
+          variant="raised"
+          color="primary"
           onClick={() => onEditClick(restaurant.restaurantId)}
           className="restaurant-item-button"
-          fullWidth={false}
-        />
+        >
+          Edit
+        </Button>
       </div>
     </Card>
   );

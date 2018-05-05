@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Input, Button } from '../Share';
+import { Input } from '../Share';
+import Button from 'material-ui/Button';
 import {
   getTeamDetails,
   getMyTeams,
@@ -42,7 +43,9 @@ class TeamDetails extends Component {
           value={details.teamName}
           onChange={value => this.handleChange('teamName', value)}
         />
-        <Button label="Save" primary onClick={this.handleSave} />
+        <Button variant="raised" primary onClick={this.handleSave}>
+          Save
+        </Button>
       </div>
     );
   }

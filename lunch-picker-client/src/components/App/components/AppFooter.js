@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Tabs, Tab } from 'material-ui/Tabs';
-import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
-import ActionHome from 'material-ui/svg-icons/action/home';
-import ActionGroupWork from 'material-ui/svg-icons/action/group-work';
+import Tabs, { Tab } from 'material-ui/Tabs';
+import Icon from 'material-ui/Icon';
 import { pick } from '../../../actions';
 import '../styles/app-footer.less';
 import { CostExplorer } from 'aws-sdk/clients/all';
@@ -30,24 +28,27 @@ class AppFooter extends Component {
         className="app-footer"
         onChange={this.handleChange}
         value={this.state.slideIndex}
+        fullWidth
+        textColor="primary"
       >
         <Tab
-          icon={<NavigationArrowBack />}
+          icon={<Icon>arrow_back</Icon>}
           value={null}
           onActive={() => {
             this.props.history.goBack();
           }}
         />
         <Tab
-          icon={<ActionHome />}
+          icon={<Icon>home</Icon>}
           value={'/'}
           onActive={() => {
             this.props.pick(true);
           }}
         />
         <Tab
-          icon={<ActionGroupWork onClick={() => this.props.pick()} />}
+          icon={<Icon>group_work</Icon>}
           value={'/'}
+          onActive={() => this.props.pick()}
         />
       </Tabs>
     );

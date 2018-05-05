@@ -3,8 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import { Auth } from 'aws-amplify';
 import { Spinner } from '../Share';
 import AppBoundary from './components/AppBoundary';
@@ -13,7 +12,8 @@ import { customTheme } from './theme';
 import { appSelector } from '../../selectors';
 import { clear, authenticateUser, signOut, pick } from '../../actions';
 
-const muiTheme = getMuiTheme(customTheme);
+const muiTheme = createMuiTheme(customTheme);
+console.log(muiTheme);
 
 const options = {
   position: 'top center',
@@ -48,7 +48,7 @@ class App extends Component {
       onSignOut: this.handleSignOut
     };
     return (
-      <MuiThemeProvider muiTheme={muiTheme}>
+      <MuiThemeProvider theme={muiTheme}>
         <AlertProvider template={AlertTemplate} {...options}>
           <AppBoundary success={success} error={error} onClose={clear}>
             <Spinner spinning={loading} />

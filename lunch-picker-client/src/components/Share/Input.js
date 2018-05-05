@@ -6,7 +6,8 @@ class Input extends Component {
     placeholder: '',
     value: '',
     fullWidth: false,
-    onChange: () => {}
+    onChange: () => {},
+    style: { marginTop: '0.8rem' }
   };
 
   handleChange = (e, value) => {
@@ -17,10 +18,11 @@ class Input extends Component {
     return (
       <TextField
         type={this.props.type}
-        floatingLabelText={this.props.placeholder}
+        label={this.props.placeholder}
         fullWidth={this.props.fullWidth}
         value={this.props.value}
         onChange={this.handleChange}
+        style={this.props.style}
       />
     );
   }

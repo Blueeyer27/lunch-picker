@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from '../../Share';
+import Button from 'material-ui/Button';
 
 class ActionButtons extends Component {
   render() {
@@ -8,8 +8,12 @@ class ActionButtons extends Component {
 
     return (
       <div>
-        <Button label="Cancel" onClick={onCancel} primary={true} />
-        <Button label="Save" onClick={onSave} style={{ float: 'right' }} />
+        <Button variant="raised" onClick={onCancel} color="primary">
+          Cancel
+        </Button>
+        <Button variant="raised" onClick={onSave} style={{ float: 'right' }}>
+          Save
+        </Button>
       </div>
     );
   }
