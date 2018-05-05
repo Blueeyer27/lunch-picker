@@ -14,7 +14,6 @@ import {
   add,
   get,
   update,
-  detectTextInLogo,
   searchByName,
   getDetailById,
   toggleDetectedNameModal,
@@ -101,11 +100,10 @@ class NewRestaurant extends Component {
   };
 
   render() {
-    const { detectTextInLogo, restaurant, details } = this.props;
+    const { restaurant, details } = this.props;
     return (
       <div className="margin-top-1rem with-footer">
         <ImageUpload
-          detectTextInLogo={detectTextInLogo}
           imageKey={details.profileImage}
           imageSrc={details.imageUrl}
           onUpload={this.handleUpload}
@@ -130,7 +128,6 @@ export default connect(restaurantDetailSelector, {
   get,
   add,
   update,
-  detectTextInLogo,
   searchByName,
   getDetailById,
   toggleDetectedNameModal,

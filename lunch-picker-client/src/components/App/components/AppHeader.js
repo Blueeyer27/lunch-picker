@@ -20,9 +20,9 @@ export default class AppHeader extends Component {
 
   handleClose = () => this.setState({ open: false });
 
-  handleGoToHome = () => {
+  handleAdd = () => {
     this.setState({ open: false }, () => {
-      this.props.history.push('/');
+      this.props.history.push('/new');
     });
   };
 
@@ -48,7 +48,7 @@ export default class AppHeader extends Component {
             <h2 className="app-bar-title">Lunch Picker</h2>
             <IconButton
               color="inherit"
-              onClick={this.handleGoToHome}
+              onClick={this.handleAdd}
               className="app-bar-right-btn"
             >
               <Icon>add</Icon>
@@ -56,16 +56,23 @@ export default class AppHeader extends Component {
           </Toolbar>
         </AppBar>
         <Drawer
-          docked={false}
-          width={240}
           open={this.state.open}
-          onRequestChange={open => this.setState({ open })}
+          onClose={() => this.setState({ open: false })}
+          className="app-bar-drawer"
         >
-          <AppBar
-            title={<h2 className="app-bar-title">Lunch Picker</h2>}
-            onLeftIconButtonClick={this.handleToggle}
-            className="app-bar"
-          />
+          <AppBar position="static" className="app-bar">
+            <Toolbar>
+              <IconButton
+                color="inherit"
+                aria-label="Menu"
+                className="app-bar-menu-btn"
+                onClick={this.handleToggle}
+              >
+                <Icon>menu</Icon>
+              </IconButton>
+              <h2 className="app-bar-title">Lunch Picker</h2>
+            </Toolbar>
+          </AppBar>
           <MenuItem className="app-bar-menu-item">
             <Link to="/" onClick={this.handleClose}>
               Home

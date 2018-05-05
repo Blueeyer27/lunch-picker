@@ -36,14 +36,14 @@ class TeamDetails extends Component {
   render() {
     const { details } = this.props;
     return (
-      <div>
+      <div className="with-footer">
         <Input
           placeholder="Team Name"
           fullWidth={true}
           value={details.teamName}
           onChange={value => this.handleChange('teamName', value)}
         />
-        <Button variant="raised" primary onClick={this.handleSave}>
+        <Button variant="raised" color="primary" onClick={this.handleSave}>
           Save
         </Button>
       </div>

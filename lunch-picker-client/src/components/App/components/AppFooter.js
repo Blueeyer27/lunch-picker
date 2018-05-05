@@ -14,7 +14,7 @@ class AppFooter extends Component {
     };
   }
 
-  handleChange = value => {
+  handleChange = (e, value) => {
     this.setState({ slideValue: value }, () => {
       if (value != null) {
         this.props.history.push(value);
@@ -26,29 +26,32 @@ class AppFooter extends Component {
     return (
       <Tabs
         className="app-footer"
+        indicatorColor="primary"
         onChange={this.handleChange}
-        value={this.state.slideIndex}
+        value={this.state.slideValue}
         fullWidth
         textColor="primary"
       >
         <Tab
           icon={<Icon>arrow_back</Icon>}
           value={null}
-          onActive={() => {
+          onClick={() => {
             this.props.history.goBack();
           }}
         />
         <Tab
           icon={<Icon>home</Icon>}
           value={'/'}
-          onActive={() => {
+          onClick={() => {
             this.props.pick(true);
           }}
         />
         <Tab
           icon={<Icon>group_work</Icon>}
-          value={'/'}
-          onActive={() => this.props.pick()}
+          value={'/pick'}
+          onClick={() => {
+            this.props.pick();
+          }}
         />
       </Tabs>
     );

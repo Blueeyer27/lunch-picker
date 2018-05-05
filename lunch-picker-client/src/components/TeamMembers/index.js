@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card } from '../Share';
+import { Card, PageTitle } from '../Share';
 import { getTeamMembers } from '../../actions';
 import { teamMemberSelector } from '../../selectors';
 
@@ -24,9 +24,7 @@ class TeamMembers extends Component {
   render() {
     return (
       <div className="margin-top-1rem with-footer">
-        <div className="page-title">
-          <h2>Team Members</h2>
-        </div>
+        <PageTitle title="Team Members" />
         {this.renderMembers()}
       </div>
     );

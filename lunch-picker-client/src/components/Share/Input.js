@@ -7,11 +7,11 @@ class Input extends Component {
     value: '',
     fullWidth: false,
     onChange: () => {},
-    style: { marginTop: '0.8rem' }
+    style: { marginBottom: '0.5rem', marginTop: '0.5rem' }
   };
 
-  handleChange = (e, value) => {
-    this.props.onChange(value);
+  handleChange = e => {
+    this.props.onChange(e.target.value);
   };
 
   render() {

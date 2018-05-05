@@ -68,7 +68,7 @@ class SignUpForm extends Component {
           onChange={value => this.handleChange(value, 'confirmPassword')}
         />
         <div className="login-btn-container">
-          <Button variant="raised" type="submit">
+          <Button variant="raised" type="submit" color="primary">
             Sign Up
           </Button>
         </div>
@@ -88,7 +88,9 @@ class SignUpForm extends Component {
         />
 
         <div className="login-btn-container">
-          <Button type="submit">Confirm</Button>
+          <Button type="submit" color="primary">
+            Confirm
+          </Button>
         </div>
       </form>
     );

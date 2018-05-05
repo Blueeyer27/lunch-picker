@@ -19,7 +19,7 @@ const Spinner = props => {
         size={66}
         thickness={5}
         style={styles.spinnerStyle}
-        color={styles.spinnerColor}
+        color="primary"
       />
     </Overlay>
   ) : null;
