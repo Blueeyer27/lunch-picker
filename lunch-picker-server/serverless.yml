@@ -9,6 +9,7 @@ plugins:
 # serverless-webpack configuration
 # Enable auto-packing of external modules
 custom:
+  defaultStage: dev
   webpackIncludeModules:
     forceInclude:
       - mysql2
@@ -18,10 +19,9 @@ custom:
 provider:
   name: aws
   runtime: nodejs8.10
-  stage: dev
+  stage: ${opt:stage, self:custom.defaultStage}
   region: ap-southeast-2
   environment: ${file(serverless-var.yml):${self:provider.stage}}
-  
   vpc:
     securityGroupIds:
       - sg-01d0fbe4e3c2c4247

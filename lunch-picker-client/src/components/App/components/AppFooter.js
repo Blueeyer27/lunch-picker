@@ -6,7 +6,6 @@ import ActionHome from 'material-ui/svg-icons/action/home';
 import ActionGroupWork from 'material-ui/svg-icons/action/group-work';
 import { pick } from '../../../actions';
 import '../styles/app-footer.less';
-import { CostExplorer } from 'aws-sdk/clients/all';
 
 class AppFooter extends Component {
   constructor(props) {
