@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import Icon from 'material-ui/Icon';
 
 class ImageUpload extends Component {
   handleDrop = async files => {
@@ -22,7 +22,7 @@ class ImageUpload extends Component {
           multiple={false}
           onDrop={this.handleDrop}
         >
-          <ContentAdd className="drop-zone-icon" />
+          <Icon className="drop-zone-icon">add</Icon>
           <p className="drop-zone-text">
             Click or drag file to this area to upload
           </p>

@@ -4,8 +4,7 @@ import Dialog from 'material-ui/Dialog';
 class SelectedModal extends Component {
   static defaultProps = {
     open: false,
-    modal: true,
-    names: [],
+    names: ['grid', 'adagadgasdarasdasdasdasdasdasda'],
     handleClose: () => {},
     onSelect: () => {}
   };
@@ -31,12 +30,11 @@ class SelectedModal extends Component {
   render() {
     return (
       <Dialog
-        contentClassName="select-modal"
-        title={<h3 className="select-modal-title">Are these restaurants?</h3>}
-        modal={this.props.modal}
+        className="select-modal"
         open={this.props.open}
-        onRequestClose={this.props.handleClose}
+        onClose={this.props.handleClose}
       >
+        <h3 className="select-modal-title">Are these restaurants?</h3>
         <ul>{this.renderList()}</ul>
         <p onClick={() => this.handleClick('')} className="modal-list">
           Nope, I will type it manually.

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import IconButton from 'material-ui/IconButton';
 import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
 import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-import ContentAdd from 'material-ui/svg-icons/content/add';
-import ExitToApp from 'material-ui/svg-icons/action/exit-to-app';
+import { MenuItem } from 'material-ui/Menu';
+import Icon from 'material-ui/Icon';
 import '../styles/app-header.less';
 
 export default class AppHeader extends Component {
@@ -18,9 +20,9 @@ export default class AppHeader extends Component {
 
   handleClose = () => this.setState({ open: false });
 
-  handleGoToHome = () => {
+  handleAdd = () => {
     this.setState({ open: false }, () => {
-      this.props.history.push('/');
+      this.props.history.push('/new');
     });
   };
 
@@ -33,27 +35,44 @@ export default class AppHeader extends Component {
   render() {
     return (
       <div className="full-width">
-        <AppBar
-          title={<h2 className="app-bar-title">Lunch Picker</h2>}
-          onLeftIconButtonClick={this.handleToggle}
-          iconElementRight={
-            <IconButton onClick={this.handleGoToHome}>
-              <ContentAdd />
+        <AppBar position="static" className="app-bar">
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="Menu"
+              className="app-bar-menu-btn"
+              onClick={this.handleToggle}
+            >
+              <Icon>menu</Icon>
             </IconButton>
-          }
-          className="app-bar"
-        />
+            <h2 className="app-bar-title">Lunch Picker</h2>
+            <IconButton
+              color="inherit"
+              onClick={this.handleAdd}
+              className="app-bar-right-btn"
+            >
+              <Icon>add</Icon>
+            </IconButton>
+          </Toolbar>
+        </AppBar>
         <Drawer
-          docked={false}
-          width={240}
           open={this.state.open}
-          onRequestChange={open => this.setState({ open })}
+          onClose={() => this.setState({ open: false })}
+          className="app-bar-drawer"
         >
-          <AppBar
-            title={<h2 className="app-bar-title">Lunch Picker</h2>}
-            onLeftIconButtonClick={this.handleToggle}
-            className="app-bar"
-          />
+          <AppBar position="static" className="app-bar">
+            <Toolbar>
+              <IconButton
+                color="inherit"
+                aria-label="Menu"
+                className="app-bar-menu-btn"
+                onClick={this.handleToggle}
+              >
+                <Icon>menu</Icon>
+              </IconButton>
+              <h2 className="app-bar-title">Lunch Picker</h2>
+            </Toolbar>
+          </AppBar>
           <MenuItem className="app-bar-menu-item">
             <Link to="/" onClick={this.handleClose}>
               Home
@@ -79,7 +98,7 @@ export default class AppHeader extends Component {
               className="app-bar-menu-item-icon"
               onClick={this.handleSignOut}
             >
-              <ExitToApp />
+              <Icon>exit_to_app</Icon>
             </span>
           </MenuItem>
         </Drawer>

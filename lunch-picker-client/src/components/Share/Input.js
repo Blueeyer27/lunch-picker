@@ -6,21 +6,23 @@ class Input extends Component {
     placeholder: '',
     value: '',
     fullWidth: false,
-    onChange: () => {}
+    onChange: () => {},
+    style: { marginBottom: '0.5rem', marginTop: '0.5rem' }
   };
 
-  handleChange = (e, value) => {
-    this.props.onChange(value);
+  handleChange = e => {
+    this.props.onChange(e.target.value);
   };
 
   render() {
     return (
       <TextField
         type={this.props.type}
-        floatingLabelText={this.props.placeholder}
+        label={this.props.placeholder}
         fullWidth={this.props.fullWidth}
         value={this.props.value}
         onChange={this.handleChange}
+        style={this.props.style}
       />
     );
   }

@@ -34,7 +34,7 @@
     "jest": "20.0.4",
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
-    "material-ui": "^0.20.0",
+    "material-ui": "^1.0.0-beta.44",
     "mqtt": "^2.17.0",
     "npm": "^5.8.0",
     "object-assign": "4.1.1",

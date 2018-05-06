@@ -38,6 +38,22 @@ body {
   margin-bottom: 5rem;
 }
 
+.gray-button {
+  text-decoration: none;
+  line-height: 2rem;
+  background: rgba(0, 0, 0, 0.54);
+  color: #fff;
+  border-radius: 5px;
+  height: 2rem;
+  padding: 0 1rem;
+  font-size: 0.9rem;
+  font-weight: 300;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 4px;
+}
+.margin-left-auto {
+  margin-left: auto;
+}
+
 .page-title {
   display: flex;
   margin-bottom: 1rem;
@@ -45,13 +61,6 @@ body {
   h2 {
     font-size: 1.2rem;
     line-height: 2rem;
-  }
-
-  a {
-    margin-left: auto;
-    text-decoration: none;
-    line-height: 2rem;
-    color: #009600;
   }
 }
 
@@ -62,12 +71,12 @@ body {
   &-link {
     display: flex;
     flex-direction: row;
-
-    a {
-      text-decoration: none;
-      flex: 1;
-      display: inline-block;
-      color: #009600;
-    }
+    justify-content: space-between;
+    margin-top: 0.3rem;
   }
+}
+
+.MuiInput-underline-19:hover:not(.MuiInput-disabled-18):before {
+  height: 1px !important;
+  background-color: rgba(0, 0, 0, 0.54) !important;
 }

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
-import { RoundButton } from '../Share';
+import Button from 'material-ui/Button';
+import Icon from 'material-ui/Icon';
 import { login, signUp, confirmSignUp } from '../../actions';
 
 import './styles/login.less';
@@ -30,10 +31,14 @@ class LoginPage extends Component {
           ) : (
             <LoginForm onSubmit={this.props.login} />
           )}
-          <RoundButton
+          <Button
+            variant="fab"
+            color="primary"
             className="switch-button"
             onClick={this.handleFormFlip}
-          />
+          >
+            <Icon>add</Icon>
+          </Button>
         </div>
       </div>
     );

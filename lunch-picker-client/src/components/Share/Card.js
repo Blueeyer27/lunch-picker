@@ -3,7 +3,7 @@ import React from 'react';
 const style = {
   padding: '0.5rem',
   flexDirection: 'row',
-  minHeight: '5rem',
+  minHeight: '2rem',
   lineHeight: '2rem',
   color: '#555',
   background: '#fff',
