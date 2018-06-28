@@ -7,21 +7,23 @@ class OnlineDetail extends Component {
   renderSlider = () => {
     const { restaurant } = this.props;
     return (
-      <Carousel
-        className="online-carousel"
-        showThumbs={false}
-        showStatus={false}
-        infiniteLoop={true}
-        dynamicHeight={true}
-      >
-        {restaurant.photos.map((photo, index) => {
-          return (
-            <div key={index}>
-              <img src={photo} alt="restaurant images" />
-            </div>
-          );
-        })}
-      </Carousel>
+      restaurant.photos && (
+        <Carousel
+          className="online-carousel"
+          showThumbs={false}
+          showStatus={false}
+          infiniteLoop={true}
+          dynamicHeight={true}
+        >
+          {restaurant.photos.map((photo, index) => {
+            return (
+              <div key={index}>
+                <img src={photo} alt="restaurant images" />
+              </div>
+            );
+          })}
+        </Carousel>
+      )
     );
   };
   renderDetails = () => {

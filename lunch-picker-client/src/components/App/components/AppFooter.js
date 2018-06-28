@@ -35,6 +35,7 @@ class AppFooter extends Component {
           icon={<Icon>arrow_back</Icon>}
           value={null}
           onClick={() => {
+            this.props.pick(true);
             this.props.history.goBack();
           }}
         />

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Card, PageTitle } from '../Share';
+import { TeamItem } from './components';
+import { PageTitle } from '../Share';
 import { getMyTeams } from '../../actions';
 import { myTeamSelector } from '../../selectors';
 
@@ -12,22 +13,7 @@ class MyTeams extends Component {
 
   renderMyTeams = () => {
     return this.props.teams.map(team => (
-      <Card key={team.teamId}>
-        <div className="card-title">
-          {team.teamName} ({team.members.length} members)
-        </div>
-        <div className="card-link">
-          <Link to={`/members/${team.teamId}`} className="gray-button">
-            view members
-          </Link>
-          <Link to={`/teams/${team.teamId}`} className="gray-button">
-            edit team
-          </Link>
-          <Link to={`/teams/invite/${team.teamId}`} className="gray-button">
-            invite
-          </Link>
-        </div>
-      </Card>
+      <TeamItem key={team.teamId} team={team} />
     ));
   };
 
