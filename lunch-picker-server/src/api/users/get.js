@@ -3,13 +3,12 @@ import { getUserIdentity } from '../../libs/requestLib';
 import UserRepository from '../../repositories/UserRepository';
 
 export const handler = async (event, context, callback) => {
-  const userId = getUserIdentity(event);
-  const username = event.pathParameters.username;
+  const userId = event.pathParameters.userId;
   try {
     const repository = new UserRepository();
-    const users = await repository.getByUsername(username);
-    if (users) {
-      callback(null, success(users[0]));
+    const user = await repository.get(userId);
+    if (user) {
+      callback(null, success({ user }));
     } else {
       callback(null, failure({ status: false, error: 'Item not found' }, 404));
     }

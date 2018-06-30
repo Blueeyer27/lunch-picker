@@ -1,4 +1,3 @@
-import uuid from 'uuid';
 import { success, failure } from '../../libs/responseLib';
 import { getUserIdentity } from '../../libs/requestLib';
 import UserRepository from '../../repositories/UserRepository';
@@ -10,8 +9,8 @@ export const handler = async (event, context, callback) => {
 
   const repository = new UserRepository();
   try {
-    const newUser = await repository.create(user);
-    callback(null, success(newUser));
+    await repository.create(user);
+    callback(null, success());
   } catch (e) {
     callback(null, failure(e));
   }

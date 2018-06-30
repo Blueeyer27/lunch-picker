@@ -9,8 +9,14 @@ export default class UserRepository {
     this.dbClient = new DynamoDBClient(`${process.env.STAGE}-users`);
   }
 
-  get(id) {
-    return Users.findById(id);
+  async get(id) {
+    const result = await this.dbClient.get({
+      userId: `U-${id}`,
+      entityId: `U-${id}`
+    });
+
+    const { userId, username, email } = result;
+    return { userId: userId.substr(2), username, email };
   }
 
   getAll() {
@@ -21,8 +27,13 @@ export default class UserRepository {
     return Users.findAll({ where: { userToken: username } });
   }
 
-  create(user) {
-    return Users.create(user);
+  async create(item) {
+    await this.dbClient.add({
+      userId: `U-${item.userId}`,
+      entityId: `U-${item.userId}`,
+      email: item.email,
+      username: item.username
+    });
   }
 
   update(id, fields) {

@@ -121,11 +121,20 @@ functions:
           cors: true
           authorizer: aws_iam
 
+  create_user:
+    handler: src/api/users/create.handler
+    events:
+      - http:
+          path: users
+          method: post
+          cors: true
+          authorizer: aws_iam
+
   get_user:
     handler: src/api/users/get.handler
     events:
       - http:
-          path: users/{username}
+          path: users/{userId}
           method: get
           cors: true
           authorizer: aws_iam
