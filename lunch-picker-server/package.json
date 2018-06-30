@@ -8,6 +8,10 @@
     "stop-server": "aws ec2 stop-instances --instance-ids i-03e7dc2b1cb66b3c5",
     "test": "jest",
     "offline": "export AWS_REGION=ap-southeast-2 | sls offline --port 8080",
+    "predeploy": "export AWS_CLIENT_TIMEOUT=30000",
+    "deploy": "sls deploy --force --v",
+    "predeploy-prod": "export AWS_CLIENT_TIMEOUT=30000",
+    "deploy-prod": "sls deploy --force --stage prod",
     "test_list_team": "sls invoke local --function list_team --path ./src/mocks/teams/listEvent.json",
     "test_get_team": "sls invoke local --function get_team --path ./src/mocks/teams/getEvent.json",
     "test_create_team": "sls invoke local --function create_team --path ./src/mocks/teams/createEvent.json",
@@ -38,6 +42,7 @@
   },
   "dependencies": {
     "aws-sdk": "^2.3.0",
+    "aws-signature-v4": "^1.2.1",
     "babel-runtime": "^6.26.0",
     "bluebird": "^3.5.1",
     "mysql2": "^1.5.3",

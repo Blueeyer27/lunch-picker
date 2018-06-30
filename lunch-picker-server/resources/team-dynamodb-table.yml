@@ -1,0 +1,19 @@
+Resources:
+  TeamTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ${self:provider.stage}-teams
+      AttributeDefinitions:
+        - AttributeName: teamId
+          AttributeType: S
+        - AttributeName: entityId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: teamId
+          KeyType: HASH
+        - AttributeName: entityId
+          KeyType: RANGE
+      ProvisionedThroughput:
+        ReadCapacityUnits: ${self:custom.tableThroughput}
+        WriteCapacityUnits: ${self:custom.tableThroughput}
+      

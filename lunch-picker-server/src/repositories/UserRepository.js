@@ -1,9 +1,14 @@
 import Sequelize from 'sequelize';
 import { Users } from '../models/Users';
+import DynamoDBClient from '../libs/dynamodbLib';
 
 const Op = Sequelize.Op;
 
 export default class UserRepository {
+  constructor() {
+    this.dbClient = new DynamoDBClient(`${process.env.STAGE}-users`);
+  }
+
   get(id) {
     return Users.findById(id);
   }
@@ -31,6 +36,17 @@ export default class UserRepository {
           [Op.in]: ids
         }
       }
+    });
+  }
+
+  // Restaurants
+  async rateRestaurant(item) {
+    await this.dbClient.add({
+      userId: `U-${item.userId}`,
+      entityId: `R-${item.restaurantId}`,
+      restaurantName: item.restaurantName,
+      profileImage: item.profileImage,
+      rating: item.rating
     });
   }
 }

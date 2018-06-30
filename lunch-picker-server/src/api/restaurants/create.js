@@ -1,6 +1,7 @@
 import uuid from 'uuid';
 import { success, failure } from '../../libs/responseLib';
 import { getUserIdentity } from '../../libs/requestLib';
+import logger from '../../libs/logLib';
 import RestaurantRepository from '../../repositories/RestaurantRepository';
 
 export const handler = async (event, context, callback) => {
@@ -19,9 +20,11 @@ export const handler = async (event, context, callback) => {
 
   const repository = new RestaurantRepository();
   try {
-    const newRestaurant = await repository.create(restaurant);
-    callback(null, success(newRestaurant));
+    await repository.create(restaurant);
+    logger.debug('restaurant created');
+    callback(null, success());
   } catch (e) {
-    callback(null, failure(e));
+    logger.error(e.message, { data }, e);
+    callback(null, failure({ error: e.message }));
   }
 };
