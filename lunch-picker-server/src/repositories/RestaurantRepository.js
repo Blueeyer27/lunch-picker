@@ -1,6 +1,5 @@
 import * as dynamodbLib from '../libs/dynamodbLib';
 import DynamoDBClient from '../libs/dynamodbLib';
-import logger from '../libs/logLib';
 
 export default class RestaurantRepository {
   constructor() {

@@ -6,10 +6,9 @@ import logger from '../../libs/logLib';
 export const handler = async (event, context, callback) => {
   const userId = getUserIdentity(event);
 
-  const userEntityId = event.pathParameters.userId;
   try {
     const repository = new UserRepository();
-    const user = await repository.get(userId, userEntityId);
+    const user = await repository.get(userId);
     if (user) {
       callback(null, success({ user }));
     } else {

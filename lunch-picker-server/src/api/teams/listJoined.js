@@ -8,10 +8,9 @@ export const handler = async (event, context, callback) => {
   try {
     const repository = new TeamRepository();
 
-    const teamsJoined = await repository.getTeamsJoinedByUser(userId);
-    const teamIds = teamsJoined.map(t => t.teamId);
-    const teams = await repository.getList(teamIds);
-    callback(null, success(teams));
+    const result = await repository.getTeamsJoinedByUser(userId);
+
+    callback(null, success(result));
   } catch (error) {
     callback(null, failure(error));
   }

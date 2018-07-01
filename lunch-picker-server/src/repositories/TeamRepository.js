@@ -2,10 +2,15 @@ import Sequelize from 'sequelize';
 import { Teams } from '../models/Teams';
 import { TeamMembers } from '../models/TeamMembers';
 import { Invitations } from '../models/Invitations';
+import DynamoDBClient from '../libs/dynamodbLib';
 
 const Op = Sequelize.Op;
 
 export default class TeamRepository {
+  constructor() {
+    this.dbClient = new DynamoDBClient(`${process.env.STAGE}-teams`);
+  }
+
   get(id) {
     return Teams.findById(id);
   }
@@ -20,8 +25,14 @@ export default class TeamRepository {
     });
   }
 
-  create(team) {
-    return Teams.create(team);
+  async create(item) {
+    const team = {
+      teamId: `T-${item.teamId}`,
+      entityId: `T-${item.teamId}`,
+      teamName: item.teamName,
+      ownerUserId: `U-${item.ownerUserId}`
+    };
+    await this.dbClient.add(team);
   }
 
   update(id, fields) {
@@ -36,19 +47,52 @@ export default class TeamRepository {
     });
   }
 
-  getTeamsOwnedByUser(userId) {
-    return Teams.findAll({ where: { ownerUserId: userId } });
-  }
+  async getTeamsOwnedByUser(userId) {
+    const results = await this.dbClient.query(
+      {
+        ownerUserId: {
+          expression: 'ownerUserId = :ownerUserId',
+          value: `U-${userId}`
+        }
+      },
+      'TeamsOwnedByUserIndex'
+    );
 
-  getTeamsJoinedByUser(userId) {
-    return TeamMembers.findAll({ where: { userId } });
-  }
-
-  addUserToTeam(teamId, userId) {
-    return TeamMembers.create({
-      teamId,
-      userId
+    return results.map(r => {
+      return {
+        teamId: r.teamId.substr(2),
+        teamName: r.teamName
+      };
     });
+  }
+
+  async getTeamsJoinedByUser(userId) {
+    const results = await this.dbClient.query(
+      {
+        entityId: {
+          expression: 'entityId = :entityId',
+          value: `U-${userId}`
+        }
+      },
+      'TeamsJoinedByUserIndex'
+    );
+
+    return results.map(r => {
+      return {
+        teamId: r.teamId.substr(2),
+        teamName: r.teamName
+      };
+    });
+  }
+
+  async addUserToTeam(item) {
+    const teamUser = {
+      teamId: `T-${item.teamId}`,
+      entityId: `U-${item.userId}`,
+      username: item.username,
+      teamName: item.teamName
+    };
+    await this.dbClient.add(teamUser);
   }
 
   getTeamMembers(teamId) {

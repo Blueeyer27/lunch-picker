@@ -67,7 +67,7 @@ export default class DynamoDBClient {
     await this.call('delete', params);
   }
 
-  async query(queryProps) {
+  async query(queryProps, indexName) {
     const keyConditionExpression = Object.keys(queryProps)
       .map(key => {
         const props = queryProps[key];
@@ -87,6 +87,10 @@ export default class DynamoDBClient {
       KeyConditionExpression: keyConditionExpression,
       ExpressionAttributeValues: expressionAttributeValues
     };
+
+    if (indexName) {
+      params['IndexName'] = indexName;
+    }
 
     logger.debug('dynamodb query request', { params });
     const result = await this.call('query', params);

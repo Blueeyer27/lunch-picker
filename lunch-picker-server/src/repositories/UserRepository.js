@@ -9,10 +9,10 @@ export default class UserRepository {
     this.dbClient = new DynamoDBClient(`${process.env.STAGE}-users`);
   }
 
-  async get(userId, userEntityId) {
+  async get(userId) {
     const result = await this.dbClient.get({
       userId: `U-${userId}`,
-      entityId: `U-${userEntityId}`
+      entityId: `U-${userId}`
     });
 
     const { username, email } = result;
