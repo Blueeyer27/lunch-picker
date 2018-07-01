@@ -1,10 +1,5 @@
-import Sequelize from 'sequelize';
-import { Teams } from '../models/Teams';
-import { TeamMembers } from '../models/TeamMembers';
 import { Invitations } from '../models/Invitations';
 import DynamoDBClient from '../libs/dynamodbLib';
-
-const Op = Sequelize.Op;
 
 export default class TeamRepository {
   constructor() {
@@ -56,11 +51,9 @@ export default class TeamRepository {
     };
   }
 
-  delete(id) {
-    return Teams.destroy({
-      where: {
-        teamId: id
-      }
+  async delete(teamId) {
+    await this.dbClient.delete({
+      teamId: `T-${teamId}`
     });
   }
 
@@ -112,12 +105,32 @@ export default class TeamRepository {
     await this.dbClient.add(teamUser);
   }
 
-  getTeamMembers(teamId) {
-    return TeamMembers.findAll({ where: { teamId } });
+  async getTeamMembers(teamId) {
+    const results = await this.dbClient.query({
+      teamId: {
+        expression: 'teamId = :teamId',
+        value: `T-${teamId}`
+      },
+      entityId: {
+        expression: 'begins_with(entityId, :entityId)',
+        value: `U-`
+      }
+    });
+
+    return results.map(r => {
+      const { entityId, username } = r;
+      return {
+        userId: entityId.substr(2),
+        username
+      };
+    });
   }
 
-  removeTeamMember(teamId, userId) {
-    return TeamMembers.destroy({ where: { teamId, userId } });
+  async removeTeamMember(teamId, userId) {
+    await this.dbClient.delete({
+      teamId: `T-${teamId}`,
+      userId: `U-${userId}`
+    });
   }
 
   sendInvitation(invitation) {
