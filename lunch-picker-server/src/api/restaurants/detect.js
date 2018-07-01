@@ -4,7 +4,9 @@ import { getUserIdentity } from '../../libs/requestLib';
 
 export const handler = async (event, context, callback) => {
   const userId = getUserIdentity(event);
-  const fileKey = `private/${userId}/${event.queryStringParameters.fileKey}`;
+  const fileKey = `private/${process.env.REGION}:${userId}/${
+    event.queryStringParameters.fileKey
+  }`;
 
   try {
     const data = await detectText(fileKey);

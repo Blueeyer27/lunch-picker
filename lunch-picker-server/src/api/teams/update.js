@@ -8,8 +8,7 @@ export const handler = async (event, context, callback) => {
 
   try {
     const repository = new TeamRepository();
-    await repository.update(teamId, data);
-    const team = await repository.get(teamId);
+    const team = await repository.update({ ...data, teamId });
 
     callback(null, success(team));
   } catch (e) {

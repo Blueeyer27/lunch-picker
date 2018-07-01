@@ -11,18 +11,17 @@ export default class TeamRepository {
     this.dbClient = new DynamoDBClient(`${process.env.STAGE}-teams`);
   }
 
-  get(id) {
-    return Teams.findById(id);
-  }
-
-  getList(ids) {
-    return Teams.findAll({
-      where: {
-        teamId: {
-          [Op.in]: ids
-        }
-      }
+  async get(teamId) {
+    const result = await this.dbClient.get({
+      teamId: `T-${teamId}`,
+      entityId: `T-${teamId}`
     });
+
+    return {
+      teamId: result.teamId.substr(2),
+      teamName: result.teamName,
+      ownerUserId: result.ownerUserId.substr(2)
+    };
   }
 
   async create(item) {
@@ -35,8 +34,26 @@ export default class TeamRepository {
     await this.dbClient.add(team);
   }
 
-  update(id, fields) {
-    return Teams.update({ ...fields }, { where: { teamId: id } });
+  async update(item) {
+    const keyProps = {
+      teamId: `T-${item.teamId}`,
+      entityId: `T-${item.teamId}`
+    };
+
+    const updateProps = {
+      teamName: item.teamName
+    };
+
+    const { teamId, teamName, ownerUserId } = await this.dbClient.update(
+      keyProps,
+      updateProps
+    );
+
+    return {
+      teamId,
+      teamName,
+      ownerUserId
+    };
   }
 
   delete(id) {

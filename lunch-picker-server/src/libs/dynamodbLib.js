@@ -53,6 +53,7 @@ export default class DynamoDBClient {
       ReturnValues: 'ALL_NEW'
     };
 
+    logger.debug('dynamo update params', params);
     const result = await this.call('update', params);
     logger.debug('dynamo update result', { result });
     return result.Attributes;
