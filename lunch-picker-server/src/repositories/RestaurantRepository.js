@@ -1,4 +1,3 @@
-import { Restaurants } from '../models/Restaurants';
 import * as dynamodbLib from '../libs/dynamodbLib';
 import DynamoDBClient from '../libs/dynamodbLib';
 import logger from '../libs/logLib';
@@ -71,8 +70,26 @@ export default class RestaurantRepository {
   }
 
   async getByUser(userId) {
-    const results = await this.dbClient.query({ userId: `U-${userId}` });
-    return results;
+    const results = await this.dbClient.query({
+      userId: {
+        expression: 'userId = :userId',
+        value: `U-${userId}`
+      },
+      entityId: {
+        value: `R-`,
+        expression: 'begins_with(entityId, :entityId)'
+      }
+    });
+    return results.map(r => {
+      const { entityId, rating, restaurantName, profileImage } = r;
+      return {
+        restaurantId: entityId.substr(2),
+        userId: r.userId.substr(2),
+        rating,
+        restaurantName,
+        profileImage
+      };
+    });
   }
 
   getOnlineDetail(id) {

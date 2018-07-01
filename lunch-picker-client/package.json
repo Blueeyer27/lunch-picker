@@ -70,7 +70,10 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "predeploy": "yarn run build",
+    "deploy": "aws s3 sync ./build s3://lunch-picker-client --delete",
+    "postdeploy": "aws cloudfront create-invalidation --distribution-id E1HP5SM54NTKN6 --paths \"/*\""
   },
   "devDependencies": {
     "redux-devtools": "^3.4.1",
@@ -118,6 +121,5 @@
   },
   "eslintConfig": {
     "extends": "react-app"
-  },
-  "proxy": "http://localhost:8080"
+  }
 }

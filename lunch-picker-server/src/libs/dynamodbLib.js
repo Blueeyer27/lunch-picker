@@ -70,20 +70,14 @@ export default class DynamoDBClient {
   async query(queryProps) {
     const keyConditionExpression = Object.keys(queryProps)
       .map(key => {
-        return `#${key} = :${key}`;
+        const props = queryProps[key];
+        return props.expression;
       })
-      .join(', ');
-
-    const expressionAttributeNames = Object.keys(queryProps).reduce(
-      (current, nextKey) => {
-        return { ...current, [`#${nextKey}`]: nextKey };
-      },
-      {}
-    );
+      .join(' and ');
 
     const expressionAttributeValues = Object.keys(queryProps).reduce(
       (current, nextKey) => {
-        return { ...current, [`:${nextKey}`]: queryProps[nextKey] };
+        return { ...current, [`:${nextKey}`]: queryProps[nextKey].value };
       },
       {}
     );
@@ -91,10 +85,10 @@ export default class DynamoDBClient {
     const params = {
       TableName: this.tableName,
       KeyConditionExpression: keyConditionExpression,
-      ExpressionAttributeNames: expressionAttributeNames,
       ExpressionAttributeValues: expressionAttributeValues
     };
 
+    logger.debug('dynamodb query request', { params });
     const result = await this.call('query', params);
 
     return result.Items;
