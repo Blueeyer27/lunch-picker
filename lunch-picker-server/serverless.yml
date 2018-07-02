@@ -13,6 +13,7 @@ custom:
   webpackIncludeModules:
     forceInclude:
       - mysql2
+      - sharp
     forceExclude:
       - aws-sdk
   tableThroughputs:

@@ -90,9 +90,7 @@ export const remove = id => async dispatch => {
 
   try {
     await restaurantService.delete(id);
-    dispatch({
-      type: DETAIL_ACTIONS.UPDATE_RESTAURANT_SUCCESS
-    });
+    dispatch({ type: DETAIL_ACTIONS.REMOVE_RESTAURANT_SUCCESS });
   } catch (e) {
     dispatch(appActions.showError(e.message));
   }

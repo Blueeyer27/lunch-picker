@@ -1,5 +1,4 @@
 import { success, failure } from '../../libs/responseLib';
-import { getUserIdentity } from '../../libs/requestLib';
 import logger from '../../libs/logLib';
 import Sharp from 'sharp';
 import S3Client from '../../libs/s3Lib';
@@ -23,9 +22,10 @@ export const handler = async (event, context, callback) => {
     const fileparts = fileKey.split('/');
     fileparts.splice(2, 0, 'thumbnails');
     await s3Client.put(buffer, fileparts.join('/'), 'image/png');
+
     callback(null, success());
   } catch (error) {
     logger.error(error.message, null, error);
-    callback(null, failure({ status: false, error }));
+    callback(null, failure({ status: false, error: error.message }));
   }
 };
