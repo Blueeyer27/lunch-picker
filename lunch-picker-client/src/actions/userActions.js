@@ -1,7 +1,7 @@
 import * as appActions from './appActions';
 import { USER_ACTIONS } from './types';
 import { restaurantService } from '../aws/api';
-import { getUrl } from '../aws/s3';
+import { getUrl, getThumbnailUrl } from '../aws/s3';
 import { getRandom } from '../utils';
 
 export const updateRestaurantImageSrc = (id, imageSrc) => {
@@ -11,6 +11,13 @@ export const updateRestaurantImageSrc = (id, imageSrc) => {
       id,
       imageSrc
     }
+  };
+};
+
+export const updateRestaurantThumbnail = (id, thumbnail) => {
+  return {
+    type: USER_ACTIONS.UPDATE_THUMBNAIL_SOURCE,
+    payload: { id, thumbnail }
   };
 };
 
@@ -28,6 +35,9 @@ export const listRestaurants = () => async dispatch => {
       if (restaurant.profileImage) {
         getUrl(restaurant.profileImage).then(url => {
           dispatch(updateRestaurantImageSrc(restaurant.restaurantId, url));
+        });
+        getThumbnailUrl(restaurant.profileImage).then(url => {
+          dispatch(updateRestaurantThumbnail(restaurant.restaurantId, url));
         });
       }
     });

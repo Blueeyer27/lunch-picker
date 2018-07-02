@@ -27,9 +27,12 @@ export const RestaurantOverview = ({
       <Card flex={true}>
         <div className="restaurant-item-left">
           <img
-            src={restaurant.imageSrc}
+            src={restaurant.thumbnail}
             alt={restaurant.restaurantName}
             className="restaurant-item-image"
+            onError={e => {
+              e.target.src = restaurant.imageSrc;
+            }}
           />
         </div>
         <div className="restaurant-item-middle">

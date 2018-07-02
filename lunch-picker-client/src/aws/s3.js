@@ -12,3 +12,7 @@ export const upload = async file => {
 export const getUrl = async key => {
   return Storage.vault.get(key);
 };
+
+export const getThumbnailUrl = async key => {
+  return Storage.vault.get(`thumbnails/${key}`);
+};

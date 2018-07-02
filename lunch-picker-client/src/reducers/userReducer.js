@@ -23,6 +23,17 @@ const handleUpdateImageSrc = (state, payload) => {
   return { ...state, restaurants };
 };
 
+const handleUpdateThumbnailSrc = (state, payload) => {
+  const { id, thumbnail } = payload;
+  const restaurants = state.restaurants.map(restaurant => {
+    if (restaurant.restaurantId === id) {
+      return { ...restaurant, thumbnail };
+    }
+    return restaurant;
+  });
+  return { ...state, restaurants };
+};
+
 const handleRestaurantPicked = (state, payload) => {
   return { ...state, restaurantPicked: payload.pickedRestaurant };
 };
@@ -42,6 +53,9 @@ export const userReducer = (state = INITIAL_STATE, action) => {
 
     case USER_ACTIONS.UPDATE_IMAGE_SOURCE:
       return handleUpdateImageSrc(state, action.payload);
+
+    case USER_ACTIONS.UPDATE_THUMBNAIL_SOURCE:
+      return handleUpdateThumbnailSrc(state, action.payload);
 
     case USER_ACTIONS.PICK_RESTAURANT:
       return handleRestaurantPicked(state, action.payload);

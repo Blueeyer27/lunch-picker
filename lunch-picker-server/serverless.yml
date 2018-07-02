@@ -289,7 +289,10 @@ functions:
     events:
       - iot:
           sql: "SELECT * FROM 'last-will'"
- 
+
+  resizeImage:
+    handler: src/service/resizeImage/index.handler
+
 resources:
   # DynamoDB
   - ${file(resources/user-dynamodb-table.yml)}
