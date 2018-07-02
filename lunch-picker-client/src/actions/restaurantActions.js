@@ -1,4 +1,5 @@
 import * as appActions from './appActions';
+import { updateField } from './restaurantDetailActions';
 import { RESTAURANT_ACTIONS } from './types';
 import { restaurantService } from '../aws/api';
 import { getCurrentPosition } from '../utils';
@@ -21,18 +22,20 @@ export const detectTextInLogo = fileKey => async dispatch => {
 };
 
 export const searchByName = name => async dispatch => {
-  dispatch(appActions.loading());
   try {
     const { latitude, longitude } = await getCurrentPosition();
     const data = await restaurantService.search(name, latitude, longitude);
-    dispatch({
-      type: RESTAURANT_ACTIONS.SEARCH_SUCCESS,
-      payload: { searchSummary: data[0] }
-    });
+    const searchSummary = data[0];
+    if (searchSummary) {
+      dispatch({
+        type: RESTAURANT_ACTIONS.SEARCH_SUCCESS,
+        payload: { searchSummary: data[0] }
+      });
+      dispatch(updateField('externalId', data[0].id));
+    }
   } catch (e) {
     dispatch(appActions.showError(e.message));
   }
-  dispatch(appActions.loading(false));
 };
 
 export const getDetailById = id => async dispatch => {

@@ -6,8 +6,7 @@ import configureStore from './store/configureStore';
 import registerServiceWorker from './registerServiceWorker';
 import config from './config';
 
-import './index.css';
-import './assets/style/reset.css';
+import './index.less';
 
 const store = configureStore();
 
@@ -28,6 +27,16 @@ Amplify.configure({
     endpoints: [
       {
         name: 'restaurants',
+        endpoint: config.apiGateway.URL,
+        region: config.apiGateway.REGION
+      },
+      {
+        name: 'teams',
+        endpoint: config.apiGateway.URL,
+        region: config.apiGateway.REGION
+      },
+      {
+        name: 'users',
         endpoint: config.apiGateway.URL,
         region: config.apiGateway.REGION
       }

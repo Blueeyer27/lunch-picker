@@ -1,9 +1,0 @@
-{
-  "body":
-    "{\"restaurantName\": \"KFC\",\"profileImage\": \"KFC.png\",\"rating\": 3}",
-  "requestContext": {
-    "identity": {
-      "cognitoIdentityId": "USER-SUB-1234"
-    }
-  }
-}

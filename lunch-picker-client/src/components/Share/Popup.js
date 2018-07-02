@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
+import Button from 'material-ui/Button';
 
 class Popup extends Component {
   static defaultProps = {
@@ -35,8 +35,12 @@ class Popup extends Component {
     return (
       <Dialog
         actions={[
-          <FlatButton label="Cancel" onClick={this.handleClose} />,
-          <FlatButton label="Confirm" onClick={this.handleConfirm} />
+          <Button variant="raised" onClick={this.handleClose}>
+            Cancel
+          </Button>,
+          <Button variant="raised" onClick={this.handleConfirm}>
+            Confirm
+          </Button>
         ]}
         modal={false}
         open={this.state.open}

@@ -1,0 +1,127 @@
+.drop-zone {
+  width: 100%;
+  height: 10rem;
+  text-align: center;
+  border: 2px dashed #555;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 2rem;
+
+  .drop-zone-icon {
+    width: 3rem !important;
+    height: 3rem !important;
+  }
+  .drop-zone-text {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+.preivew-image-container {
+  width: 100%;
+  height: 10rem;
+  text-align: center;
+  position: relative;
+  margin-bottom: 2rem;
+
+  & > img {
+    max-width: 100%;
+    max-height: 100%;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+
+  .image-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    z-index: 2;
+    cursor: pointer;
+    background: #fff;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.select-modal {
+  max-width: 580px !important;
+  width: 100% !important;
+  padding: 1rem !important;
+
+  .select-modal-title {
+    font-size: 1.2rem !important;
+    padding: 1.2rem !important;
+    line-height: 2rem !important;
+  }
+
+  .modal-list {
+    line-height: 1.2rem;
+    cursor: pointer;
+    padding: 0 1rem 0.75rem;
+    word-wrap: break-word;
+    color: rgba(0, 0, 0, 0.54);
+  }
+}
+
+.item-block {
+  padding: 0.25rem 0 0.75rem;
+  h2 {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+}
+.rate-list {
+  position: relative;
+
+  li {
+    float: left;
+    margin-right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  &:after {
+    display: table;
+    content: '';
+    clear: both;
+  }
+}
+.link {
+  color: #009600;
+  padding: 0.5rem 0 0.25rem;
+  font-size: 0.8rem;
+  border-bottom: 1px dashed;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  margin-right: 1rem;
+}
+.animated {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-transform-origin: center center;
+  -ms-transform-origin: center center;
+  transform-origin: center center;
+}
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

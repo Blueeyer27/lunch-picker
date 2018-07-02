@@ -2,7 +2,6 @@ import { Storage } from 'aws-amplify';
 
 export const upload = async file => {
   const filename = `${Date.now()} - ${file.name}`;
-  console.log(filename);
   const stored = await Storage.vault.put(filename, file, {
     contentType: file.type
   });
@@ -11,6 +10,9 @@ export const upload = async file => {
 };
 
 export const getUrl = async key => {
-  const url = await Storage.vault.get(key);
-  return url;
+  return Storage.vault.get(key);
+};
+
+export const getThumbnailUrl = async key => {
+  return Storage.vault.get(`thumbnails/${key}`);
 };

@@ -7,6 +7,7 @@ if (typeof Promise === 'undefined') {
 }
 
 export const detectText = async fileKey => {
+  console.log('detecting file: ', fileKey);
   const data = await rekognition
     .detectText({
       Image: {

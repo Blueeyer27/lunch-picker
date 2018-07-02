@@ -3,17 +3,16 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import { Auth } from 'aws-amplify';
 import { Spinner } from '../Share';
 import AppBoundary from './components/AppBoundary';
 import Routes from '../../Routes';
 import { customTheme } from './theme';
 import { appSelector } from '../../selectors';
-import { clear, authenticateUser } from '../../actions';
+import { clear, authenticateUser, signOut, pick } from '../../actions';
 
-const muiTheme = getMuiTheme(customTheme);
+const muiTheme = createMuiTheme(customTheme);
 
 const options = {
   position: 'top center',
@@ -27,7 +26,7 @@ class App extends Component {
     try {
       const currentUser = await Auth.currentSession();
       if (currentUser) {
-        this.props.authenticateUser(currentUser.idToken.payload.email);
+        this.props.authenticateUser(currentUser.accessToken.payload.username);
       }
     } catch (e) {
       if (e !== 'No current user') {
@@ -36,15 +35,21 @@ class App extends Component {
     }
   };
 
+  handleSignOut = async () => {
+    await this.props.signOut();
+    this.props.history.push('/login');
+  };
+
   render() {
-    const { error, loading, clear, authenticated } = this.props;
+    const { success, error, loading, clear, authenticated } = this.props;
     const childProps = {
-      authenticated
+      authenticated,
+      onSignOut: this.handleSignOut
     };
     return (
-      <MuiThemeProvider muiTheme={muiTheme}>
+      <MuiThemeProvider theme={muiTheme}>
         <AlertProvider template={AlertTemplate} {...options}>
-          <AppBoundary error={error} onClose={clear}>
+          <AppBoundary success={success} error={error} onClose={clear}>
             <Spinner spinning={loading} />
             <div className="container">
               <Routes childProps={childProps} />
@@ -57,5 +62,5 @@ class App extends Component {
 }
 
 export default withRouter(
-  connect(appSelector, { clear, authenticateUser })(App)
+  connect(appSelector, { clear, authenticateUser, signOut, pick })(App)
 );

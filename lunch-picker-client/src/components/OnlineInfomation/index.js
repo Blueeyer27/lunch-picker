@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
-import './styles/online-info.css';
+import { connect } from 'react-redux';
+import { OnlineDetail } from './components';
+import { getDetailById } from '../../actions';
+import './styles/online-info.less';
 
-export default class OnlineInfomation extends Component {
+class OnlineInfomation extends Component {
+  componentDidMount = () => {
+    this.props.getDetailById(this.props.match.params.id);
+  };
   render() {
-    return <div>123</div>;
+    return <OnlineDetail restaurant={this.props.restaurant} />;
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    restaurant: state.restaurant.onlineDetail
+  };
+};
+
+export default connect(mapStateToProps, { getDetailById })(OnlineInfomation);

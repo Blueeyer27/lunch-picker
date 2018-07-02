@@ -207,6 +207,23 @@ module.exports = {
             )
             // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
           },
+          {
+            test: /\.less$/,
+            use: [
+              {
+                loader: require.resolve('style-loader') // creates style nodes from JS strings
+              },
+              {
+                loader: require.resolve('css-loader') // translates CSS into CommonJS
+              },
+              {
+                loader: require.resolve('less-loader'),
+                options: {
+                  paths: [path.resolve(__dirname, 'node_modules')]
+                } // compiles Less to CSS
+              }
+            ]
+          },
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.
           // This loader doesn't use a "test" so it will catch all modules
@@ -221,13 +238,9 @@ module.exports = {
             options: {
               name: 'static/media/[name].[hash:8].[ext]'
             }
-          },
+          }
           // ** STOP ** Are you adding a new loader?
           // Make sure to add the new loader(s) before the "file" loader.
-          {
-            test: /\.less$/,
-            loader: 'style!css!postcss!less'
-          }
         ]
       }
     ]

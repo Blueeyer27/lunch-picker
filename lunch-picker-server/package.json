@@ -4,7 +4,22 @@
   "description": "A Node.js starter for the Serverless Framework with async/await and unit test support",
   "main": "handler.js",
   "scripts": {
-    "test": "jest"
+    "start-server": "aws ec2 start-instances --instance-ids i-03e7dc2b1cb66b3c5",
+    "stop-server": "aws ec2 stop-instances --instance-ids i-03e7dc2b1cb66b3c5",
+    "test": "jest",
+    "offline": "export AWS_REGION=ap-southeast-2 | sls offline --port 8080",
+    "predeploy": "export AWS_CLIENT_TIMEOUT=30000",
+    "deploy": "sls deploy --force --v",
+    "predeploy-prod": "export AWS_CLIENT_TIMEOUT=30000",
+    "deploy-prod": "sls deploy --force --stage prod",
+    "test_list_team": "sls invoke local --function list_team --path ./src/mocks/teams/listEvent.json",
+    "test_get_team": "sls invoke local --function get_team --path ./src/mocks/teams/getEvent.json",
+    "test_create_team": "sls invoke local --function create_team --path ./src/mocks/teams/createEvent.json",
+    "test_update_team": "sls invoke local --function update_team --path ./src/mocks/teams/updateEvent.json",
+    "test_delete_team": "sls invoke local --function delete_team --path ./src/mocks/teams/deleteEvent.json",
+    "test_add_team_member": "sls invoke local --function add_team_member --path ./src/mocks/teams/addTeamUserEvent.json",
+    "test_get_team_member": "sls invoke local --function get_team_member --path ./src/mocks/teams/getTeamMemberEvent.json",
+    "test_remove_team_member": "sls invoke local --function remove_team_member --path ./src/mocks/teams/removeTeamMemberEvent.json"
   },
   "author": "",
   "license": "MIT",
@@ -27,6 +42,7 @@
   },
   "dependencies": {
     "aws-sdk": "^2.3.0",
+    "aws-signature-v4": "^1.2.1",
     "babel-runtime": "^6.26.0",
     "bluebird": "^3.5.1",
     "mysql2": "^1.5.3",
@@ -34,6 +50,7 @@
     "request": "^2.85.0",
     "request-promise": "^4.2.2",
     "sequelize": "^4.37.6",
+    "sharp": "^0.20.5",
     "source-map-support": "^0.4.18",
     "uuid": "^3.2.1"
   }

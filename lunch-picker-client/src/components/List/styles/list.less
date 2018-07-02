@@ -1,0 +1,45 @@
+.margin-top-1rem {
+  margin-top: 1rem;
+}
+.restaurant-item {
+  &-left {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+
+  &-middle {
+    flex: 2;
+    position: relative;
+    overflow: hidden;
+    padding: 0 0.5rem;
+  }
+
+  &-right {
+    flex: 1;
+    position: relative;
+  }
+
+  &-image {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &-name {
+    font-size: 0.9rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &-button {
+    width: 100% !important;
+    position: absolute;
+    top: 50%;
+    min-width: auto !important;
+    transform: translate(0, -50%);
+  }
+}

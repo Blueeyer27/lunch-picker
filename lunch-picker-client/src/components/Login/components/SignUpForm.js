@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withAlert } from 'react-alert';
-import { Input, Button } from '../../Share';
+import { Input } from '../../Share';
+import Button from 'material-ui/Button';
 import Logo from '../../App/components/Logo';
 
 class SignUpForm extends Component {
@@ -47,24 +48,29 @@ class SignUpForm extends Component {
       <form className="login-form" onSubmit={this.handleSignUp}>
         <Logo />
         <Input
+          value={this.state.username}
           placeholder="Username"
           fullWidth={true}
           onChange={value => this.handleChange(value, 'username')}
         />
         <Input
+          value={this.state.password}
           placeholder="Password"
           type="password"
           fullWidth={true}
           onChange={value => this.handleChange(value, 'password')}
         />
         <Input
+          value={this.state.confirmPassword}
           placeholder="Confirm Your Password"
           type="password"
           fullWidth={true}
           onChange={value => this.handleChange(value, 'confirmPassword')}
         />
         <div className="login-btn-container">
-          <Button type="submit" label="Sign Up" />
+          <Button variant="raised" type="submit" color="primary">
+            Sign Up
+          </Button>
         </div>
       </form>
     );
@@ -75,13 +81,16 @@ class SignUpForm extends Component {
       <form className="login-form" onSubmit={this.handleSignUp}>
         <Logo />
         <Input
+          value={this.state.confirmCode}
           placeholder="Confirm Code"
           fullWidth={true}
           onChange={value => this.handleChange(value, 'confirmCode')}
         />
 
         <div className="login-btn-container">
-          <Button type="submit" label="Confirm" />
+          <Button type="submit" color="primary">
+            Confirm
+          </Button>
         </div>
       </form>
     );

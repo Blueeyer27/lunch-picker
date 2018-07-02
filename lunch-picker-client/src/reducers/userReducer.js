@@ -1,30 +1,49 @@
-import { USER_ACTIONS } from '../actions/types';
+import { USER_ACTIONS, TEAM_ACTIONS } from '../actions/types';
 
 const INITIAL_STATE = {
   restaurants: [],
   restaurantPicked: null,
-  restaurantInEdit: null,
-  position: {}
+  position: {},
+  myTeams: [],
+  joinedTeams: []
 };
 
 const handleListRestaurants = (state, payload) => {
   return { ...state, restaurants: payload.restaurants };
 };
 
-const handleGetRestaurantDetail = (state, payload) => {
-  return { ...state, restaurantInEdit: payload.restaurant };
+const handleUpdateImageSrc = (state, payload) => {
+  const { id, imageSrc } = payload;
+  const restaurants = state.restaurants.map(restaurant => {
+    if (restaurant.restaurantId === id) {
+      return { ...restaurant, imageSrc };
+    }
+    return restaurant;
+  });
+  return { ...state, restaurants };
 };
 
-const handleCreateRestaurant = state => {
-  return { ...state, restaurantInEdit: null };
+const handleUpdateThumbnailSrc = (state, payload) => {
+  const { id, thumbnail } = payload;
+  const restaurants = state.restaurants.map(restaurant => {
+    if (restaurant.restaurantId === id) {
+      return { ...restaurant, thumbnail };
+    }
+    return restaurant;
+  });
+  return { ...state, restaurants };
 };
 
-const handleUpdateRestaurant = state => {
-  return { ...state, restaurantInEdit: null };
+const handleRestaurantPicked = (state, payload) => {
+  return { ...state, restaurantPicked: payload.pickedRestaurant };
 };
 
-const handleDeleteRestaurant = state => {
-  return { ...state, restaurantInEdit: null };
+const handleGetJoinedTeamSuccess = (state, payload) => {
+  return { ...state, joinedTeams: payload.teams };
+};
+
+const handleGetMyTeamSuccess = (state, payload) => {
+  return { ...state, myTeams: payload.teams };
 };
 
 export const userReducer = (state = INITIAL_STATE, action) => {
@@ -32,17 +51,20 @@ export const userReducer = (state = INITIAL_STATE, action) => {
     case USER_ACTIONS.LIST_RESTAURANTS:
       return handleListRestaurants(state, action.payload);
 
-    case USER_ACTIONS.GET_RESTAURANT_DETAIL:
-      return handleGetRestaurantDetail(state, action.payload);
+    case USER_ACTIONS.UPDATE_IMAGE_SOURCE:
+      return handleUpdateImageSrc(state, action.payload);
 
-    case USER_ACTIONS.CREATE_RESTAURANT:
-      return handleCreateRestaurant(state);
+    case USER_ACTIONS.UPDATE_THUMBNAIL_SOURCE:
+      return handleUpdateThumbnailSrc(state, action.payload);
 
-    case USER_ACTIONS.UPDATE_RESTAURANT:
-      return handleUpdateRestaurant(state);
+    case USER_ACTIONS.PICK_RESTAURANT:
+      return handleRestaurantPicked(state, action.payload);
 
-    case USER_ACTIONS.DELETE_RESTAURANT:
-      return handleDeleteRestaurant(state);
+    case TEAM_ACTIONS.GET_JOINED_TEAM_SUCCESS:
+      return handleGetJoinedTeamSuccess(state, action.payload);
+
+    case TEAM_ACTIONS.GET_MY_TEAM_SUCCESS:
+      return handleGetMyTeamSuccess(state, action.payload);
 
     default:
       return state;

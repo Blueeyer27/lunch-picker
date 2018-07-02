@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../../../assets/image/logo.svg';
 
-import '../styles/logo.css';
+import '../styles/logo.less';
 
 export default props => {
   return (

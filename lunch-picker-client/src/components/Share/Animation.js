@@ -1,7 +1,7 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 
-import '../../assets/style/animation.css';
+import '../../assets/style/animation.less';
 
 const ScaleAnimation = ({ children, ...props }) => (
   <CSSTransition
@@ -9,9 +9,7 @@ const ScaleAnimation = ({ children, ...props }) => (
     timeout={50000}
     classNames="scale"
     unmountOnExit
-    onExited={() => {
-      console.log('ininin');
-    }}
+    onExited={() => {}}
   >
     {children}
   </CSSTransition>
