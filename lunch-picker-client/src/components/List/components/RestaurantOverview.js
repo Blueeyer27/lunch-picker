@@ -13,14 +13,24 @@ export const RestaurantOverview = ({
       autoClose
       right={[
         {
-          text: 'Edit',
+          text: <span>Edit</span>,
           onPress: () => onEditClick(restaurant.restaurantId),
-          style: { backgroundColor: 'orange', color: 'white' }
+          style: {
+            backgroundColor: '#26b526',
+            color: 'white',
+            marginBottom: '0.8rem',
+            width: '57px'
+          }
         },
         {
-          text: 'Delete',
+          text: <span>Delete</span>,
           onPress: () => onDeleteClick(restaurant.restaurantId),
-          style: { backgroundColor: 'red', color: 'white' }
+          style: {
+            backgroundColor: 'red',
+            color: 'white',
+            marginBottom: '0.8rem',
+            width: '57px'
+          }
         }
       ]}
     >
