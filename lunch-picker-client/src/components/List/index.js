@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { RestaurantOverview } from './components';
-import { listRestaurants } from '../../actions';
+import { listRestaurants, remove } from '../../actions';
 import { listSelector } from '../../selectors';
 
 import './styles/list.less';
@@ -15,11 +15,18 @@ class RestaurantList extends Component {
     this.props.history.push(`/${id}`);
   };
 
+  handleDeleteClick = async id => {
+    const { remove, listRestaurants } = this.props;
+    await remove(id);
+    listRestaurants();
+  };
+
   renderPickedRestaurantOverview = () => {
     return (
       <RestaurantOverview
         restaurant={this.props.restaurantPicked}
         onEditClick={this.handleEditClick}
+        onDeleteClick={this.handleDeleteClick}
       />
     );
   };
@@ -30,6 +37,7 @@ class RestaurantList extends Component {
         restaurant={restaurant}
         key={restaurant.restaurantId}
         onEditClick={this.handleEditClick}
+        onDeleteClick={this.handleDeleteClick}
       />
     ));
   };
@@ -44,4 +52,7 @@ class RestaurantList extends Component {
   }
 }
 
-export default connect(listSelector, { listRestaurants })(RestaurantList);
+export default connect(
+  listSelector,
+  { listRestaurants, remove }
+)(RestaurantList);

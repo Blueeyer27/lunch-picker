@@ -12,13 +12,20 @@ export default class RestaurantRepository {
       entityId: `R-${restaurantId}`
     });
 
-    const { restaurantName, rating, entityId, profileImage } = result;
+    const {
+      restaurantName,
+      rating,
+      entityId,
+      profileImage,
+      externalId
+    } = result;
     return {
       restaurantId: entityId.substr(2),
       userId: result.userId.substr(2),
       rating,
       restaurantName,
-      profileImage
+      profileImage,
+      externalId
     };
   }
 
@@ -28,7 +35,8 @@ export default class RestaurantRepository {
       entityId: `R-${item.restaurantId}`,
       restaurantName: item.restaurantName,
       profileImage: item.profileImage,
-      rating: item.rating
+      rating: item.rating,
+      externalId: item.externalId
     });
   }
 

@@ -23,8 +23,8 @@ export const detectTextInLogo = fileKey => async dispatch => {
 
 export const searchByName = name => async dispatch => {
   try {
-    //const { latitude, longitude } = await getCurrentPosition();
-    const data = await restaurantService.search(name, -37.7622815, 145.0333737);
+    const { latitude, longitude } = await getCurrentPosition();
+    const data = await restaurantService.search(name, latitude, longitude);
     const searchSummary = data[0];
     if (searchSummary) {
       dispatch({

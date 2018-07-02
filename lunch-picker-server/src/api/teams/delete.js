@@ -1,5 +1,4 @@
 import { success, failure } from '../../libs/responseLib';
-import { getUserIdentity } from '../../libs/requestLib';
 import TeamRepository from '../../repositories/TeamRepository';
 
 export const handler = async (event, context, callback) => {

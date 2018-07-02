@@ -8,10 +8,15 @@ class ActionButtons extends Component {
 
     return (
       <div>
-        <Button variant="raised" onClick={onCancel} color="primary">
+        <Button variant="raised" onClick={onCancel}>
           Cancel
         </Button>
-        <Button variant="raised" onClick={onSave} style={{ float: 'right' }}>
+        <Button
+          variant="raised"
+          onClick={onSave}
+          style={{ float: 'right' }}
+          color="primary"
+        >
           Save
         </Button>
       </div>

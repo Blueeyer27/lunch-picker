@@ -124,14 +124,17 @@ class NewRestaurant extends Component {
   }
 }
 
-export default connect(restaurantDetailSelector, {
-  get,
-  add,
-  update,
-  searchByName,
-  getDetailById,
-  toggleDetectedNameModal,
-  resetRestaurantInfo,
-  updateField,
-  uploadProfileImage
-})(NewRestaurant);
+export default connect(
+  restaurantDetailSelector,
+  {
+    get,
+    add,
+    update,
+    searchByName,
+    getDetailById,
+    toggleDetectedNameModal,
+    resetRestaurantInfo,
+    updateField,
+    uploadProfileImage
+  }
+)(NewRestaurant);
