@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
@@ -7,8 +8,9 @@ import Drawer from 'material-ui/Drawer';
 import { MenuItem } from 'material-ui/Menu';
 import Icon from 'material-ui/Icon';
 import '../styles/app-header.less';
+import { resetRestaurantInfo } from '../../../actions';
 
-export default class AppHeader extends Component {
+class AppHeader extends Component {
   constructor(props) {
     super(props);
     this.state = { open: false };
@@ -20,6 +22,7 @@ export default class AppHeader extends Component {
 
   handleAdd = () => {
     this.setState({ open: false }, () => {
+      this.props.resetRestaurantInfo();
       this.props.history.push('/new');
     });
   };
@@ -68,7 +71,6 @@ export default class AppHeader extends Component {
               >
                 <Icon>menu</Icon>
               </IconButton>
-              <h2 className="app-bar-title">Lunch Picker</h2>
             </Toolbar>
           </AppBar>
           <MenuItem className="app-bar-menu-item">
@@ -104,3 +106,8 @@ export default class AppHeader extends Component {
     );
   }
 }
+
+export default connect(
+  null,
+  { resetRestaurantInfo }
+)(AppHeader);

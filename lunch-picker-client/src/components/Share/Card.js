@@ -16,7 +16,11 @@ export const Card = props => {
   const flexstyle = props.flex
     ? { display: 'flex', flexDirection: 'row' }
     : { display: 'block' };
-  return <div style={{ ...style, ...flexstyle }}>{props.children}</div>;
+  return (
+    <div style={{ ...style, ...flexstyle }} onClick={props.onClick}>
+      {props.children}
+    </div>
+  );
 };
 
 Card.defaultProps = {

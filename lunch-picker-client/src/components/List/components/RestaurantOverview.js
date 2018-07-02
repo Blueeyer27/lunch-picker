@@ -13,28 +13,18 @@ export const RestaurantOverview = ({
       autoClose
       right={[
         {
-          text: <span>Edit</span>,
-          onPress: () => onEditClick(restaurant.restaurantId),
-          style: {
-            backgroundColor: '#26b526',
-            color: 'white',
-            marginBottom: '0.8rem',
-            width: '57px'
-          }
-        },
-        {
           text: <span>Delete</span>,
           onPress: () => onDeleteClick(restaurant.restaurantId),
           style: {
             backgroundColor: 'red',
             color: 'white',
             marginBottom: '0.8rem',
-            width: '57px'
+            width: '100px'
           }
         }
       ]}
     >
-      <Card flex={true}>
+      <Card flex={true} onClick={() => onEditClick(restaurant.restaurantId)}>
         <div className="restaurant-item-left">
           <img
             src={restaurant.thumbnail}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { RateEmoji } from '../../Share';
+import Chip from 'material-ui/Chip';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
@@ -39,18 +39,15 @@ class OnlineDetail extends Component {
         {this.renderSlider()}
         <p className="info-title">{restaurant.name}</p>
         <p className="info-description">
-          Category: <span>{restaurant.categories.join(' ')}</span>
+          Category: <Chip label={restaurant.categories.join(' ')} />
         </p>
         <p className="info-description">
           Address: <span>{restaurant.address}</span>
         </p>
-        <p className="info-description">
-          Rating:{' '}
-          <span>
-            <RateEmoji rate={rate} />
-          </span>
-        </p>
-        <p className="info-description">
+        <p
+          className="info-description"
+          style={{ color: restaurant.isOpen ? '#26b526' : 'red' }}
+        >
           {restaurant.isOpen ? 'Open' : 'Closed'}
         </p>
       </div>
