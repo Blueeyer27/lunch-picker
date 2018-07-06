@@ -41,10 +41,12 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
+    "async": "^2.6.1",
     "aws-sdk": "^2.3.0",
     "aws-signature-v4": "^1.2.1",
     "babel-runtime": "^6.26.0",
     "bluebird": "^3.5.1",
+    "gm": "^1.23.1",
     "mysql2": "^1.5.3",
     "qs": "^6.5.1",
     "request": "^2.85.0",
