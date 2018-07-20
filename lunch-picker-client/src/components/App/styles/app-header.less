@@ -1,23 +1,37 @@
+@barHeight: 64px;
+
 .app-bar {
   z-index: 100 !important;
   line-height: 2rem;
 
-  &-drawer {
-    width: 240px;
+  &-tool-bar {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
   }
 
-  &-menu-btn {
-    margin-left: -1rem !important;
+  &-drawer {
+    width: 240px;
   }
 
   &-title {
     font-size: 1.2rem;
     flex: 1;
     text-align: center;
+
+    & > span {
+      position: absolute;
+      left: 0;
+      top: 0;
+      line-height: @barHeight;
+      text-align: center;
+      width: 100%;
+      cursor: default;
+      z-index: 0;
+    }
   }
 
-  &-right-btn {
-    margin-right: -1rem !important;
+  &-menu-btn {
+    z-index: 1;
   }
 
   &-menu-item {

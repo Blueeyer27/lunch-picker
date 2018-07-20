@@ -26,6 +26,13 @@ export const toggleDetectedNameModal = (open = true) => {
   return { type: APP_ACTIONS.TOGGLE_DETECTED_NAME_MODAL, payload: { open } };
 };
 
+export const toggleFilterPanel = (open = true) => {
+  return {
+    type: APP_ACTIONS.TOGGLE_FILTER_PANEL,
+    payload: { open }
+  };
+};
+
 export const getAllUsers = () => async dispatch => {
   const users = await userService.getAllUsers();
   dispatch({

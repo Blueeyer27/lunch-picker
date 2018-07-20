@@ -4,7 +4,8 @@ export const APP_ACTIONS = {
   SHOW_SUCCESS: 'app_actions_show_success',
   CLEAR: 'app_actions_clear',
   GET_ALL_USERS: 'app_actions_get_all_users',
-  TOGGLE_DETECTED_NAME_MODAL: 'app_actions_toggle_detected_name_modal'
+  TOGGLE_DETECTED_NAME_MODAL: 'app_actions_toggle_detected_name_modal',
+  TOGGLE_FILTER_PANEL: 'app_actions_toggle_filter_panel'
 };
 
 export const AUTH_ACTIONS = {

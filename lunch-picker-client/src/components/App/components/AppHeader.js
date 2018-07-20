@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Headroom from 'react-headroom';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
@@ -8,7 +9,7 @@ import Drawer from 'material-ui/Drawer';
 import { MenuItem } from 'material-ui/Menu';
 import Icon from 'material-ui/Icon';
 import '../styles/app-header.less';
-import { resetRestaurantInfo } from '../../../actions';
+import { resetRestaurantInfo, toggleFilterPanel } from '../../../actions';
 
 class AppHeader extends Component {
   constructor(props) {
@@ -27,6 +28,11 @@ class AppHeader extends Component {
     });
   };
 
+  handleToggleFilterPanel = () => {
+    const { isFilterPanelOpen, toggleFilterPanel } = this.props;
+    toggleFilterPanel(!isFilterPanelOpen);
+  };
+
   handleSignOut = () => {
     this.setState({ open: false }, () => {
       this.props.onSignOut();
@@ -36,33 +42,9 @@ class AppHeader extends Component {
   render() {
     return (
       <div className="full-width">
-        <AppBar position="static" className="app-bar">
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="Menu"
-              className="app-bar-menu-btn"
-              onClick={this.handleToggle}
-            >
-              <Icon>menu</Icon>
-            </IconButton>
-            <h2 className="app-bar-title">Lunch Picker</h2>
-            <IconButton
-              color="inherit"
-              onClick={this.handleAdd}
-              className="app-bar-right-btn"
-            >
-              <Icon>add</Icon>
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          open={this.state.open}
-          onClose={() => this.setState({ open: false })}
-          className="app-bar-drawer"
-        >
+        <Headroom>
           <AppBar position="static" className="app-bar">
-            <Toolbar>
+            <Toolbar className="app-bar-tool-bar">
               <IconButton
                 color="inherit"
                 aria-label="Menu"
@@ -71,43 +53,84 @@ class AppHeader extends Component {
               >
                 <Icon>menu</Icon>
               </IconButton>
+              <h2 className="app-bar-title">
+                <span>Lunch Picker</span>
+              </h2>
+              <IconButton
+                color="inherit"
+                onClick={this.handleToggleFilterPanel}
+                className="app-bar-right-btn"
+              >
+                <Icon>tune</Icon>
+              </IconButton>
+              <IconButton
+                color="inherit"
+                onClick={this.handleAdd}
+                className="app-bar-right-btn"
+              >
+                <Icon>add</Icon>
+              </IconButton>
             </Toolbar>
           </AppBar>
-          <MenuItem className="app-bar-menu-item">
-            <Link to="/" onClick={this.handleClose}>
-              Home
-            </Link>
-          </MenuItem>
-          <MenuItem className="app-bar-menu-item">
-            <Link to="/new" onClick={this.handleClose}>
-              New Restaurant
-            </Link>
-          </MenuItem>
-          <MenuItem className="app-bar-menu-item">
-            <Link to="/teams/joined" onClick={this.handleClose}>
-              Joined Teams
-            </Link>
-          </MenuItem>
-          <MenuItem className="app-bar-menu-item">
-            <Link to="/teams/my" onClick={this.handleClose}>
-              My Teams
-            </Link>
-          </MenuItem>
-          <MenuItem className="app-bar-menu-item">
-            <span
-              className="app-bar-menu-item-icon"
-              onClick={this.handleSignOut}
-            >
-              <Icon>exit_to_app</Icon>
-            </span>
-          </MenuItem>
-        </Drawer>
+          <Drawer
+            open={this.state.open}
+            onClose={() => this.setState({ open: false })}
+            className="app-bar-drawer"
+          >
+            <AppBar position="static" className="app-bar">
+              <Toolbar>
+                <IconButton
+                  color="inherit"
+                  aria-label="Menu"
+                  className="app-bar-menu-btn"
+                  onClick={this.handleToggle}
+                >
+                  <Icon>menu</Icon>
+                </IconButton>
+              </Toolbar>
+            </AppBar>
+            <MenuItem className="app-bar-menu-item">
+              <Link to="/" onClick={this.handleClose}>
+                Home
+              </Link>
+            </MenuItem>
+            <MenuItem className="app-bar-menu-item">
+              <Link to="/new" onClick={this.handleClose}>
+                New Restaurant
+              </Link>
+            </MenuItem>
+            <MenuItem className="app-bar-menu-item">
+              <Link to="/teams/joined" onClick={this.handleClose}>
+                Joined Teams
+              </Link>
+            </MenuItem>
+            <MenuItem className="app-bar-menu-item">
+              <Link to="/teams/my" onClick={this.handleClose}>
+                My Teams
+              </Link>
+            </MenuItem>
+            <MenuItem className="app-bar-menu-item">
+              <span
+                className="app-bar-menu-item-icon"
+                onClick={this.handleSignOut}
+              >
+                <Icon>exit_to_app</Icon>
+              </span>
+            </MenuItem>
+          </Drawer>
+        </Headroom>
       </div>
     );
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    isFilterPanelOpen: state.app.isFilterPanelOpen
+  };
+};
+
 export default connect(
-  null,
-  { resetRestaurantInfo }
+  mapStateToProps,
+  { resetRestaurantInfo, toggleFilterPanel }
 )(AppHeader);

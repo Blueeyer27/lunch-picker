@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   error: null,
   success: null,
   isDetectedNameModalOpen: false,
+  isFilterPanelOpen: false,
   users: []
 };
 
@@ -21,6 +22,9 @@ export const appReducer = (state = INITIAL_STATE, action) => {
 
     case APP_ACTIONS.TOGGLE_DETECTED_NAME_MODAL:
       return { ...state, isDetectedNameModalOpen: action.payload.open };
+
+    case APP_ACTIONS.TOGGLE_FILTER_PANEL:
+      return { ...state, isFilterPanelOpen: action.payload.open };
 
     case APP_ACTIONS.GET_ALL_USERS:
       return { ...state, users: action.payload.users };

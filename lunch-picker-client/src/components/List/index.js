@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { RestaurantOverview } from './components';
+import { RestaurantOverview, CategoryFilter } from './components';
 import { listRestaurants, remove } from '../../actions';
-import { listSelector } from '../../selectors';
+import { listSelector, appSelector } from '../../selectors';
 
 import './styles/list.less';
 
@@ -44,6 +44,7 @@ class RestaurantList extends Component {
   render() {
     return (
       <div className="margin-top-1rem with-footer">
+        <CategoryFilter open={this.props.isFilterPanelOpen} />
         {this.props.hasPicked
           ? this.renderPickedRestaurantOverview()
           : this.renderReataurantOverviews()}
@@ -52,7 +53,18 @@ class RestaurantList extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  console.log({
+    ...listSelector(state),
+    isFilterPanelOpen: state.app.isFilterPanelOpen
+  });
+  return {
+    ...listSelector(state),
+    isFilterPanelOpen: state.app.isFilterPanelOpen
+  };
+};
+
 export default connect(
-  listSelector,
+  mapStateToProps,
   { listRestaurants, remove }
 )(RestaurantList);
